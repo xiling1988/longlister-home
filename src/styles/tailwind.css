@@ -49,4 +49,6 @@
   --color-brand-coral: #ff6b6b;
   --color-brand-dark: #1a1a1a;
   --color-brand-gray: #333333;
+  --color-brand-lightgray: #666666; /* supporting text */
+  --color-brand-muted: #999999; /* hover/inactive text */
 }

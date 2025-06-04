@@ -6,7 +6,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import backgroundImage from '@/images/background-features.jpg'
+import backgroundImage from '@/images/howItWorks_bg.png'
 import screenshotExpenses from '@/images/screenshots/expenses.png'
 import screenshotPayroll from '@/images/screenshots/payroll.png'
 import screenshotReporting from '@/images/screenshots/reporting.png'
@@ -63,7 +63,7 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Features for running your books"
-      className="relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32"
+      className="relative overflow-hidden bg-brand-cream pt-20 pb-28 sm:py-32"
     >
       <Image
         className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -75,10 +75,10 @@ export function PrimaryFeatures() {
       />
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-3xl tracking-tight text-brand-dark sm:text-4xl md:text-5xl">
             Everything you need to run your books.
           </h2>
-          <p className="mt-6 text-lg tracking-tight text-blue-100">
+          <p className="mt-6 text-lg tracking-tight text-brand-lightgray">
             Well everything you need if you aren’t that picky about minor
             details like tax compliance.
           </p>
@@ -106,8 +106,8 @@ export function PrimaryFeatures() {
                           className={clsx(
                             'font-display text-lg data-selected:not-data-focus:outline-hidden',
                             selectedIndex === featureIndex
-                              ? 'text-blue-600 lg:text-white'
-                              : 'text-blue-100 hover:text-white lg:text-white',
+                              ? 'text-brand-red'
+                              : 'text-brand-lightgray group-hover:text-brand-dark',
                           )}
                         >
                           <span className="absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none" />
@@ -118,8 +118,8 @@ export function PrimaryFeatures() {
                         className={clsx(
                           'mt-2 hidden text-sm lg:block',
                           selectedIndex === featureIndex
-                            ? 'text-white'
-                            : 'text-blue-100 group-hover:text-white',
+                            ? 'text-brand-dark'
+                            : 'text-brand-lightgray group-hover:text-brand-dark',
                         )}
                       >
                         {feature.description}
@@ -133,7 +133,7 @@ export function PrimaryFeatures() {
                   <TabPanel key={feature.title} unmount={false}>
                     <div className="relative sm:px-6 lg:hidden">
                       <div className="absolute -inset-x-4 top-[-6.5rem] bottom-[-4.25rem] bg-white/10 ring-1 ring-white/10 ring-inset sm:inset-x-0 sm:rounded-t-xl" />
-                      <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
+                      <p className="relative mx-auto max-w-2xl text-base text-brand-dark sm:text-center">
                         {feature.description}
                       </p>
                     </div>

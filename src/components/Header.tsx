@@ -14,7 +14,9 @@ import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 import Image from 'next/image'
-import logo from '../images/logo.png'
+import fullLogoRed from '../images/full_logo_red.png'
+import longlistLogo from '../images/longlist_logo_red.png'
+import wordLogoRed from '../images/word_logo_red.png'
 function MobileNavLink({
   href,
   children,
@@ -67,11 +69,11 @@ function MobileNavigation() {
       </PopoverButton>
       <PopoverBackdrop
         transition
-        className="fixed inset-0 bg-slate-300/50 duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
+        className="fixed inset-0 bg-brand-cream opacity-80 duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
       />
       <PopoverPanel
         transition
-        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-closed:scale-95 data-closed:opacity-0 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
+        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-brand-cream p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-closed:scale-95 data-closed:opacity-0 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
       >
         <MobileNavLink href="#features">Features</MobileNavLink>
         <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
@@ -91,12 +93,20 @@ export function Header() {
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
               <Image
-                height={40}
-                width={40}
-                src={logo}
+                height={100}
+                width={100}
+                src={fullLogoRed}
                 unoptimized
                 alt="Longlister Logo"
-                className="h-10 w-auto"
+                className="hidden h-20 w-auto lg:inline-block"
+              />
+              <Image
+                height={40}
+                width={40}
+                src={wordLogoRed}
+                unoptimized
+                alt="Longlister Logo"
+                className="h-14 w-auto lg:hidden"
               />
               {/* <Logo className="h-10 w-auto" /> */}
             </Link>
