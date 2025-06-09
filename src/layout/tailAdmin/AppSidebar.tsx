@@ -8,6 +8,7 @@ import fullLogoRed from '@/images/full_logo_red.png'
 import listLogoRed from '@/images/list_logo_red.png'
 import {
   BoxCubeIcon,
+  Briefcase,
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
@@ -32,12 +33,13 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: 'Dashboard',
-    subItems: [{ name: 'Ecommerce', path: '/', pro: false }],
+    path: '/',
+    // subItems: [{ name: 'Ecommerce', path: '/', pro: false }],
   },
   {
-    icon: <CalenderIcon />,
-    name: 'Calendar',
-    path: '/calendar',
+    icon: <Briefcase />,
+    name: 'Vacancies',
+    path: '/vacancies',
   },
   {
     icon: <UserCircleIcon />,

@@ -51,6 +51,7 @@ import HorizontaLDots from './horizontal-dots.svg'
 import ChatIcon from './chat.svg'
 import MoreDotIcon from './more-dot.svg'
 import BellIcon from './bell.svg'
+import Briefcase from './briefcase.svg'
 
 export {
   DownloadIcon,
@@ -62,6 +63,7 @@ export {
   VideoIcon,
   BoltIcon,
   PlusIcon,
+  Briefcase,
   BoxIcon,
   CloseIcon,
   CheckCircleIcon,
