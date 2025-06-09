@@ -10,6 +10,7 @@ import UserMetaCard from '@/components/tailAdmin/user-profile/UserMetaCard'
 import { useModal } from '@/hooks/useModal'
 import { Metadata } from 'next'
 import React from 'react'
+import { getMyVacanciesClient } from './actions'
 
 // export const metadata: Metadata = {
 //   title: 'Next.js Profile | TailAdmin - Next.js Dashboard Template',
@@ -18,6 +19,8 @@ import React from 'react'
 // }
 
 export default function Vacancies() {
+  const vacancies = getMyVacanciesClient()
+  console.log('Vacancies:', vacancies)
   const { isOpen, openModal, closeModal } = useModal()
   return (
     <div>
