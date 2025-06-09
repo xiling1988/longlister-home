@@ -19,8 +19,8 @@ import { getMyVacanciesClient } from './actions'
 // }
 
 export default function Vacancies() {
-  const vacancies = getMyVacanciesClient()
-  console.log('Vacancies:', vacancies)
+  // const vacancies = getMyVacanciesClient()
+  // console.log('Vacancies:', vacancies)
   const { isOpen, openModal, closeModal } = useModal()
   return (
     <div>
