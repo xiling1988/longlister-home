@@ -12,6 +12,7 @@ import {
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
+  GroupIcon,
   HorizontaLDots,
   ListIcon,
   PageIcon,
@@ -21,6 +22,7 @@ import {
   UserCircleIcon,
 } from '../../icons'
 import SidebarWidget from './SidebarWidget'
+import { useAuth } from '@/context/auth/auth-context'
 
 type NavItem = {
   name: string
@@ -42,16 +44,17 @@ const navItems: NavItem[] = [
     path: '/vacancies',
   },
   {
+    icon: <GroupIcon />,
+    name: 'Candidates',
+    path: '/candidates',
+    // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
+  },
+  {
     icon: <UserCircleIcon />,
     name: 'User Profile',
     path: '/profile',
   },
 
-  {
-    name: 'Forms',
-    icon: <ListIcon />,
-    subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
-  },
   {
     name: 'Tables',
     icon: <TableIcon />,
@@ -101,6 +104,7 @@ const othersItems: NavItem[] = [
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar()
   const pathname = usePathname()
+  const { user } = useAuth()
 
   const renderMenuItems = (
     navItems: NavItem[],

@@ -4,9 +4,16 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { Dropdown } from '../ui/dropdown/Dropdown'
 import { DropdownItem } from '../ui/dropdown/DropdownItem'
+import Button from '../ui/button/Button'
+import logoutAction from '@/app/(full-width-pages)/(auth)/logoutAction'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/context/auth/auth-context'
+import { API_URL } from '@/common/constants'
+import { UserCircleIcon } from '@/icons'
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation()
@@ -16,6 +23,16 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false)
   }
+
+  const { user, setUser } = useAuth()
+
+  const handleLogout = async () => {
+    await logoutAction()
+    setUser(null)
+    // router.refresh() // Refreshes layout and data fetching logic
+    router.push('/home') // Optional: navigate to home
+  }
+
   return (
     <div className="relative">
       <button
@@ -31,7 +48,11 @@ export default function UserDropdown() {
           />
         </span>
 
-        <span className="mr-1 block text-theme-sm font-medium">Musharof</span>
+        <span className="mr-1 block text-theme-sm font-medium">
+          {user?.clientProfile?.companyName ||
+            user?.recruiterProfile?.firstName ||
+            ''}
+        </span>
 
         <svg
           className={`stroke-gray-500 transition-transform duration-200 dark:stroke-gray-400 ${
@@ -60,10 +81,12 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block text-theme-sm font-medium text-gray-700 dark:text-gray-400">
-            Musharof Chowdhury
+            {user?.clientProfile?.companyName ||
+              user?.recruiterProfile?.firstName ||
+              ''}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-            randomuser@pimjo.com
+            {user?.email}
           </span>
         </div>
 
@@ -144,8 +167,8 @@ export default function UserDropdown() {
             </DropdownItem>
           </li>
         </ul>
-        <Link
-          href="/signin"
+        <DropdownItem
+          onClick={handleLogout}
           className="group mt-3 flex items-center gap-3 rounded-lg px-3 py-2 text-theme-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
         >
           <svg
@@ -164,7 +187,7 @@ export default function UserDropdown() {
             />
           </svg>
           Sign out
-        </Link>
+        </DropdownItem>
       </Dropdown>
     </div>
   )

@@ -54,6 +54,7 @@ import BellIcon from './bell.svg'
 import Briefcase from './briefcase.svg'
 
 export {
+  AlertIcon,
   DownloadIcon,
   BellIcon,
   MoreDotIcon,
@@ -67,7 +68,6 @@ export {
   BoxIcon,
   CloseIcon,
   CheckCircleIcon,
-  AlertIcon,
   InfoIcon,
   ErrorIcon,
   ArrowUpIcon,

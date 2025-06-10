@@ -104,6 +104,7 @@ export default function Login() {
             />
 
             <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault()
                 setShowPassword(!showPassword)

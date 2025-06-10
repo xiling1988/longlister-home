@@ -1,10 +1,8 @@
 'use client'
 
-import { type Metadata } from 'next'
 import Link from 'next/link'
 
 import { Button } from '@/components/salient/Button'
-import { TextField } from '@/components/salient/Fields'
 import FullLogo from '@/images/full_logo_red.png'
 import { SlimLayout } from '@/layout/salient/SlimLayout'
 import { useAuth } from '@/context/auth/auth-context'
@@ -12,8 +10,6 @@ import { useActionState, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
-import { EyeCloseIcon, EyeIcon } from '@/icons'
-import { redirect } from 'next/navigation'
 import Alert from '@/components/tailAdmin/ui/alert/Alert'
 import forgotPassword from './forgotPassword'
 

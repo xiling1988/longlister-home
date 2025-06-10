@@ -18,6 +18,7 @@ import fullLogoRed from '../../images/full_logo_red.png'
 import longlistLogo from '../images/longlist_logo_red.png'
 import wordLogoRed from '../../images/word_logo_red.png'
 import { useAuth } from '@/context/auth/auth-context'
+import UserDropdown from '../tailAdmin/header/UserDropdown'
 function MobileNavLink({
   href,
   children,
@@ -120,14 +121,20 @@ export function Header() {
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href="/login">Sign in</NavLink>
-            </div>
-            <Button href="/register" color="brand-red">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
-            </Button>
+            {user ? (
+              <UserDropdown />
+            ) : (
+              <>
+                <div className="hidden md:block">
+                  <NavLink href="/login">Sign in</NavLink>
+                </div>
+                <Button href="/register" color="brand-red">
+                  <span>
+                    Get started <span className="hidden lg:inline">today</span>
+                  </span>
+                </Button>
+              </>
+            )}
             <div className="-mr-1 md:hidden">
               <MobileNavigation />
             </div>

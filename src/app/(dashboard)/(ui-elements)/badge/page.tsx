@@ -1,6 +1,7 @@
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
-import { PlusIcon } from '@/icons'
+import { PlusCircleIcon } from '@heroicons/react/20/solid'
+
 import { Metadata } from 'next'
 import React from 'react'
 
@@ -92,25 +93,53 @@ export default function BadgePage() {
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="light" color="primary" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="primary"
+                startIcon={<PlusCircleIcon />}
+              >
                 Primary
               </Badge>
-              <Badge variant="light" color="success" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="success"
+                startIcon={<PlusCircleIcon />}
+              >
                 Success
               </Badge>{' '}
-              <Badge variant="light" color="error" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="error"
+                startIcon={<PlusCircleIcon />}
+              >
                 Error
               </Badge>{' '}
-              <Badge variant="light" color="warning" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="warning"
+                startIcon={<PlusCircleIcon />}
+              >
                 Warning
               </Badge>{' '}
-              <Badge variant="light" color="info" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="info"
+                startIcon={<PlusCircleIcon />}
+              >
                 Info
               </Badge>
-              <Badge variant="light" color="light" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="light"
+                startIcon={<PlusCircleIcon />}
+              >
                 Light
               </Badge>
-              <Badge variant="light" color="dark" startIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="dark"
+                startIcon={<PlusCircleIcon />}
+              >
                 Dark
               </Badge>
             </div>
@@ -125,25 +154,53 @@ export default function BadgePage() {
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="solid" color="primary" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="primary"
+                startIcon={<PlusCircleIcon />}
+              >
                 Primary
               </Badge>
-              <Badge variant="solid" color="success" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="success"
+                startIcon={<PlusCircleIcon />}
+              >
                 Success
               </Badge>{' '}
-              <Badge variant="solid" color="error" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="error"
+                startIcon={<PlusCircleIcon />}
+              >
                 Error
               </Badge>{' '}
-              <Badge variant="solid" color="warning" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="warning"
+                startIcon={<PlusCircleIcon />}
+              >
                 Warning
               </Badge>{' '}
-              <Badge variant="solid" color="info" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="info"
+                startIcon={<PlusCircleIcon />}
+              >
                 Info
               </Badge>
-              <Badge variant="solid" color="light" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="light"
+                startIcon={<PlusCircleIcon />}
+              >
                 Light
               </Badge>
-              <Badge variant="solid" color="dark" startIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="dark"
+                startIcon={<PlusCircleIcon />}
+              >
                 Dark
               </Badge>
             </div>
@@ -158,25 +215,37 @@ export default function BadgePage() {
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="light" color="primary" endIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="primary"
+                endIcon={<PlusCircleIcon />}
+              >
                 Primary
               </Badge>
-              <Badge variant="light" color="success" endIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="success"
+                endIcon={<PlusCircleIcon />}
+              >
                 Success
               </Badge>{' '}
-              <Badge variant="light" color="error" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="error" endIcon={<PlusCircleIcon />}>
                 Error
               </Badge>{' '}
-              <Badge variant="light" color="warning" endIcon={<PlusIcon />}>
+              <Badge
+                variant="light"
+                color="warning"
+                endIcon={<PlusCircleIcon />}
+              >
                 Warning
               </Badge>{' '}
-              <Badge variant="light" color="info" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="info" endIcon={<PlusCircleIcon />}>
                 Info
               </Badge>
-              <Badge variant="light" color="light" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="light" endIcon={<PlusCircleIcon />}>
                 Light
               </Badge>
-              <Badge variant="light" color="dark" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="dark" endIcon={<PlusCircleIcon />}>
                 Dark
               </Badge>
             </div>
@@ -191,25 +260,37 @@ export default function BadgePage() {
           </div>
           <div className="border-t border-gray-100 p-6 xl:p-10 dark:border-gray-800">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="solid" color="primary" endIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="primary"
+                endIcon={<PlusCircleIcon />}
+              >
                 Primary
               </Badge>
-              <Badge variant="solid" color="success" endIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="success"
+                endIcon={<PlusCircleIcon />}
+              >
                 Success
               </Badge>{' '}
-              <Badge variant="solid" color="error" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="error" endIcon={<PlusCircleIcon />}>
                 Error
               </Badge>{' '}
-              <Badge variant="solid" color="warning" endIcon={<PlusIcon />}>
+              <Badge
+                variant="solid"
+                color="warning"
+                endIcon={<PlusCircleIcon />}
+              >
                 Warning
               </Badge>{' '}
-              <Badge variant="solid" color="info" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="info" endIcon={<PlusCircleIcon />}>
                 Info
               </Badge>
-              <Badge variant="solid" color="light" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="light" endIcon={<PlusCircleIcon />}>
                 Light
               </Badge>
-              <Badge variant="solid" color="dark" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="dark" endIcon={<PlusCircleIcon />}>
                 Dark
               </Badge>
             </div>
