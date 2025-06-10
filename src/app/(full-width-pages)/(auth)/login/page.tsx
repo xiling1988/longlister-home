@@ -55,11 +55,11 @@ export default function Login() {
           />
         </Link>
       </div>
-      {state.errors.api && (
+      {state.errors?.api && (
         <Alert
           variant="error"
           title="API Error Message "
-          message={state.errors?.api || ''}
+          message={state.errors?.api.message || ''}
           showLink={false}
         />
       )}
@@ -76,7 +76,7 @@ export default function Login() {
         </Link>{' '}
         for a free trial.
       </p>
-      <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-8">
+      <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-4">
         <div className="-mb-3">
           <Label>Email</Label>
           <Input
@@ -100,7 +100,7 @@ export default function Login() {
               error={!!state.errors?.password}
               hint={state.errors?.password && state.errors?.password}
               placeholder="Password"
-              className="bg-white"
+              className={`bg-white ${state.errors?.password ? 'translate-y-1/2' : ''}`}
             />
 
             <button
@@ -108,7 +108,7 @@ export default function Login() {
                 e.preventDefault()
                 setShowPassword(!showPassword)
               }}
-              className="absolute top-1/2 right-4 z-30 -translate-y-1/2 cursor-pointer"
+              className={`absolute top-1/2 right-4 z-30 ${state.errors?.password ? '' : '-translate-y-1/2'} cursor-pointer`}
             >
               {showPassword ? (
                 <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
@@ -117,6 +117,9 @@ export default function Login() {
               )}
             </button>
           </div>
+          <p className="text-sm text-brand-red">
+            {state.errors?.password && state.errors?.password}
+          </p>
           <p className="mt-2 text-sm text-gray-700">
             Forgot your password?{' '}
             <Link
@@ -125,10 +128,6 @@ export default function Login() {
             >
               Reset it here.
             </Link>
-            {/* <span className="text-brand-red hover:underline">
-              {' '}
-              Reset it here
-            </span> */}
           </p>
         </div>
 

@@ -53,7 +53,7 @@ export default function Register() {
         <Alert
           variant="error"
           title="API Error Message "
-          message={state.errors?.api || ''}
+          message={state.errors?.api.message || ''}
           showLink={false}
         />
       )}
@@ -85,7 +85,7 @@ export default function Register() {
       </p>
       <form
         action={formAction}
-        className="mt-10 grid grid-cols-2 gap-x-2 gap-y-8 sm:grid-cols-2"
+        className="mt-10 grid grid-cols-2 gap-x-2 gap-y-6 sm:grid-cols-2"
       >
         <div className="col-span-full -mb-3">
           <Label>Select User Type</Label>
@@ -94,6 +94,7 @@ export default function Register() {
               options={options}
               placeholder="Select an option"
               name="userType"
+              error={!!state.errors?.userType}
               onChange={handleUserTypeChange}
               className="dark:bg-dark-900"
             />

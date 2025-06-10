@@ -4,7 +4,7 @@ import {
   Success,
 } from '@/app/(dashboard)/vacancies/recruiter/vacancy/[id]/actions/success'
 import { format } from 'path'
-
+import { ApprovalSuccess } from '@/common/util/errors'
 export interface FormErrors {
   [key: string]: string | undefined
 }

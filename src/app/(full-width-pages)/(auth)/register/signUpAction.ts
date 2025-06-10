@@ -40,7 +40,17 @@ export default async function signUpAction(
 
   try {
     const response = await post(AUTH_API_URL, 'users', formDataToSend)
-
+    const { error } = response
+    if (error) {
+      console.log('❌ API Error:', error)
+      return {
+        errors: {
+          api:
+            error ||
+            'An error occurred while processing your request - Please try again.',
+        },
+      }
+    }
     return { success: true }
   } catch (error) {
     console.log('❌ Error during API call:', error)
