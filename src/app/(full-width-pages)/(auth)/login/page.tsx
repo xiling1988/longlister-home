@@ -120,7 +120,7 @@ export default function Login() {
           <p className="mt-2 text-sm text-gray-700">
             Forgot your password?{' '}
             <Link
-              href="/reset-password"
+              href="/forgot-password"
               className="font-medium text-brand-red hover:underline"
             >
               Reset it here.

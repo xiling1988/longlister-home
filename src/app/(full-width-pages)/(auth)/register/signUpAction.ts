@@ -40,11 +40,8 @@ export default async function signUpAction(
 
   try {
     const response = await post(AUTH_API_URL, 'users', formDataToSend)
-    const { error } = await response
-    if (error) {
-      console.log('❌ API Error:', error)
-      return { errors: { api: error } }
-    }
+
+    return { success: true }
   } catch (error) {
     console.log('❌ Error during API call:', error)
     return {
@@ -53,6 +50,4 @@ export default async function signUpAction(
       },
     }
   }
-
-  redirect('/')
 }

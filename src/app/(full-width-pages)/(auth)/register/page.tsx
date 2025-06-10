@@ -14,6 +14,7 @@ import { useActionState, useState } from 'react'
 import Input from '@/components/tailAdmin/form/input/InputField'
 import signUpAction from './signUpAction'
 import Alert from '@/components/tailAdmin/ui/alert/Alert'
+import { tr } from 'zod/v4/locales'
 
 // export const metadata: Metadata = {
 //   title: 'Sign Up',
@@ -48,12 +49,25 @@ export default function Register() {
           />
         </Link>
       </div>
-      {state.errors.api && (
+      {state.errors?.api && (
         <Alert
           variant="error"
           title="API Error Message "
           message={state.errors?.api || ''}
           showLink={false}
+        />
+      )}
+      {state.success && (
+        <Alert
+          variant="success"
+          title="Welcome to Longlister"
+          message={
+            'Your account has been created successfully! Please click the link below to login.'
+          }
+          showLink={true}
+          linkText="Go to Login"
+          linkHref="/login"
+          className="mb-4"
         />
       )}
       <h2 className="mt-1 text-lg font-semibold text-gray-900">
@@ -91,7 +105,7 @@ export default function Register() {
           <Input
             type="email"
             // defaultValue={email}
-            error={!!state.errors.email}
+            error={!!state.errors?.email}
             name="email"
             placeholder="you@example.com"
             hint={state.errors?.email && state.errors.email}
@@ -105,11 +119,11 @@ export default function Register() {
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               name="password"
-              error={!!state.errors.password}
-              hint={state.errors?.password && state.errors.password}
+              error={!!state.errors?.password}
+              hint={state.errors?.password && state.errors?.password}
               className="bg-white"
             />
-           
+
             <button
               onClick={(e) => {
                 e.preventDefault()
