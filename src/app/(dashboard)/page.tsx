@@ -29,7 +29,10 @@ export default function Ecommerce() {
       <div className="col-span-12 xl:col-span-5">
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-semibold">
-            Welcome, {user?.recruiterProfile?.firstName}!
+            Welcome,{' '}
+            {user?.recruiterProfile?.firstName ||
+              user?.clientProfile?.companyName}
+            !
           </h2>
           <p className="text-gray-600">
             Here’s a quick overview of your e-commerce metrics.

@@ -13,6 +13,16 @@ export const getMyVacanciesClient = async () => {
   return data
 }
 
+export const getMyVacanciesRecruiter = async () => {
+  console.log('FETCH REQUEST: ', JOBS_API_URL, '/jobs/recruiter/my-jobs')
+  const data = await get(JOBS_API_URL, 'jobs/recruiter/my-jobs')
+  if (data.error) {
+    throw new Error(data.error.message)
+  }
+
+  return data
+}
+
 export const deleteVacancy = async (id: string) => {
   const headers = await getHeaders()
   const res = await fetch(`${JOBS_API_URL}/jobs/${id}`, {
