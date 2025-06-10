@@ -15,6 +15,7 @@ import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
 import { EyeCloseIcon, EyeIcon } from '@/icons'
 import { redirect } from 'next/navigation'
+import Alert from '@/components/tailAdmin/ui/alert/Alert'
 
 // export const metadata: Metadata = {
 //   title: 'Sign In',
@@ -42,38 +43,47 @@ export default function Login() {
 
   return (
     <SlimLayout>
-      <div className="flex">
+      <div className="mx-auto w-full">
         <Link href="/home" aria-label="Home">
           <Image
             src={FullLogo}
             alt="Full Logo"
-            className="h-20 w-auto"
+            className="h-auto w-full"
             unoptimized
             width={40}
             height={40}
           />
         </Link>
       </div>
-      <h2 className="mt-20 text-lg font-semibold text-gray-900">
+      {state.errors.api && (
+        <Alert
+          variant="error"
+          title="API Error Message "
+          message={state.errors?.api || ''}
+          showLink={false}
+        />
+      )}
+      <h2 className="mt-1 text-lg font-semibold text-gray-900">
         Sign in to your account
       </h2>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 -mb-5 text-sm text-gray-700">
         Don’t have an account?{' '}
         <Link
           href="/register"
-          className="font-medium text-blue-600 hover:underline"
+          className="font-medium text-brand-red hover:underline"
         >
           Sign up
         </Link>{' '}
         for a free trial.
       </p>
       <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-8">
-        <div>
+        <div className="-mb-3">
           <Label>Email</Label>
           <Input
             type="email"
             // defaultValue={email}
-            placeholder="Enter your email"
+            placeholder="you@example.com"
+            className="bg-white"
             name="email"
             required
             error={!!state.errors?.email}
@@ -81,7 +91,7 @@ export default function Login() {
           />
         </div>
         <div>
-          <Label>Password Input</Label>
+          <Label>Password</Label>
           <div className="relative">
             <Input
               type={showPassword ? 'text' : 'password'}
@@ -89,8 +99,10 @@ export default function Login() {
               required
               error={!!state.errors?.password}
               hint={state.errors?.password && state.errors?.password}
-              placeholder="Enter your password"
+              placeholder="Password"
+              className="bg-white"
             />
+
             <button
               onClick={(e) => {
                 e.preventDefault()
@@ -105,10 +117,28 @@ export default function Login() {
               )}
             </button>
           </div>
+          <p className="mt-2 text-sm text-gray-700">
+            Forgot your password?{' '}
+            <Link
+              href="/reset-password"
+              className="font-medium text-brand-red hover:underline"
+            >
+              Reset it here.
+            </Link>
+            {/* <span className="text-brand-red hover:underline">
+              {' '}
+              Reset it here
+            </span> */}
+          </p>
         </div>
 
         <div>
-          <Button type="submit" variant="solid" color="blue" className="w-full">
+          <Button
+            type="submit"
+            variant="solid"
+            color="brand-red"
+            className="w-full"
+          >
             <span>
               Sign in <span aria-hidden="true">&rarr;</span>
             </span>

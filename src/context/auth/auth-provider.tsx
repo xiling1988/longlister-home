@@ -2,8 +2,10 @@
 import { useEffect, useState } from 'react'
 import { AuthContext } from './auth-context'
 import authenticated from './authenticated'
-import { User } from '../common/models'
-import getMe from '../get-me'
+// import getMe from '../get-me'
+
+import { User } from '@/common/models'
+import getMe from './get-me'
 
 // Create the AuthProvider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({

@@ -36,12 +36,12 @@ export default function Register() {
 
   return (
     <SlimLayout>
-      <div className="flex">
+      <div className="mx-auto w-full">
         <Link href="/home" aria-label="Home">
           <Image
             src={FullLogo}
             alt="Full Logo"
-            className="h-20 w-auto"
+            className="h-auto w-full"
             unoptimized
             width={40}
             height={40}
@@ -56,14 +56,14 @@ export default function Register() {
           showLink={false}
         />
       )}
-      <h2 className="mt-10 text-lg font-semibold text-gray-900">
+      <h2 className="mt-1 text-lg font-semibold text-gray-900">
         Get started for free
       </h2>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 -mb-5 text-sm text-gray-700">
         Already registered?{' '}
         <Link
           href="/login"
-          className="font-medium text-blue-600 hover:underline"
+          className="font-medium text-brand-red hover:underline"
         >
           Sign in
         </Link>{' '}
@@ -71,10 +71,10 @@ export default function Register() {
       </p>
       <form
         action={formAction}
-        className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-2"
+        className="mt-10 grid grid-cols-2 gap-x-2 gap-y-8 sm:grid-cols-2"
       >
-        <div className="col-span-full">
-          <Label>Select Company Type</Label>
+        <div className="col-span-full -mb-3">
+          <Label>Select User Type</Label>
           <div className="relative">
             <Select
               options={options}
@@ -83,9 +83,7 @@ export default function Register() {
               onChange={handleUserTypeChange}
               className="dark:bg-dark-900"
             />
-            <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 dark:text-gray-400">
-              {/* <ChevronDownIcon /> */}
-            </span>
+            <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-500 dark:text-gray-400"></span>
           </div>
         </div>
         <div>
@@ -95,20 +93,23 @@ export default function Register() {
             // defaultValue={email}
             error={!!state.errors.email}
             name="email"
-            placeholder="Enter your email"
+            placeholder="you@example.com"
             hint={state.errors?.email && state.errors.email}
+            className="-mb-3 bg-white"
           />
         </div>
         <div>
-          <Label>Password Input</Label>
+          <Label>Password</Label>
           <div className="relative">
             <Input
               type={showPassword ? 'text' : 'password'}
-              placeholder="Enter your password"
+              placeholder="Password"
               name="password"
               error={!!state.errors.password}
               hint={state.errors?.password && state.errors.password}
+              className="bg-white"
             />
+           
             <button
               onClick={(e) => {
                 e.preventDefault()
@@ -126,7 +127,12 @@ export default function Register() {
         </div>
 
         <div className="col-span-full">
-          <Button type="submit" variant="solid" color="blue" className="w-full">
+          <Button
+            type="submit"
+            variant="solid"
+            color="brand-red"
+            className="w-full"
+          >
             <span>
               Sign up <span aria-hidden="true">&rarr;</span>
             </span>

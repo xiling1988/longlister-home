@@ -21,3 +21,9 @@ export const loginSchema = z.object({
     message: 'Password must be at least 6 characters',
   }),
 })
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().refine((val) => email().safeParse(val).success, {
+    message: 'Invalid email address',
+  }),
+})
