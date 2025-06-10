@@ -17,6 +17,7 @@ import Image from 'next/image'
 import fullLogoRed from '../../images/full_logo_red.png'
 import longlistLogo from '../images/longlist_logo_red.png'
 import wordLogoRed from '../../images/word_logo_red.png'
+import { useAuth } from '@/context/auth/auth-context'
 function MobileNavLink({
   href,
   children,
@@ -86,6 +87,8 @@ function MobileNavigation() {
 }
 
 export function Header() {
+  const { user } = useAuth()
+  console.log('LOGGING USER', user)
   return (
     <header className="bg-brand-cream py-10">
       <Container>

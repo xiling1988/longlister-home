@@ -24,28 +24,28 @@ export default function Vacancies() {
   const { isOpen, openModal, closeModal } = useModal()
   return (
     <div>
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03]">
-        <div className="mb-5 flex items-center justify-between lg:mb-7">
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-            My Vacancies
-          </h3>
-          <Button
-            onClick={openModal}
-            className="bg-brand-red hover:bg-brand-coral"
-            size="sm"
-          >
-            Create New Vacancy
-          </Button>
-          <CreateVacancyModal
-            openModal={openModal}
-            closeModal={closeModal}
-            isOpen={isOpen}
-          />
-        </div>
-        <div className="space-y-6">
-          <BasicTableOne />
-        </div>
+      {/* <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03]"> */}
+      <div className="mb-5 flex items-center justify-between lg:mb-7">
+        <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+          My Vacancies
+        </h3>
+        <Button
+          onClick={openModal}
+          className="bg-brand-red hover:bg-brand-coral"
+          size="sm"
+        >
+          Create New Vacancy
+        </Button>
+        <CreateVacancyModal
+          openModal={openModal}
+          closeModal={closeModal}
+          isOpen={isOpen}
+        />
+      </div>
+      <div className="space-y-6">
+        <BasicTableOne />
       </div>
     </div>
+    // </div>
   )
 }

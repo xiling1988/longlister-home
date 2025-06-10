@@ -1,5 +1,5 @@
+import { User } from '@/common/models'
 import { createContext, Dispatch, SetStateAction, useContext } from 'react'
-import { User } from '../common/models'
 
 // Create a hook for consuming the AuthContext
 export const useAuth = () => {

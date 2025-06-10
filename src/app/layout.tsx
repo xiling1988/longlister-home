@@ -3,6 +3,7 @@ import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
+import { AuthProvider } from '@/context/auth/auth-provider'
 
 export const metadata: Metadata = {
   title: {
@@ -31,15 +32,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={clsx(
-        'h-full scroll-smooth bg-brand-cream antialiased',
-        inter.variable,
-        lexend.variable,
-      )}
-    >
-      <body className="flex h-full flex-col">{children}</body>
-    </html>
+    <AuthProvider>
+      <html
+        lang="en"
+        className={clsx(
+          'h-full scroll-smooth bg-brand-cream antialiased',
+          inter.variable,
+          lexend.variable,
+        )}
+      >
+        <body className="flex h-full flex-col">{children}</body>
+      </html>
+    </AuthProvider>
   )
 }
