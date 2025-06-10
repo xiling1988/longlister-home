@@ -91,7 +91,7 @@ export function Header() {
   const { user } = useAuth()
   console.log('LOGGING USER', user)
   return (
-    <header className="bg-brand-cream py-10">
+    <header className="bg-brand-cream py-5">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">

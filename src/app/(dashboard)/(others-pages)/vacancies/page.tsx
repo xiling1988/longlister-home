@@ -1,16 +1,16 @@
 'use client'
 
 import CreateVacancyModal from '@/components/custom/vacancies/CreateVacancyModal'
-import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import BasicTableOne from '@/components/tailAdmin/tables/BasicTableOne'
 import Button from '@/components/tailAdmin/ui/button/Button'
-import UserAddressCard from '@/components/tailAdmin/user-profile/UserAddressCard'
-import UserInfoCard from '@/components/tailAdmin/user-profile/UserInfoCard'
-import UserMetaCard from '@/components/tailAdmin/user-profile/UserMetaCard'
 import { useModal } from '@/hooks/useModal'
-import { Metadata } from 'next'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { getMyVacanciesClient } from './actions'
+import { Job } from '@/common/models'
+import ClientVacanciesTable from '@/components/tailAdmin/tables/ClientVacanciesTable'
+import { set } from 'zod/v4'
+import { useAuth } from '@/context/auth/auth-context'
+import RecruiterVacanciesTable from '@/components/tailAdmin/tables/RecruiterVacanciesTable'
 
 // export const metadata: Metadata = {
 //   title: 'Next.js Profile | TailAdmin - Next.js Dashboard Template',
@@ -19,9 +19,30 @@ import { getMyVacanciesClient } from './actions'
 // }
 
 export default function Vacancies() {
-  // const vacancies = getMyVacanciesClient()
-  // console.log('Vacancies:', vacancies)
+  // const [vacancies, setVacancies] = useState<Job[]>([])
+  // const [loading, setLoading] = useState<boolean>(true)
+  // const [error, setError] = useState<string | null>(null)
   const { isOpen, openModal, closeModal } = useModal()
+  const { user } = useAuth()
+
+  // useEffect(() => {
+  //   const loadVacancies = async () => {
+  //     setError(null)
+  //     setLoading(true)
+
+  //     try {
+  //       const data = await getMyVacanciesClient()
+  //       setVacancies(data)
+  //     } catch (err: any) {
+  //       setError(err.message)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+
+  //   loadVacancies()
+  // }, [])
+
   return (
     <div>
       {/* <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03]"> */}
@@ -29,13 +50,15 @@ export default function Vacancies() {
         <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">
           My Vacancies
         </h3>
-        <Button
-          onClick={openModal}
-          className="bg-brand-red hover:bg-brand-coral"
-          size="sm"
-        >
-          Create New Vacancy
-        </Button>
+        {user?.userType === 'client' && (
+          <Button
+            onClick={openModal}
+            className="bg-brand-red hover:bg-brand-coral"
+            size="sm"
+          >
+            Create New Vacancy
+          </Button>
+        )}
         <CreateVacancyModal
           openModal={openModal}
           closeModal={closeModal}
@@ -43,7 +66,12 @@ export default function Vacancies() {
         />
       </div>
       <div className="space-y-6">
-        <BasicTableOne />
+        {user?.userType === 'client' && <ClientVacanciesTable />}
+        {user?.userType === 'recruiter' && (
+          <RecruiterVacanciesTable />
+        )}
+
+        {/* <BasicTableOne /> */}
       </div>
     </div>
     // </div>

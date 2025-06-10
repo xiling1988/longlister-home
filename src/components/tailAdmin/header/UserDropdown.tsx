@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/auth/auth-context'
 import { API_URL } from '@/common/constants'
 import { UserCircleIcon } from '@/icons'
+import { ChevronDoubleDownIcon } from '@heroicons/react/16/solid'
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false)
@@ -48,14 +49,14 @@ export default function UserDropdown() {
           />
         </span>
 
-        <span className="mr-1 block text-theme-sm font-medium">
+        <span className="mr-1 block text-theme-sm font-medium text-gray-700 dark:text-gray-400">
           {user?.clientProfile?.companyName ||
             user?.recruiterProfile?.firstName ||
             ''}
         </span>
 
         <svg
-          className={`stroke-gray-500 transition-transform duration-200 dark:stroke-gray-400 ${
+          className={`stroke-gray-700 transition-transform duration-200 dark:stroke-gray-400 ${
             isOpen ? 'rotate-180' : ''
           }`}
           width="18"

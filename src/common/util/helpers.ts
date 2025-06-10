@@ -18,3 +18,28 @@ export function getVacancyImage(id: string) {
 export function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '').trim()
 }
+
+export function getDeadlineLabel(deadline: Date): {
+  label: string
+  className: string
+} {
+  const today = new Date()
+  const diffTime = deadline.getTime() - today.getTime()
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  if (diffDays < 0) {
+    return { label: 'Past deadline', className: 'text-xs text-gray-400' }
+  }
+
+  if (diffDays <= 3) {
+    return {
+      label: `${diffDays} day${diffDays !== 1 ? 's' : ''} left`,
+      className: 'text-xs text-brand-red',
+    }
+  }
+
+  return {
+    label: `${diffDays} day${diffDays !== 1 ? 's' : ''} left`,
+    className: 'text-xs text-gray-400',
+  }
+}

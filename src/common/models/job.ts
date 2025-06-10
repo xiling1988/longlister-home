@@ -1,4 +1,5 @@
 import { CandidateOnJob } from './candidate'
+import { RecruiterOnJob } from './recruiter-on-job'
 
 export interface Job {
   id: string | undefined
@@ -60,4 +61,6 @@ export interface Job {
   cvPriceBudget: number
   totalBudget: number
   currentTotal: number
+
+  recruiters: RecruiterOnJob[]
 }
