@@ -6,7 +6,7 @@ import VacancyRemunerationForm from '@/components/custom/vacancies/create-vacanc
 import VacancyReviewForm from '@/components/custom/vacancies/create-vacancy/VacancyReviewForm'
 import VacancyRoleResponsibilitiesForm from '@/components/custom/vacancies/create-vacancy/VacancyRoleResponsibilitiesForm'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
-import { CalenderIcon, DollarLineIcon, InfoIcon } from '@/icons'
+import { CalenderIcon, DollarLineIcon, InfoIcon, ListIcon } from '@/icons'
 import React, { useState } from 'react'
 
 function CreateVacancyPage() {
@@ -31,7 +31,7 @@ function CreateVacancyPage() {
     {
       title: 'Review & Submit',
       component: <VacancyReviewForm />,
-      icon: CalenderIcon, // Pass the component, not the element
+      icon: ListIcon, // Pass the component, not the element
     },
   ]
   return (

@@ -7,8 +7,8 @@ import { AuthProvider } from '@/context/auth/auth-provider'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - TaxPal',
-    default: 'TaxPal - Accounting made simple for small businesses',
+    template: '%s - Longlister',
+    default: 'Longlister - Recruitment Revolution',
   },
   description:
     'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
@@ -36,7 +36,7 @@ export default function RootLayout({
       <html
         lang="en"
         className={clsx(
-          'h-full scroll-smooth bg-brand-cream antialiased',
+          'h-full scroll-smooth bg-transparent antialiased',
           inter.variable,
           lexend.variable,
         )}

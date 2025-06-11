@@ -14,6 +14,7 @@ interface SelectProps {
   name?: string
   error?: boolean
   hint?: string
+  required?: boolean
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -25,6 +26,7 @@ const Select: React.FC<SelectProps> = ({
   defaultValue = '',
   error = false,
   hint = '',
+  required = false,
 }) => {
   // Manage the selected value
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue)
@@ -46,6 +48,7 @@ const Select: React.FC<SelectProps> = ({
         value={selectedValue}
         onChange={handleChange}
         name={name}
+        required={required}
       >
         {/* Placeholder option */}
         <option

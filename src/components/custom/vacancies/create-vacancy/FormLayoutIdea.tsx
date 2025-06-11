@@ -12,6 +12,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { int } from 'zod/v4'
 import { ReactElement } from 'react'
+import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
+import Button from '@/components/tailAdmin/ui/button/Button'
 
 const navigation = [
   { name: 'Account', href: '#', icon: UserCircleIconOutline, current: true },
@@ -55,6 +57,16 @@ export default function FormLayoutIdea({
 }: FormLayoutIdeaProps) {
   return (
     <div className="lg:grid lg:grid-cols-12 lg:gap-x-5">
+      {/* Step Content */}
+      <div className="lg:col-span-9">
+        <ComponentCard
+          title={steps[activeStep]?.title}
+          desc="Vacancy, Recruiter and Candidate Brief Sheet creation form"
+        >
+          {steps[activeStep]?.component}
+          
+        </ComponentCard>
+      </div>
       <aside className="px-2 py-6 sm:px-6 lg:col-span-3 lg:px-0 lg:py-0">
         <ul className="flex flex-col gap-4">
           {steps.map((step, index) => {
@@ -85,12 +97,6 @@ export default function FormLayoutIdea({
           })}
         </ul>
       </aside>
-      {/* Step Content */}
-      <div className="lg:col-span-9">
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white px-6 py-8 dark:border-gray-800 dark:bg-white/[0.03]">
-          {steps[activeStep]?.component}
-        </div>
-      </div>
     </div>
   )
 }

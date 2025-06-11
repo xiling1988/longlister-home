@@ -5,6 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* ////////////////////// TIPTAP CLASSES ////////////////////// */
+
   /* ////////////////////// SALIENT TEMPLATE ////////////////////// */
   --text-*: initial;
   --text-xs: 0.75rem;
@@ -342,6 +344,42 @@
     display: none;
     -webkit-appearance: none;
   }
+}
+
+.tiptap h1 {
+  @apply mb-4 text-2xl font-bold;
+}
+
+.tiptap h2 {
+  @apply mb-3 text-xl font-semibold;
+}
+
+.tiptap h3 {
+  @apply mb-2 text-lg font-medium;
+}
+
+.tiptap p {
+  @apply mb-2 text-base leading-relaxed text-gray-800 dark:text-white/80;
+}
+
+.tiptap ul {
+  @apply mb-2 list-inside list-disc pl-5;
+}
+
+.tiptap ol {
+  @apply mb-2 list-inside list-decimal pl-5;
+}
+
+.tiptap li {
+  @apply mb-1;
+}
+
+.tiptap strong {
+  @apply font-semibold;
+}
+
+.tiptap em {
+  @apply italic;
 }
 
 /* third-party libraries CSS */
