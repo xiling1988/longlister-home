@@ -14,7 +14,7 @@ import {
 import { RecruiterOnJob } from '@/common/models/recruiter-on-job'
 
 export default function RecruiterVacanciesTable() {
-  const [vacancies, setVacancies] = useState<RecruiterOnJob[]>([])
+  const [vacancies, setVacancies] = useState<Job[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const { user } = useAuth()
@@ -49,150 +49,157 @@ export default function RecruiterVacanciesTable() {
               <TableRow>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                   Company
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
-                >
-                  Job Title
-                </TableCell>
-                <TableCell
-                  isHeader
-                  className="px-5 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                   CV Target
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
-                  CVs Submitted
+                  Approved / Submitted
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                >
+                  Self Submitted
+                </TableCell>
+                <TableCell
+                  isHeader
+                  className="px-3 py-3 text-center text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                   Status
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
                   Deadline
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
-                  Recruiters on Job
+                  Recruiters
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
-                  Current Total
+                  Earnings / CV
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
+                  className="px-3 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
                 >
-                  Total Budget
+                  Current Earnings
                 </TableCell>
               </TableRow>
             </TableHeader>
             {/* Table Body */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {vacancies.map((job) => (
-                <TableRow key={job.id}>
-                  <TableCell className="px-5 py-4 text-start sm:px-6">
+                <TableRow
+                  key={job.id}
+                  className="hover:border-gray-200 hover:bg-gray-50 dark:hover:border-white/[0.05] dark:hover:bg-white/[0.05]"
+                >
+                  <TableCell className="px-3 py-4 text-start sm:px-6">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 overflow-hidden rounded-full">
                         <Image
-                          width={40}
-                          height={40}
-                          src={getCompanyLogo(job.job?.clientId || '')}
+                          width={100}
+                          height={100}
+                          src={getCompanyLogo(job.clientId || '')}
                           unoptimized
-                          alt={job?.job?.companyName || 'Company Logo'}
+                          alt={job?.companyName || 'Company Logo'}
+                          // loading="lazy"
                         />
                       </div>
                       <div>
                         <span className="block text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                          {job.job?.companyName || 'Unknown Company'}
+                          {job.jobTitle}
                         </span>
                         <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
-                          {job.job?.jobTitle}
+                          {job.companyName || 'Unknown Company'}
                         </span>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
-                    {job.job?.maxCvs}
+                    {job.maxCvs}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
-                    {
-                      job.job?.candidates.filter(
-                        (candidate) => candidate.isDisclosed,
-                      ).length
-                    }
-                    / {job.job?.candidates.length}
+                    {job.candidates
+                      ? `${
+                          job.candidates?.filter(
+                            (candidate) => candidate.isDisclosed === true,
+                          ).length
+                        } / ${job.candidates?.length}`
+                      : '0 / 0'}
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
+                    {job.candidates
+                      ? `${
+                          job.candidates?.filter(
+                            (candidate) =>
+                              candidate.recruiterId ===
+                                user?.recruiterProfile?.id &&
+                              candidate.isDisclosed === true,
+                          ).length
+                        } / ${
+                          job.candidates?.filter(
+                            (candidate) =>
+                              candidate.recruiterId ===
+                              user?.recruiterProfile?.id,
+                          ).length
+                        }`
+                      : '0 / 0'}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
                     <Badge
                       size="sm"
                       color={
-                        job.job?.status === 'ACTIVE'
+                        job.status === 'ACTIVE'
                           ? 'success'
-                          : job.job?.status === 'CLOSED'
+                          : job.status === 'CLOSED'
                             ? 'error'
                             : 'warning'
                       }
                     >
-                      {job.job?.status}
+                      {job.status}
                     </Badge>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                    {job.job?.deadline
-                      ? new Date(job.job?.deadline).toLocaleDateString(
-                          'en-US',
-                          {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          },
-                        )
+                    {job.deadline
+                      ? new Date(job.deadline).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })
                       : ''}
                     <div
                       className={
-                        getDeadlineLabel(new Date(job.job?.deadline || ''))
-                          .className
+                        getDeadlineLabel(new Date(job.deadline || '')).className
                       }
                     >
-                      {
-                        getDeadlineLabel(new Date(job.job?.deadline || ''))
-                          .label
-                      }
+                      {getDeadlineLabel(new Date(job.deadline || '')).label}
                     </div>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
-                    {job.job?.recruiters?.length || 0}
+                    {job.recruiters?.length}
                   </TableCell>
                   <TableCell className="px-4 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                    {job.job?.currentTotal} AED
-                    <Badge size="sm" color="info" className="ml-2">
-                      {Number(
-                        Number(
-                          (job.job?.currentTotal ?? 0) /
-                            (job.job?.totalBudget ?? 1),
-                        ).toFixed(2),
-                      ) * 100}
-                      %
-                    </Badge>
+                    {job.cvPriceBudget} AED
                   </TableCell>
                   <TableCell className="px-4 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-                    {job.job?.totalBudget} AED
+                    {job.totalBudget} AED
                   </TableCell>
                 </TableRow>
               ))}

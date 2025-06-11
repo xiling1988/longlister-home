@@ -19,29 +19,8 @@ import RecruiterVacanciesTable from '@/components/tailAdmin/tables/RecruiterVaca
 // }
 
 export default function Vacancies() {
-  // const [vacancies, setVacancies] = useState<Job[]>([])
-  // const [loading, setLoading] = useState<boolean>(true)
-  // const [error, setError] = useState<string | null>(null)
   const { isOpen, openModal, closeModal } = useModal()
   const { user } = useAuth()
-
-  // useEffect(() => {
-  //   const loadVacancies = async () => {
-  //     setError(null)
-  //     setLoading(true)
-
-  //     try {
-  //       const data = await getMyVacanciesClient()
-  //       setVacancies(data)
-  //     } catch (err: any) {
-  //       setError(err.message)
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   }
-
-  //   loadVacancies()
-  // }, [])
 
   return (
     <div>
@@ -67,11 +46,7 @@ export default function Vacancies() {
       </div>
       <div className="space-y-6">
         {user?.userType === 'client' && <ClientVacanciesTable />}
-        {user?.userType === 'recruiter' && (
-          <RecruiterVacanciesTable />
-        )}
-
-        {/* <BasicTableOne /> */}
+        {user?.userType === 'recruiter' && <RecruiterVacanciesTable />}
       </div>
     </div>
     // </div>
