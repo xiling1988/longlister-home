@@ -1,12 +1,14 @@
 'use client'
 
-import FormLayoutIdea from '@/components/custom/vacancies/create-vacancy/FormLayoutIdea'
+import Sliders from '@/components/custom/forms/Sliders'
+import FormLayout from '@/components/custom/vacancies/create-vacancy/FormLayout'
 import VacancyRecruitmentProcessForm from '@/components/custom/vacancies/create-vacancy/VacancyRecruitmentProcessForm'
 import VacancyRemunerationForm from '@/components/custom/vacancies/create-vacancy/VacancyRemunerationForm'
 import VacancyReviewForm from '@/components/custom/vacancies/create-vacancy/VacancyReviewForm'
 import VacancyRoleResponsibilitiesForm from '@/components/custom/vacancies/create-vacancy/VacancyRoleResponsibilitiesForm'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
-import { CalenderIcon, DollarLineIcon, InfoIcon, ListIcon } from '@/icons'
+import { NewVacancyDataProvider } from '@/context/NewVacancyContext'
+import { CalenderIcon, DollarLineIcon, InfoIcon } from '@/icons'
 import React, { useState } from 'react'
 
 function CreateVacancyPage() {
@@ -15,36 +17,43 @@ function CreateVacancyPage() {
   const steps = [
     {
       title: 'Role & Responsibilities',
-      component: <VacancyRoleResponsibilitiesForm />,
-      icon: InfoIcon, // Pass the component, not the element
+      component: VacancyRoleResponsibilitiesForm,
+      icon: InfoIcon,
     },
     {
       title: 'Remuneration',
-      component: <VacancyRemunerationForm />,
-      icon: DollarLineIcon, // Pass the component, not the element
+      component: VacancyRemunerationForm,
+      icon: DollarLineIcon,
     },
     {
       title: 'Recruitment Process',
-      component: <VacancyRecruitmentProcessForm />,
-      icon: CalenderIcon, // Pass the component, not the element
+      component: VacancyRecruitmentProcessForm,
+      icon: CalenderIcon,
     },
     {
       title: 'Review & Submit',
-      component: <VacancyReviewForm />,
-      icon: ListIcon, // Pass the component, not the element
+      component: VacancyReviewForm,
+      icon: CalenderIcon,
     },
   ]
   return (
-    <div>
+    <NewVacancyDataProvider>
       <PageBreadcrumb pageTitle="New Vacancy" />
+      <Sliders />
+      <h2
+        className="my-4 text-xl font-semibold text-gray-800 dark:text-white/90"
+        x-text="pageName"
+      >
+        Vacancy Details
+      </h2>
       <div className="min-h-screen rounded-2xl border border-gray-200 bg-white px-5 py-7 xl:px-10 xl:py-12 dark:border-gray-800 dark:bg-white/[0.03]">
-        <FormLayoutIdea
+        <FormLayout
           steps={steps}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
         />
       </div>
-    </div>
+    </NewVacancyDataProvider>
   )
 }
 

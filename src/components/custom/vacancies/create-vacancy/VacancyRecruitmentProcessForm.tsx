@@ -9,7 +9,15 @@ import React from 'react'
 import NotificationRecipients from '../../forms/NotificationRecipients'
 import Button from '@/components/tailAdmin/ui/button/Button'
 
-function VacancyRecruitmentProcessForm() {
+interface VacancyRecruitmentProcessFormProps {
+  onNext: () => void
+  onBack?: () => void // Optional back handler
+}
+
+function VacancyRecruitmentProcessForm({
+  onNext,
+  onBack,
+}: VacancyRecruitmentProcessFormProps) {
   return (
     <form>
       {/* Recruitment Timeline */}
@@ -75,16 +83,6 @@ function VacancyRecruitmentProcessForm() {
       <div className="mb-6">
         <Label>Email Notification Recipients</Label>
         <NotificationRecipients />
-      </div>
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          className="mt-6 justify-end"
-          variant="primary"
-          size="sm"
-        >
-          Save and Continue
-        </Button>
       </div>
     </form>
   )

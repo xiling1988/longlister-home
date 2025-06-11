@@ -1,12 +1,28 @@
 import Input from '@/components/tailAdmin/form/input/InputField'
 import Label from '@/components/tailAdmin/form/Label'
-import React from 'react'
+import React, { useActionState } from 'react'
 import MultiElementInput from '../../forms/MultiElementInput'
 import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import RichTextEditor from '../../forms/RichTextEditor'
 import Button from '@/components/tailAdmin/ui/button/Button'
+import { useNewVacancyContext } from '@/context/NewVacancyContext'
+import { newVacancyRoleResponsibilitiesAction } from '@/app/(dashboard)/(others-pages)/vacancies/create/actions'
+import { FormErrors } from '@/common/util/errors'
 
-function VacancyRoleResponsibilitiesForm() {
+interface VacancyRoleResponsibilitiesFormProps {
+  onNext: () => void
+}
+
+const initialState: FormErrors = {}
+
+function VacancyRoleResponsibilitiesForm({
+  onNext,
+}: VacancyRoleResponsibilitiesFormProps) {
+  const { newVacancyData, updateVacancyData } = useNewVacancyContext()
+  const [state, formAction] = useActionState(
+    newVacancyRoleResponsibilitiesAction,
+    { errors: initialState },
+  )
   return (
     <form>
       <div>
@@ -17,10 +33,14 @@ function VacancyRoleResponsibilitiesForm() {
           placeholder="Enter the role title"
           required
           className="mb-4"
+          error={!!state.errors?.jobTitle}
+          hint={state.errors?.jobTitle && state.errors?.jobTitle}
+          defaultValue={newVacancyData?.jobTitle || ''}
         />
         <MultiElementInput
           title="Non-Negotiables"
           name="nonNegotiables"
+          items={newVacancyData?.nonNegotiables || []}
           placeholder="Enter a responsibility"
           className="mb-4"
         />
@@ -33,16 +53,6 @@ function VacancyRoleResponsibilitiesForm() {
   <h3>Our mission</h3><p>State your company's mission...</p><br>
   <h3>Our vision</h3><p>Describe your long-term goals...</p><br></br>`}
         />
-      </div>
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          className="mt-6 justify-end"
-          variant="primary"
-          size="sm"
-        >
-          Save and Continue
-        </Button>
       </div>
     </form>
   )

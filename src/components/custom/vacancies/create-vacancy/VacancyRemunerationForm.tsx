@@ -8,7 +8,15 @@ import TextArea from '@/components/tailAdmin/form/input/TextArea'
 import Select from '@/components/tailAdmin/form/Select'
 import Button from '@/components/tailAdmin/ui/button/Button'
 
-function VacancyRemunerationForm() {
+interface VacancyRemunerationFormProps {
+  onNext: () => void
+  onBack?: () => void // Uncomment if you want to handle back navigation
+}
+
+function VacancyRemunerationForm({
+  onNext,
+  onBack,
+}: VacancyRemunerationFormProps) {
   return (
     <form>
       {/* Salary Fields */}
@@ -30,22 +38,6 @@ function VacancyRemunerationForm() {
           required
         />
       </div>
-
-      {/* Salary Negotiability — commented out for now since it's not in schema */}
-      {/*
-      <div className="mb-6">
-        <Label>Is Salary Negotiable?</Label>
-        <Select
-          name="salaryNegotiable"
-          options={[
-            { value: 'true', label: 'Yes' },
-            { value: 'false', label: 'No' },
-          ]}
-        />
-      </div>
-      */}
-
-      {/* Bonus Structure */}
       <div className="mb-6">
         <Label>Bonus Structure</Label>
         <TextArea
@@ -115,16 +107,6 @@ function VacancyRemunerationForm() {
           name="companyPerks"
           placeholder="Hybrid work policy, wellness stipend, etc."
         />
-      </div>
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          className="mt-6 justify-end"
-          variant="primary"
-          size="sm"
-        >
-          Save and Continue
-        </Button>
       </div>
     </form>
   )

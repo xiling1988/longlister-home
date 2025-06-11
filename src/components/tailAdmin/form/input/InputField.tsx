@@ -58,8 +58,7 @@ const Input: FC<InputProps> = ({
         id={id}
         name={name}
         placeholder={placeholder}
-        value={value}
-        defaultValue={value === undefined ? defaultValue : undefined} // Avoid conflict
+        defaultValue={defaultValue}
         onChange={onChange}
         required={required}
         min={min}
