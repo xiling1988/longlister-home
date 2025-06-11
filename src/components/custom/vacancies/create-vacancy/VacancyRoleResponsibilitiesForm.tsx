@@ -43,6 +43,21 @@ function VacancyRoleResponsibilitiesForm({
           items={newVacancyData?.nonNegotiables || []}
           placeholder="Enter a responsibility"
           className="mb-4"
+          updateVacancyData={({
+            nonNegotiables,
+          }: {
+            nonNegotiables: string[]
+          }) => {
+            updateVacancyData({
+              ...newVacancyData,
+              nonNegotiables,
+              companyType:
+                newVacancyData.companyType === 'company' ||
+                newVacancyData.companyType === 'agency'
+                  ? newVacancyData.companyType
+                  : undefined,
+            })
+          }}
         />
         <RichTextEditor
           title="Job Description"

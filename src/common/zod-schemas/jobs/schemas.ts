@@ -39,7 +39,7 @@ export const vacancyRoleResponsibilitiesSchema = z.object({
   // challenges: z.string().optional(),
   // successMetrics: z.string().optional(),
   // requiredSkills: z.string().min(1, 'At least one required skill is needed'),
-  niceToHaveSkills: z
+  nonNegotiables: z
     .union([
       z.array(z.string()), // Accepts a direct array
       z.string().transform((val) => {

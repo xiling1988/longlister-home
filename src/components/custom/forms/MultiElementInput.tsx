@@ -1,4 +1,6 @@
-import { useState } from 'react'
+'use client'
+
+import { useEffect, useState } from 'react'
 import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
@@ -8,31 +10,41 @@ import { CloseLineIcon } from '@/icons'
 interface MultiElementInputProps {
   title: string
   name: string
-  items?: string[] // Optional items to pre-populate the input
+  items?: string[]
   placeholder?: string
   className?: string
+  updateVacancyData?: (data: { nonNegotiables: string[] }) => void
 }
 
 function MultiElementInput({
   title,
   name,
-  items,
+  items = [],
   placeholder = 'Enter value',
   className = '',
+  updateVacancyData = () => {},
 }: MultiElementInputProps) {
   const [currentValue, setCurrentValue] = useState('')
-  const [values, setValues] = useState<string[]>(items || [])
+  const [values, setValues] = useState<string[]>([])
+
+  useEffect(() => {
+    setValues(items)
+  }, [items])
 
   const handleAddElement = () => {
     const trimmed = currentValue.trim()
     if (!trimmed || values.includes(trimmed)) return
 
-    setValues([...values, trimmed])
-    setCurrentValue('')
+    const updated = [...values, trimmed]
+    setValues(updated)
+    updateVacancyData({ nonNegotiables: updated })
+    setCurrentValue('') // ← this will now work
   }
 
   const handleRemoveElement = (valueToRemove: string) => {
-    setValues((prev) => prev.filter((v) => v !== valueToRemove))
+    const updated = values.filter((v) => v !== valueToRemove)
+    setValues(updated)
+    updateVacancyData({ nonNegotiables: updated })
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -48,7 +60,7 @@ function MultiElementInput({
       <div className="mb-4 flex gap-x-2">
         <Input
           name={name}
-          value={currentValue}
+          value={currentValue} // <-- controlled input
           onChange={(e) => setCurrentValue(e.target.value)}
           placeholder={placeholder}
           required
@@ -92,84 +104,3 @@ function MultiElementInput({
 }
 
 export default MultiElementInput
-
-// import Label from '@/components/tailAdmin/form/Label'
-// import Input from '@/components/tailAdmin/form/input/InputField'
-// import Badge from '@/components/tailAdmin/ui/badge/Badge'
-// import Button from '@/components/tailAdmin/ui/button/Button'
-// import { CloseLineIcon } from '@/icons'
-// import { useState } from 'react'
-
-// interface MultiElementInputProps {
-//   title: string
-//   name: string
-//   type?: string
-//   placeholder?: string
-//   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-//   className?: string
-// }
-
-// function MultiElementInput({
-//   title,
-//   name,
-//   type = 'text',
-//   placeholder = 'Enter value',
-//   onChange,
-//   className = '',
-// }: MultiElementInputProps) {
-//   const [currentValue, setCurrentValue] = useState<string>('')
-//   const [values, setValues] = useState<string[]>([])
-
-//   // Handle adding a new non-negotiable item
-//   const handleAddElement = () => {
-//     if (!currentValue.trim()) return
-
-//     // Add the current value to the list of values
-//     setValues((prevValues) => [...prevValues, currentValue.trim()])
-//     setCurrentValue('') // Clear the input field
-//   }
-
-//   return (
-//     <div>
-//       <Label>{title}</Label>
-//       <div className="grid w-full grid-cols-6 items-center justify-between gap-2">
-//         <Input
-//           name={name}
-//           onChange={(e) => {
-//             if (e.target) {
-//               setCurrentValue(e.target.value)
-//             }
-//           }}
-//           type="text"
-//           defaultValue={currentValue}
-//           placeholder={placeholder}
-//           required
-//           className="col-span-5 mb-4 block w-80"
-//           onKeyDown={(e) => {
-//             if (e.key === 'Enter') {
-//               e.preventDefault() // 🔥 Prevents form submission
-//               handleAddElement() // ✅ Adds skill instead
-//             }
-//           }}
-//         />
-//         <Button
-//           onClick={handleAddElement}
-//           className="col-span-1 mb-4 w-full"
-//           variant="outline"
-//           size="sm"
-//         >
-//           Add
-//         </Button>
-//       </div>
-//       <div>
-//         {values.map((value, index) => (
-//           <Badge variant="solid" color="info" startIcon={<CloseLineIcon />}>
-//             {value}
-//           </Badge>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default MultiElementInput
