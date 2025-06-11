@@ -13,12 +13,14 @@ interface RichTextEditorProps {
   onChange?: (value: string) => void
   placeholder?: string
   className?: string
+  initialValue?: string
 }
 
 export default function RichTextEditor({
   title,
   value = '',
   onChange,
+  initialValue = '',
   placeholder = 'Write something...',
   className = '',
 }: RichTextEditorProps) {
@@ -124,7 +126,6 @@ export default function RichTextEditor({
         editor={editor}
         className="tiptap min-h-[200px] rounded-xl"
       />
-      <p>{value}</p>
     </div>
   )
 }

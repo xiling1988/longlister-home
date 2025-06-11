@@ -1,6 +1,6 @@
 import Input from '@/components/tailAdmin/form/input/InputField'
 import Label from '@/components/tailAdmin/form/Label'
-import React, { useActionState } from 'react'
+import React, { ChangeEvent, useActionState } from 'react'
 import MultiElementInput from '../../forms/MultiElementInput'
 import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import RichTextEditor from '../../forms/RichTextEditor'
@@ -23,6 +23,12 @@ function VacancyRoleResponsibilitiesForm({
     newVacancyRoleResponsibilitiesAction,
     { errors: initialState },
   )
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    updateVacancyData({ [event.target.name]: event.target.value })
+  }
   return (
     <form>
       <div>
@@ -36,6 +42,7 @@ function VacancyRoleResponsibilitiesForm({
           error={!!state.errors?.jobTitle}
           hint={state.errors?.jobTitle && state.errors?.jobTitle}
           defaultValue={newVacancyData?.jobTitle || ''}
+          onChange={handleInputChange}
         />
         <MultiElementInput
           title="Non-Negotiables"
@@ -62,11 +69,13 @@ function VacancyRoleResponsibilitiesForm({
         <RichTextEditor
           title="Job Description"
           className="mt-8 rounded-lg"
-          placeholder=""
-          value={`<h3>Who we are</h3><p>Introduce your company...</p><br>
-  <h3>What we do</h3><p>Describe your products/services...</p><br>
-  <h3>Our mission</h3><p>State your company's mission...</p><br>
-  <h3>Our vision</h3><p>Describe your long-term goals...</p><br></br>`}
+          value={newVacancyData?.jobDescription || ''}
+          initialValue={newVacancyData?.jobDescription || ''}
+          onChange={(html) =>
+            updateVacancyData({
+              jobDescription: html,
+            })
+          }
         />
       </div>
     </form>
