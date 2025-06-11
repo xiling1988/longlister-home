@@ -8,6 +8,7 @@ import { CloseLineIcon } from '@/icons'
 interface MultiElementInputProps {
   title: string
   name: string
+  items?: string[] // Optional items to pre-populate the input
   placeholder?: string
   className?: string
 }
@@ -15,11 +16,12 @@ interface MultiElementInputProps {
 function MultiElementInput({
   title,
   name,
+  items,
   placeholder = 'Enter value',
   className = '',
 }: MultiElementInputProps) {
   const [currentValue, setCurrentValue] = useState('')
-  const [values, setValues] = useState<string[]>([])
+  const [values, setValues] = useState<string[]>(items || [])
 
   const handleAddElement = () => {
     const trimmed = currentValue.trim()
