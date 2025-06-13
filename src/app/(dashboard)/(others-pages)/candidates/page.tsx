@@ -1,6 +1,6 @@
 'use client'
 
-import CreateVacancyModal from '@/components/custom/vacancies/CreateVacancyModal'
+import CreateVacancyModal from '@/components/custom/vacancies/create-vacancy/CreateVacancyModal'
 import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import BasicTableOne from '@/components/tailAdmin/tables/BasicTableOne'
 import Button from '@/components/tailAdmin/ui/button/Button'

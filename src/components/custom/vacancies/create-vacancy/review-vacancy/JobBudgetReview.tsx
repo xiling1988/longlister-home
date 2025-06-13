@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import FormSection from '../../forms/FormSection'
 import { ReviewCardProps } from './JobDetailsReview'
 import { ListIcon } from '@/icons'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
+import FormSection from '@/components/custom/forms/FormSection'
 
 function JobBudgetReview({ onEdit, vacancyData }: ReviewCardProps) {
   const { maxCvs, deadline, totalBudget, cvPriceBudget } = vacancyData

@@ -1,13 +1,10 @@
 import React from 'react'
-import FormSection from '../../forms/FormSection'
 import { ReviewCardProps } from './JobDetailsReview'
 import { CalenderIcon } from '@/icons'
 import { on } from 'events'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
-import {
-  NotificationRecipientsProps,
-  NotifyParty,
-} from '../../forms/NotificationRecipients'
+import FormSection from '@/components/custom/forms/FormSection'
+import { NotifyParty } from '@/components/custom/forms/NotificationRecipients'
 
 function JobProcessReview({ onEdit, vacancyData }: ReviewCardProps) {
   const {

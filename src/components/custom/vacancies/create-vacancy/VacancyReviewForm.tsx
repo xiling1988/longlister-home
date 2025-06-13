@@ -14,16 +14,17 @@ import {
 import { StepComponentProps } from './FormLayout'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import FormSection from '../../forms/FormSection'
-import JobDetailsReview from '../review-vacancy/JobDetailsReview'
-import JobRemunerationReview from '../review-vacancy/JobRemunerationReview'
-import JobProcessReview from '../review-vacancy/JobProcessReview'
-import JobBudgetReview from '../review-vacancy/JobBudgetReview'
+
 import { useModal } from '@/hooks/useModal'
-import CreateVacancyModal from '../CreateVacancyModal'
+import CreateVacancyModal from './CreateVacancyModal'
 import ConfirmVacancyTerms from '../../forms/modals/ConfirmVacancyTerms'
 import { FormErrors } from '@/common/util/errors'
 import { newVacancySubmitAction } from '@/app/(dashboard)/(others-pages)/vacancies/create/actions'
 import SuccessPage from './Success'
+import JobDetailsReview from './review-vacancy/JobDetailsReview'
+import JobRemunerationReview from './review-vacancy/JobRemunerationReview'
+import JobProcessReview from './review-vacancy/JobProcessReview'
+import JobBudgetReview from './review-vacancy/JobBudgetReview'
 
 const initialState: FormErrors = {}
 function VacancyReviewForm({

@@ -111,7 +111,7 @@ export default function RecruiterVacanciesTable() {
                   className="hover:border-gray-200 hover:bg-gray-50 dark:hover:border-white/[0.05] dark:hover:bg-white/[0.05]"
                 >
                   <TableCell className="px-3 py-4 text-start sm:px-6">
-                    <div className="flex items-center gap-3">
+                    <div className="group flex items-center gap-3">
                       <div className="h-10 w-10 overflow-hidden rounded-full">
                         <Image
                           width={100}
@@ -123,7 +123,7 @@ export default function RecruiterVacanciesTable() {
                         />
                       </div>
                       <div>
-                        <span className="block text-theme-sm font-medium text-gray-800 dark:text-white/90">
+                        <span className="block text-theme-sm font-medium text-gray-800 group-hover:underline dark:text-white/90">
                           {job.jobTitle}
                         </span>
                         <span className="block text-theme-xs text-gray-500 dark:text-gray-400">

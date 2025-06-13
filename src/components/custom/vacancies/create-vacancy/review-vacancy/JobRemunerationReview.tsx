@@ -1,9 +1,9 @@
 import React from 'react'
 import { ReviewCardProps } from './JobDetailsReview'
-import FormSection from '../../forms/FormSection'
 import { DollarLineIcon } from '@/icons'
 import { on } from 'events'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
+import FormSection from '@/components/custom/forms/FormSection'
 
 function JobRemunerationReview({ onEdit, vacancyData }: ReviewCardProps) {
   const {

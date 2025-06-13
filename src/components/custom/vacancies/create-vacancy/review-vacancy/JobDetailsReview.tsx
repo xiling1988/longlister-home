@@ -1,10 +1,12 @@
 import { InfoIcon } from '@/icons'
 import React from 'react'
-import FormSection from '../../forms/FormSection'
+
 import Button from '@/components/tailAdmin/ui/button/Button'
 import { useModal } from '@/hooks/useModal'
-import CreateVacancyModal from '../CreateVacancyModal'
+
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
+import CreateVacancyModal from '../CreateVacancyModal'
+import FormSection from '@/components/custom/forms/FormSection'
 
 export interface ReviewCardProps {
   vacancyData: any

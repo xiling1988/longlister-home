@@ -6,6 +6,7 @@ import { Job } from '@/common/models'
 import { useAuth } from '@/context/auth/auth-context'
 import { getDeadlineLabel } from '@/common/util/helpers'
 import { getMyVacanciesClient } from '@/app/(dashboard)/(others-pages)/vacancies/actions'
+import Link from 'next/link'
 
 interface ClientVacanciesTableProps {
   vacancies: Job[]
@@ -97,27 +98,24 @@ export default function ClientVacanciesTable() {
             {/* Table Body */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {vacancies.map((job) => (
-                <TableRow key={job.id}>
-                  <TableCell className="px-5 py-4 text-start sm:px-6">
-                    <div className="flex items-center gap-3">
-                      {/* <div className="h-10 w-10 overflow-hidden rounded-full">
-                        <Image
-                          width={40}
-                          height={40}
-                          src={order.user.image}
-                          alt={order.user.name}
-                        />
-                      </div> */}
-                      <div>
-                        <span className="block text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                          {job.jobTitle}
-                        </span>
-                        <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
-                          AED {job.salaryMin} - {job.salaryMax}
-                        </span>
+                <TableRow
+                  key={job.id}
+                  className="group hover:border-gray-200 hover:bg-gray-50 dark:hover:border-white/[0.05] dark:hover:bg-white/[0.05]"
+                >
+                  <Link href={`/vacancies/${job.id}`} className="">
+                    <TableCell className="px-5 py-4 text-start sm:px-6">
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <span className="block text-theme-sm font-medium text-gray-800 group-hover:underline dark:text-white/90">
+                            {job.jobTitle}
+                          </span>
+                          <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
+                            AED {job.salaryMin} - {job.salaryMax}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
+                    </TableCell>
+                  </Link>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
                     {job.maxCvs}
                   </TableCell>
