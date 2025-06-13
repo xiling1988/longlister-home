@@ -63,7 +63,6 @@ function MultiElementInput({
           value={currentValue} // <-- controlled input
           onChange={(e) => setCurrentValue(e.target.value)}
           placeholder={placeholder}
-          required
           onKeyDown={handleKeyDown}
           className="block w-full flex-1"
         />

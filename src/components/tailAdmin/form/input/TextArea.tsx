@@ -10,6 +10,7 @@ interface TextareaProps {
   disabled?: boolean // Disabled state
   error?: boolean // Error state
   hint?: string // Hint text to display
+  required?: boolean // Whether the field is required
 }
 
 const TextArea: React.FC<TextareaProps> = ({
@@ -22,6 +23,7 @@ const TextArea: React.FC<TextareaProps> = ({
   error = false, // Error state
   name = '',
   hint = '', // Default hint text
+  required = false, // Whether the field is required
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
@@ -49,6 +51,7 @@ const TextArea: React.FC<TextareaProps> = ({
         onChange={handleChange}
         disabled={disabled}
         className={textareaClasses}
+        required={required}
       />
       {hint && (
         <p

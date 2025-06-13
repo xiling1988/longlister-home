@@ -18,13 +18,17 @@ const cvMarks = [1, 20]
 
 export default function Sliders() {
   const { newVacancyData, updateVacancyData } = useNewVacancyContext()
-  const [deadline, setDeadline] = useState<number>(
-    Number(newVacancyData.deadline),
-  )
+  const [deadline, setDeadline] = useState(newVacancyData.deadline)
   const [cvCount, setCvCount] = useState(newVacancyData.maxCvs ?? 1)
   const [price, setPrice] = useState(newVacancyData.totalBudget)
   const [singlePrice, setSinglePrice] = useState(newVacancyData.cvPriceBudget)
-  const [deadlineDate, setDeadlineDate] = useState('')
+  const [deadlineDate, setDeadlineDate] = useState(
+    new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
+  )
 
   useEffect(() => {
     const deadlineInt = Number(deadline)
@@ -46,14 +50,17 @@ export default function Sliders() {
   useEffect(() => {
     updateVacancyData({
       maxCvs: cvCount,
-      deadline: String(deadline),
+      deadline: deadline,
       cvPriceBudget: singlePrice,
       totalBudget: price,
     })
   }, [price, singlePrice])
 
   return (
-    <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+    <div
+      id="sliders"
+      className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]"
+    >
       <div className="mb-6">
         <h2 className="mb-1 text-xl font-semibold text-gray-800 dark:text-white">
           Vacancy Budget Estimation: AED {price?.toFixed(2) ?? 'N/A'}
@@ -76,11 +83,11 @@ export default function Sliders() {
             max={deadlineMarks[1]}
             step={1}
             value={deadline}
-            onChange={(e) => setDeadline(Number(e.target.value))}
+            onChange={(e) => setDeadline(e.target.value)}
             className="custom-range w-full appearance-none bg-transparent focus:outline-none"
             style={
               {
-                '--range-progress': `${((deadline - deadlineMarks[0]) / (deadlineMarks[1] - deadlineMarks[0])) * 100}%`,
+                '--range-progress': `${(((typeof deadline === 'number' ? deadline : Number(deadline) || deadlineMarks[0]) - deadlineMarks[0]) / (deadlineMarks[1] - deadlineMarks[0])) * 100}%`,
               } as React.CSSProperties
             }
           />

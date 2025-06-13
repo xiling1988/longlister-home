@@ -8,35 +8,48 @@ import Button from '@/components/tailAdmin/ui/button/Button'
 import { Trash2Icon, PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 
-interface NotifyParty {
+export interface NotifyParty {
   name: string
   email: string
 }
 
-interface NotificationRecipientsProps {
-  onChange?: (parties: NotifyParty[]) => void
+export interface NotificationRecipientsProps {
+  parties?: NotifyParty[]
+  name?: string
+  onChange: (parties: NotifyParty[]) => void
 }
 
 export default function NotificationRecipients({
+  parties = [],
   onChange,
 }: NotificationRecipientsProps) {
-  const [party, setParty] = useState<NotifyParty>({ name: '', email: '' })
-  const [notifyParties, setNotifyParties] = useState<NotifyParty[]>([])
+  const [currentParty, setCurrentParty] = useState<NotifyParty>({
+    name: '',
+    email: '',
+  })
+  const [notifyParties, setNotifyParties] = useState<NotifyParty[]>(parties)
 
   const handleAddParty = () => {
-    if (!party.name.trim() || !party.email.trim()) return
+    if (!currentParty.name.trim() || !currentParty.email.trim()) return
 
-    const updatedList = [...notifyParties, party]
+    const updatedList = [...notifyParties, currentParty]
     setNotifyParties(updatedList)
-    setParty({ name: '', email: '' })
+    setCurrentParty({ name: '', email: '' })
 
-    onChange?.(updatedList)
+    onChange(updatedList)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleAddParty()
+    }
   }
 
   const handleRemoveParty = (index: number) => {
     const updatedList = notifyParties.filter((_, i) => i !== index)
     setNotifyParties(updatedList)
-    onChange?.(updatedList)
+    onChange(updatedList)
   }
 
   return (
@@ -45,8 +58,10 @@ export default function NotificationRecipients({
         <div className="col-span-5">
           <Label>Name</Label>
           <Input
-            value={party.name}
-            onChange={(e) => setParty({ ...party, name: e.target.value })}
+            value={currentParty.name}
+            onChange={(e) =>
+              setCurrentParty({ ...currentParty, name: e.target.value })
+            }
             placeholder="Jane Doe"
           />
         </div>
@@ -55,9 +70,12 @@ export default function NotificationRecipients({
           <Label>Email</Label>
           <Input
             type="email"
-            value={party.email}
-            onChange={(e) => setParty({ ...party, email: e.target.value })}
+            value={currentParty.email}
+            onChange={(e) =>
+              setCurrentParty({ ...currentParty, email: e.target.value })
+            }
             placeholder="jane@example.com"
+            onKeyDown={handleKeyDown}
           />
         </div>
 

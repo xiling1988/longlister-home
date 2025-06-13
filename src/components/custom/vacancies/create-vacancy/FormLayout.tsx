@@ -1,20 +1,33 @@
-import { ReactElement } from 'react'
+import { ChangeEvent, ReactElement } from 'react'
 import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import Sliders from '../../forms/Sliders'
 import Button from '@/components/tailAdmin/ui/button/Button'
+import { useNewVacancyContext } from '@/context/NewVacancyContext'
+import { NewVacancyInitialValuesType } from '@/common/zod-schemas/jobs/schemas'
+import { Step } from '@/app/(dashboard)/(others-pages)/vacancies/create/page'
+import { NotifyParty } from '../../forms/NotificationRecipients'
 
 interface FormLayoutProps {
   steps: {
     title: string
-    component: React.ComponentType<{
-      onNext: () => void
-      onBack: () => void
-      setActiveStep: (step: number) => void
-    }>
+    component: React.ComponentType<StepComponentProps>
     icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   }[]
   activeStep: number
   setActiveStep: (step: number) => void
+  setSuccess?: (success: boolean) => void
+}
+
+export interface StepComponentProps {
+  newVacancyData: NewVacancyInitialValuesType
+  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void
+  handleTextAreaChange: (name: string) => (value: string) => void
+  handleSelectChange: (name: string) => (value: string) => void
+  handleNotififyPartiesChange: (parties: NotifyParty[]) => void
+  steps: Step[]
+  activeStep: number
+  setActiveStep: (step: number) => void
+  setSuccess?: (success: boolean) => void
 }
 
 interface StepItem {
@@ -38,17 +51,26 @@ export default function FormLayout({
   steps,
   activeStep,
   setActiveStep,
+  setSuccess,
 }: FormLayoutProps) {
-  const onNext = () => {
-    if (activeStep < steps.length - 1) {
-      setActiveStep(activeStep + 1)
+  const { newVacancyData, updateVacancyData } = useNewVacancyContext()
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    updateVacancyData({ [event.target.name]: event.target.value })
+  }
+
+  const handleTextAreaChange = (name: string) => (value: string) => {
+    updateVacancyData({ [name]: value })
+  }
+
+  // Reusable select change handler
+  const handleSelectChange = (name: string) => (value: string) => {
+    if (value) {
+      updateVacancyData({ [name]: value })
     }
   }
 
-  const onBack = () => {
-    if (activeStep > 0) {
-      setActiveStep(activeStep - 1)
-    }
+  const handleNotififyPartiesChange = (parties: any) => {
+    updateVacancyData({ notifyParties: parties })
   }
 
   return (
@@ -63,42 +85,19 @@ export default function FormLayout({
             const StepComponent = steps[activeStep].component
             return (
               <StepComponent
-                onNext={() => setActiveStep(activeStep + 1)}
-                onBack={() => setActiveStep(activeStep - 1)}
+                newVacancyData={newVacancyData}
+                handleInputChange={handleInputChange}
+                handleTextAreaChange={handleTextAreaChange}
+                handleSelectChange={handleSelectChange}
+                handleNotififyPartiesChange={handleNotififyPartiesChange}
                 setActiveStep={setActiveStep}
+                activeStep={activeStep}
+                steps={steps}
+                setSuccess={setSuccess}
               />
             )
           })()}
         </ComponentCard>
-        <div className="mt-6 flex justify-between px-4">
-          <Button
-            type="button"
-            className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-            variant="outline"
-            onClick={() => setActiveStep(activeStep - 1)}
-            disabled={activeStep === 0}
-          >
-            Back
-          </Button>
-
-          {activeStep < steps.length - 1 ? (
-            <Button
-              type="button"
-              className="hover:bg-primary-dark rounded-lg bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-sm"
-              onClick={() => setActiveStep(activeStep + 1)}
-            >
-              Next
-            </Button>
-          ) : (
-            <button
-              type="submit"
-              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700"
-              // You can call a handleSubmit function here
-            >
-              Submit
-            </button>
-          )}
-        </div>
       </div>
 
       {/* Sidebar - Sticky */}
