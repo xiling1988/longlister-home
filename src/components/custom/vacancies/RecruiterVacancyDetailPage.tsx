@@ -1,3 +1,4 @@
+'use client'
 import { notFound } from 'next/navigation'
 
 import { Metadata } from 'next'
@@ -5,18 +6,21 @@ import SectionHeading from '../common/SectionHeading'
 import VacancySummaryCard from './VacancySummaryCard'
 import { Job } from '@/common/models'
 import CandidateCard from './CandidateCard'
+import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
+import { useModal } from '@/hooks/useModal'
+import { useAuth } from '@/context/auth/auth-context'
+import Button from '@/components/tailAdmin/ui/button/Button'
+import CreateVacancyModal from './create-vacancy/CreateVacancyModal'
+import AddCandidateModal from '../forms/modals/AddCandidateModal'
 
 interface VacancyDetailPageProps {
-  params?: {
-    id: string
-  }
   vacancy: Job
 }
 
-export default function ClientVacancyDetailPage({
+export default function RecruiterVacancyDetailPage({
   vacancy,
 }: VacancyDetailPageProps) {
-  //   const vacancy = await getVacancyDetails(params.id)
+  const { isOpen, openModal, closeModal } = useModal()
   if (!vacancy) return notFound()
 
   const candidates = vacancy.candidates || []
@@ -24,7 +28,27 @@ export default function ClientVacancyDetailPage({
 
   return (
     <div className="space-y-8 px-4 py-6 sm:px-6 lg:px-8">
-      <SectionHeading title="Vacancy Overview" />
+      <PageBreadcrumb pageTitle={vacancy.jobTitle || ''} />
+      <div className="mb-2 flex items-center justify-between lg:mb-7">
+        <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+          Vacancy Overview
+        </h3>
+
+        <Button
+          onClick={openModal}
+          className="bg-brand-red hover:bg-brand-coral"
+          size="sm"
+        >
+          Add Candidate
+        </Button>
+
+        <AddCandidateModal
+          openModal={openModal}
+          vacancyId={vacancy.id || ''}
+          closeModal={closeModal}
+          isOpen={isOpen}
+        />
+      </div>
       <VacancySummaryCard vacancy={vacancy} />
 
       <SectionHeading title="Submitted Candidates" className="mt-10" />

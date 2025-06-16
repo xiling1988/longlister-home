@@ -11,6 +11,7 @@ import ClientVacanciesTable from '@/components/tailAdmin/tables/ClientVacanciesT
 import { set } from 'zod/v4'
 import { useAuth } from '@/context/auth/auth-context'
 import RecruiterVacanciesTable from '@/components/tailAdmin/tables/RecruiterVacanciesTable'
+import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 
 // export const metadata: Metadata = {
 //   title: 'Next.js Profile | TailAdmin - Next.js Dashboard Template',
@@ -24,6 +25,7 @@ export default function Vacancies() {
 
   return (
     <div>
+      <PageBreadcrumb pageTitle="My Vacancies" />
       {/* <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/[0.03]"> */}
       <div className="mb-5 flex items-center justify-between lg:mb-7">
         <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">

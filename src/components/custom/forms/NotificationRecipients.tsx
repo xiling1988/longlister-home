@@ -103,7 +103,7 @@ export default function NotificationRecipients({
             </p>
 
             <Trash2Icon
-              className="h-4 w-4 cursor-pointer text-red-500"
+              className="h-4 w-4 cursor-pointer text-brand-red"
               onClick={() => handleRemoveParty(index)}
             />
           </div>

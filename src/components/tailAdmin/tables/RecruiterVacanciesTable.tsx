@@ -12,6 +12,7 @@ import {
   getMyVacanciesRecruiter,
 } from '@/app/(dashboard)/(others-pages)/vacancies/actions'
 import { RecruiterOnJob } from '@/common/models/recruiter-on-job'
+import Link from 'next/link'
 
 export default function RecruiterVacanciesTable() {
   const [vacancies, setVacancies] = useState<Job[]>([])
@@ -111,26 +112,31 @@ export default function RecruiterVacanciesTable() {
                   className="hover:border-gray-200 hover:bg-gray-50 dark:hover:border-white/[0.05] dark:hover:bg-white/[0.05]"
                 >
                   <TableCell className="px-3 py-4 text-start sm:px-6">
-                    <div className="group flex items-center gap-3">
-                      <div className="h-10 w-10 overflow-hidden rounded-full">
-                        <Image
-                          width={100}
-                          height={100}
-                          src={getCompanyLogo(job.clientId || '')}
-                          unoptimized
-                          alt={job?.companyName || 'Company Logo'}
-                          // loading="lazy"
-                        />
+                    <Link
+                      href={`/vacancies/${job.id}`}
+                      className="h-full w-full"
+                    >
+                      <div className="group flex items-center gap-3">
+                        <div className="h-10 w-10 overflow-hidden rounded-full">
+                          <Image
+                            width={100}
+                            height={100}
+                            src={getCompanyLogo(job.clientId || '')}
+                            unoptimized
+                            alt={job?.companyName || 'Company Logo'}
+                            // loading="lazy"
+                          />
+                        </div>
+                        <div>
+                          <span className="block text-theme-sm font-medium text-gray-800 group-hover:underline dark:text-white/90">
+                            {job.jobTitle}
+                          </span>
+                          <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
+                            {job.companyName || 'Unknown Company'}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="block text-theme-sm font-medium text-gray-800 group-hover:underline dark:text-white/90">
-                          {job.jobTitle}
-                        </span>
-                        <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
-                          {job.companyName || 'Unknown Company'}
-                        </span>
-                      </div>
-                    </div>
+                    </Link>
                   </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
                     {job.maxCvs}

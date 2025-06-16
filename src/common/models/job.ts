@@ -4,6 +4,7 @@ import { RecruiterOnJob } from './recruiter-on-job'
 export interface Job {
   id: string | undefined
   createdAt: string | undefined
+  userType: string | undefined
   clientId: string | undefined
 
   companyType: string | undefined

@@ -16,7 +16,6 @@ export default function ClientVacanciesTable() {
   const [vacancies, setVacancies] = useState<Job[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const { user } = useAuth()
 
   useEffect(() => {
     const loadVacancies = async () => {
@@ -102,8 +101,11 @@ export default function ClientVacanciesTable() {
                   key={job.id}
                   className="group hover:border-gray-200 hover:bg-gray-50 dark:hover:border-white/[0.05] dark:hover:bg-white/[0.05]"
                 >
-                  <Link href={`/vacancies/${job.id}`} className="">
-                    <TableCell className="px-5 py-4 text-start sm:px-6">
+                  <TableCell className="px-5 py-4 text-start sm:px-6">
+                    <Link
+                      href={`/vacancies/${job.id}`}
+                      className="h-full w-full"
+                    >
                       <div className="flex items-center gap-3">
                         <div>
                           <span className="block text-theme-sm font-medium text-gray-800 group-hover:underline dark:text-white/90">
@@ -114,8 +116,8 @@ export default function ClientVacanciesTable() {
                           </span>
                         </div>
                       </div>
-                    </TableCell>
-                  </Link>
+                    </Link>
+                  </TableCell>
                   <TableCell className="px-4 py-3 text-center text-theme-sm text-gray-500 dark:text-gray-400">
                     {job.maxCvs}
                   </TableCell>
