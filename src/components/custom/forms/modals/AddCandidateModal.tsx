@@ -197,6 +197,8 @@ function AddCandidateModal({
                 <>
                   <Label>Current Location</Label>
                   <Input
+                    error={!!('location' in (state.errors ?? {}) && (state.errors as any).location)}
+                    hint={('location' in (state.errors ?? {}) && (state.errors as any).location?.message) || ''}
                     disabled={isPending}
                     name="location"
                     type="text"
@@ -213,6 +215,8 @@ function AddCandidateModal({
                 <>
                   <Label>Notice Period (Months)</Label>
                   <Input
+                    error={!!('noticePeriod' in (state.errors ?? {}) && (state.errors as any).noticePeriod)}
+                    hint={('noticePeriod' in (state.errors ?? {}) && (state.errors as any).noticePeriod?.message) || ''}
                     disabled={isPending}
                     name="noticePeriod"
                     type="number"
@@ -229,6 +233,8 @@ function AddCandidateModal({
                 <>
                   <Label>Current Salary</Label>
                   <Input
+                    error={!!('currentSalary' in (state.errors ?? {}) && (state.errors as any).currentSalary)}
+                    hint={('currentSalary' in (state.errors ?? {}) && (state.errors as any).currentSalary?.message) || ''}
                     disabled={isPending}
                     name="currentSalary"
                     type="text"
@@ -244,6 +250,8 @@ function AddCandidateModal({
                 <>
                   <Label>Expected Salary</Label>
                   <Input
+                    error={!!('expectedSalary' in (state.errors ?? {}) && (state.errors as any).expectedSalary)}
+                    hint={('expectedSalary' in (state.errors ?? {}) && (state.errors as any).expectedSalary?.message) || ''}
                     disabled={isPending}
                     name="expectedSalary"
                     type="number"

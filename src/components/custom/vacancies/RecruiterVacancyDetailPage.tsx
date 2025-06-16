@@ -4,14 +4,14 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import SectionHeading from '../common/SectionHeading'
 import VacancySummaryCard from './VacancySummaryCard'
-import { Job } from '@/common/models'
-import CandidateCard from './CandidateCard'
+import { CandidateOnJob, Job } from '@/common/models'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import { useModal } from '@/hooks/useModal'
 import { useAuth } from '@/context/auth/auth-context'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import CreateVacancyModal from './create-vacancy/CreateVacancyModal'
 import AddCandidateModal from '../forms/modals/AddCandidateModal'
+import CandidateCard from './CandidateCard'
 
 interface VacancyDetailPageProps {
   vacancy: Job
@@ -54,14 +54,12 @@ export default function RecruiterVacancyDetailPage({
       <SectionHeading title="Submitted Candidates" className="mt-10" />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {candidates.length > 0 ? (
-          candidates.map((candidate) => (
+          candidates.map((candidate: CandidateOnJob) => (
             <CandidateCard
               key={candidate.id}
               candidate={candidate.candidateProfileVersion}
-              name={candidate.candidateProfileVersion?.id || 'Unknown'}
-              summary={
-                candidate.candidateProfileVersion?.id || 'No summary available'
-              }
+              isDisclosed={candidate.isDisclosed}
+              
             />
           ))
         ) : (

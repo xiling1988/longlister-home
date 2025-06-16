@@ -34,10 +34,6 @@ export default function ClientVacancyDetailPage({
             <CandidateCard
               key={candidate.id}
               candidate={candidate.candidateProfileVersion}
-              name={candidate.candidateProfileVersion?.id || 'Unknown'}
-              summary={
-                candidate.candidateProfileVersion?.id || 'No summary available'
-              }
             />
           ))
         ) : (

@@ -1,5 +1,7 @@
 import { JOBS_API_URL } from '@/common/constants'
-import { PageIcon } from '@/icons'
+import { DocumentIcon } from '@heroicons/react/16/solid'
+import { DocumentArrowDownIcon } from '@heroicons/react/24/outline'
+import { DockIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -11,8 +13,8 @@ function LinkToPdf({ candidateVersionId }: { candidateVersionId: string }) {
       className="flex h-full w-full items-center justify-center rounded-lg transition-colors dark:hover:bg-gray-700"
     >
       <div className="">
-        <PageIcon className="h-full text-brand-red mx-auto" />
-        <h4 className="text-xs py-1 text-brand-red text-center" >CV</h4>
+        <DocumentArrowDownIcon className="mx-auto h-full text-brand-red" />
+        <h4 className="py-1 text-center text-xs text-brand-red">CV</h4>
       </div>
     </Link>
   )
