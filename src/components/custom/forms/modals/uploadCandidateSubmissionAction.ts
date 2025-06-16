@@ -54,7 +54,7 @@ export async function uploadCandidateSubmission(
 
       if (!response.ok) {
         return {
-          errors: parsedRes, // 🟢 Returns the exact error your backend sent
+          errors: { api: parsedRes }, // 🟢 Returns the exact error your backend sent
         }
       }
       console.log('SUCCESS FROM THE SERVER!: ', parsedRes)

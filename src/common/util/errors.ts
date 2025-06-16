@@ -1,10 +1,6 @@
-import {
-  ApprovalSuccess,
-  RejectionSuccess,
-  Success,
-} from '@/app/(dashboard)/vacancies/recruiter/vacancy/[id]/actions/success'
 import { format } from 'path'
-import { ApprovalSuccess } from '@/common/util/errors'
+import { ApprovalSuccess, RejectionSuccess, Success } from './success'
+
 export interface FormErrors {
   [key: string]: string | undefined
 }

@@ -1,4 +1,4 @@
-import { Job } from '@/app/common/models'
+import { Job } from './job'
 
 export interface Candidate {
   id: string
