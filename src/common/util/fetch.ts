@@ -1,3 +1,5 @@
+'use server'
+
 import { cookies } from 'next/headers'
 import { AUTH_API_URL, JOBS_API_URL } from '../constants'
 import { getErrorMessage } from './errors'

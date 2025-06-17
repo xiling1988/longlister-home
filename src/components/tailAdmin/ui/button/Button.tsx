@@ -10,6 +10,7 @@ interface ButtonProps {
   disabled?: boolean // Disabled state
   className?: string // Disabled state
   type?: 'button' | 'submit' | 'reset' // Button type
+  color?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   disabled = false,
   type = 'button',
+  color = 'brand-red',
 }) => {
   // Size Classes
   const sizeClasses = {
@@ -33,9 +35,8 @@ const Button: React.FC<ButtonProps> = ({
   const variantClasses = {
     primary:
       'bg-brand-red text-white shadow-theme-xs hover:bg-brand-coral disabled:bg-brand-300',
-    outline:
-      'bg-white text-brand-red ring-1 ring-inset ring-brand-coral hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300',
-    plain: 'text-brand-red text-sm hover:underline dark:text-gray-400',
+    outline: `bg-transparent text-${color} ring-1 ring-inset ring-${color} hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03] dark:hover:text-gray-300`,
+    plain: `text-${color} text-sm hover:underline dark:text-gray-400`,
   }
 
   return (

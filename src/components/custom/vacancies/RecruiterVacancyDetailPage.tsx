@@ -56,10 +56,12 @@ export default function RecruiterVacancyDetailPage({
         {candidates.length > 0 ? (
           candidates.map((candidate: CandidateOnJob) => (
             <CandidateCard
+              vacancy={vacancy}
+              candidateOnJobId={candidate.id}
+              viewMode="recruiter"
               key={candidate.id}
               candidate={candidate.candidateProfileVersion}
               isDisclosed={candidate.isDisclosed}
-              
             />
           ))
         ) : (

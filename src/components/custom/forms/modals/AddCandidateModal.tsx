@@ -10,17 +10,15 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { BackendError, UploadFormState } from '@/common/util/errors'
-import { uploadCandidateSubmission } from './uploadCandidateSubmissionAction'
+import { UploadFormState } from '@/common/util/errors'
 import { CheckLineIcon } from '@/icons'
 import { Trash2Icon } from 'lucide-react'
-import { set } from 'zod/v4'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Alert from '@/components/tailAdmin/ui/alert/Alert'
 import CandidateSuccessCard from './CandidateSuccessCard'
-import { Candidate, CandidateProfileVersion } from '@/common/models'
-import { Success } from '@/common/util/success'
+import { CandidateProfileVersion } from '@/common/models'
+import { uploadCandidateSubmission } from '@/app/(dashboard)/(others-pages)/vacancies/[id]/actions'
 
 interface CreateVacancyModalProps {
   openModal: () => void
@@ -197,8 +195,17 @@ function AddCandidateModal({
                 <>
                   <Label>Current Location</Label>
                   <Input
-                    error={!!('location' in (state.errors ?? {}) && (state.errors as any).location)}
-                    hint={('location' in (state.errors ?? {}) && (state.errors as any).location?.message) || ''}
+                    error={
+                      !!(
+                        'location' in (state.errors ?? {}) &&
+                        (state.errors as any).location
+                      )
+                    }
+                    hint={
+                      ('location' in (state.errors ?? {}) &&
+                        (state.errors as any).location?.message) ||
+                      ''
+                    }
                     disabled={isPending}
                     name="location"
                     type="text"
@@ -215,8 +222,17 @@ function AddCandidateModal({
                 <>
                   <Label>Notice Period (Months)</Label>
                   <Input
-                    error={!!('noticePeriod' in (state.errors ?? {}) && (state.errors as any).noticePeriod)}
-                    hint={('noticePeriod' in (state.errors ?? {}) && (state.errors as any).noticePeriod?.message) || ''}
+                    error={
+                      !!(
+                        'noticePeriod' in (state.errors ?? {}) &&
+                        (state.errors as any).noticePeriod
+                      )
+                    }
+                    hint={
+                      ('noticePeriod' in (state.errors ?? {}) &&
+                        (state.errors as any).noticePeriod?.message) ||
+                      ''
+                    }
                     disabled={isPending}
                     name="noticePeriod"
                     type="number"
@@ -233,8 +249,17 @@ function AddCandidateModal({
                 <>
                   <Label>Current Salary</Label>
                   <Input
-                    error={!!('currentSalary' in (state.errors ?? {}) && (state.errors as any).currentSalary)}
-                    hint={('currentSalary' in (state.errors ?? {}) && (state.errors as any).currentSalary?.message) || ''}
+                    error={
+                      !!(
+                        'currentSalary' in (state.errors ?? {}) &&
+                        (state.errors as any).currentSalary
+                      )
+                    }
+                    hint={
+                      ('currentSalary' in (state.errors ?? {}) &&
+                        (state.errors as any).currentSalary?.message) ||
+                      ''
+                    }
                     disabled={isPending}
                     name="currentSalary"
                     type="text"
@@ -250,8 +275,17 @@ function AddCandidateModal({
                 <>
                   <Label>Expected Salary</Label>
                   <Input
-                    error={!!('expectedSalary' in (state.errors ?? {}) && (state.errors as any).expectedSalary)}
-                    hint={('expectedSalary' in (state.errors ?? {}) && (state.errors as any).expectedSalary?.message) || ''}
+                    error={
+                      !!(
+                        'expectedSalary' in (state.errors ?? {}) &&
+                        (state.errors as any).expectedSalary
+                      )
+                    }
+                    hint={
+                      ('expectedSalary' in (state.errors ?? {}) &&
+                        (state.errors as any).expectedSalary?.message) ||
+                      ''
+                    }
                     disabled={isPending}
                     name="expectedSalary"
                     type="number"

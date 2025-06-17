@@ -1,39 +1,73 @@
-import LinkToPdf from '../common/LinkToPdf'
 import Button from '@/components/tailAdmin/ui/button/Button'
-import { CandidateProfileVersion } from '@/common/models'
-import { DocumentIcon, UserCircleIcon } from '@heroicons/react/16/solid'
+import { CandidateProfileVersion, Job } from '@/common/models'
 import {
   CalendarDaysIcon,
+  CheckIcon,
   EyeIcon,
-  LocationEdit,
   MapIcon,
-  PinIcon,
+  XIcon,
 } from 'lucide-react'
 import { useModal } from '@/hooks/useModal'
 import ViewProfileModal from '../forms/modals/ViewProfileModal'
 import Link from 'next/link'
 import { JOBS_API_URL } from '@/common/constants'
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import RejectCandidateModal from '../forms/modals/RejectCandidateModal'
+import ApproveCandidateModal from '../forms/modals/ApproveCandidateModal'
 
 interface CandidateCardProps {
+  vacancy: Job
+  candidateOnJobId: string
   candidate: CandidateProfileVersion
-  isDisclosed?: boolean
+  isDisclosed: boolean
+  viewMode: 'recruiter' | 'client'
 }
 
 export default function CandidateCard({
+  vacancy,
+  candidateOnJobId,
   candidate,
   isDisclosed,
+  viewMode,
 }: CandidateCardProps) {
   const { openModal, closeModal, isOpen } = useModal()
+  const [modalType, setModalType] = useState<
+    null | 'view' | 'reject' | 'approve'
+  >(null)
+
+  const openViewModal = () => setModalType('view')
+  const openRejectModal = () => setModalType('reject')
+  const openApproveModal = () => setModalType('approve')
+  const closeModalHandler = () => {
+    setModalType(null)
+    closeModal()
+  }
+
   return (
     <div className="w-full rounded-xl bg-white ring-1 ring-gray-900/5 transition-shadow duration-200 ease-in-out hover:shadow-lg dark:bg-gray-900 dark:ring-gray-800">
       <div className="flex items-start justify-between p-4">
         <div>
-          <dt className="text-sm font-semibold text-gray-900 dark:text-white">
-            {candidate.details.personal.full_name}
+          <dt
+            className={`text-sm font-semibold text-gray-900 dark:text-white ${viewMode === 'client' && !isDisclosed ? 'blur-xs' : ''}`}
+          >
+            {viewMode === 'recruiter' || isDisclosed
+              ? candidate.details.personal.full_name
+              : 'Undisclosed Candidate'}
           </dt>
           <dd className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {candidate.details.personal.title || '—'}
+            {viewMode === 'recruiter' || isDisclosed ? (
+              candidate.details.personal.title || '—'
+            ) : (
+              <Button
+                variant="plain"
+                color="gray-400"
+                className="mt-1 text-sm italic"
+                onClick={openApproveModal}
+              >
+                Available upon unlock
+              </Button>
+            )}
           </dd>
         </div>
         <div>
@@ -55,22 +89,38 @@ export default function CandidateCard({
         {/* Disclosure Status */}
 
         {/* CV Link */}
-        <div className="mt-1 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
-          <dd className="text-sm font-medium text-gray-900 dark:text-white">
-            <Link
-              href={`${JOBS_API_URL}/candidate-cvs/${candidate.id}.pdf`}
-              target="_blank"
-              className="flex h-full w-full items-center justify-center rounded-lg transition-colors dark:hover:bg-gray-700"
+
+        {viewMode === 'recruiter' || isDisclosed ? (
+          <Link
+            href={`${JOBS_API_URL}/candidate-cvs/${candidate.id}.pdf`}
+            target="_blank"
+            className="flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-3"
+          >
+            <dt className="flex-none">
+              <DocumentArrowDownIcon className="h-6 w-5 text-gray-400" />
+            </dt>
+            <Button
+              variant="plain"
+              className="text-sm text-brand-red dark:text-gray-400"
             >
-              <div className="flex items-center">
-                <DocumentArrowDownIcon className="mr-3 h-5 text-brand-red" />
-                <h4 className="py-1 text-center text-sm text-brand-red">
-                  View CV
-                </h4>
-              </div>
-            </Link>
-          </dd>
-        </div>
+              View CV
+            </Button>
+          </Link>
+        ) : (
+          <div className="flex w-full flex-none items-center gap-x-4 border-t border-gray-900/5 px-6 pt-3">
+            <Button
+              variant="plain"
+              color="gray-400"
+              className="mt-1 text-sm italic"
+              onClick={openApproveModal}
+            >
+              <dt className="flex-none">
+                <DocumentArrowDownIcon className="h-6 w-5 text-gray-400" />
+              </dt>
+              Unlock to view CV
+            </Button>
+          </div>
+        )}
 
         {/* Location */}
 
@@ -114,18 +164,66 @@ export default function CandidateCard({
       </dl>
 
       {/* Actions */}
-      <div className="mt-6 border-t border-gray-900/5 px-6 py-4 text-left">
-        <Button size="sm" variant="outline" onClick={openModal}>
-          <EyeIcon className="mr-2 h-4 w-4" />
-          View Full Profile
-        </Button>
+      <div className="mt-2 flex items-center justify-between gap-x-1 border-t border-gray-900/5 px-3 py-1">
+        <div className="flex-1 py-4 text-left">
+          <Button
+            size="sm"
+            variant="outline"
+            color="sky-500"
+            onClick={openViewModal}
+            className="group text-sky-500"
+          >
+            <EyeIcon className="h-4 w-4" />
+            {isDisclosed && 'View Profile'}
+          </Button>
+        </div>
+        {!isDisclosed && (
+          <div className="flex items-center gap-x-2 py-4 text-left">
+            <Button size="sm" variant="primary" onClick={openRejectModal}>
+              <XIcon className="h-4 w-4" />
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={openApproveModal}
+              className=""
+            >
+              <CheckIcon className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
-      <ViewProfileModal
-        cv={candidate.details}
-        isOpen={isOpen}
-        openModal={openModal}
-        closeModal={closeModal}
-      />
+      {modalType === 'view' && (
+        <ViewProfileModal
+          isOpen
+          openModal={openViewModal}
+          closeModal={closeModalHandler}
+          cv={candidate.details}
+          isDisclosed={isDisclosed}
+          vacancy={vacancy}
+          candidate={candidate}
+          candidateOnJobId={candidateOnJobId}
+          disableEscape={false}
+        />
+      )}
+      {modalType === 'reject' && (
+        <RejectCandidateModal
+          isOpen
+          openModal={openRejectModal}
+          closeModal={closeModalHandler}
+          candidateOnJobId={candidateOnJobId}
+        />
+      )}
+      {modalType === 'approve' && (
+        <ApproveCandidateModal
+          vacancy={vacancy}
+          candidate={candidate}
+          isOpen
+          openModal={openApproveModal}
+          closeModal={closeModalHandler}
+          candidateOnJobId={candidateOnJobId}
+        />
+      )}
     </div>
   )
 }

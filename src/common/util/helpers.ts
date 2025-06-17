@@ -43,3 +43,20 @@ export function getDeadlineLabel(deadline: Date): {
     className: 'text-xs text-gray-400',
   }
 }
+
+export function formatDate(
+  date: Date | string,
+  locale: string = 'en-US',
+  options?: Intl.DateTimeFormatOptions,
+): string {
+  const parsedDate = typeof date === 'string' ? new Date(date) : date
+
+  if (isNaN(parsedDate.getTime())) return 'Invalid Date'
+
+  return parsedDate.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    ...options,
+  })
+}

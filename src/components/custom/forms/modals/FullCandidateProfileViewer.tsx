@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  UserCircleIcon,
   BriefcaseIcon,
   GraduationCapIcon,
   LanguagesIcon,
@@ -10,15 +9,33 @@ import {
   InfoIcon,
   StarIcon,
   LightbulbIcon,
-  ChevronDownIcon,
 } from 'lucide-react'
-import { FullCandidateCV, LimitedCandidateCV } from '@/common/models'
+import {
+  CandidateProfileVersion,
+  FullCandidateCV,
+  Job,
+  LimitedCandidateCV,
+} from '@/common/models'
+import Button from '@/components/tailAdmin/ui/button/Button'
+import { useModal } from '@/hooks/useModal'
+import ApproveCandidateModal from './ApproveCandidateModal'
+import RejectCandidateModal from './RejectCandidateModal'
 
 interface Props {
+  isDisclosed: boolean
   cv: FullCandidateCV | LimitedCandidateCV
+  vacancy: Job
+  candidate: CandidateProfileVersion
+  candidateOnJobId: string
 }
 
-export default function FullCandidateProfileViewer({ cv }: Props) {
+export default function FullCandidateProfileViewer({
+  cv,
+  isDisclosed,
+  vacancy,
+  candidate,
+  candidateOnJobId,
+}: Props) {
   if (!cv)
     return <p className="text-sm text-gray-500">No profile data available.</p>
 
@@ -27,6 +44,15 @@ export default function FullCandidateProfileViewer({ cv }: Props) {
     cv: FullCandidateCV | LimitedCandidateCV,
   ): cv is FullCandidateCV & { personal: any } {
     return (cv as any).personal !== undefined
+  }
+
+  const { openModal, closeModal, isOpen } = useModal()
+  const [modalType, setModalType] = useState<null | 'reject' | 'approve'>(null)
+  const openRejectModal = () => setModalType('reject')
+  const openApproveModal = () => setModalType('approve')
+  const closeModalHandler = () => {
+    setModalType(null)
+    closeModal()
   }
 
   const personal = hasPersonal(cv) ? cv.personal : undefined
@@ -55,24 +81,66 @@ export default function FullCandidateProfileViewer({ cv }: Props) {
   return (
     <div className="mx-auto max-w-5xl rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">
       {/* Personal Info */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          {personal.full_name}
-        </h2>
-        {personal.title && (
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {personal.title}
-          </p>
-        )}
-        <div className="mt-3 space-y-1 text-sm text-gray-700 dark:text-gray-300">
-          {personal.email && <p>Email: {personal.email}</p>}
-          {personal.phone && <p>Phone: {personal.phone}</p>}
-          {personal.location && <p>Location: {personal.location}</p>}
-          {personal.linkedin && <p>LinkedIn: {personal.linkedin}</p>}
-          {personal.website && <p>Website: {personal.website}</p>}
-          {personal.github && <p>GitHub: {personal.github}</p>}
+      {isDisclosed ? (
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {personal.full_name}
+          </h2>
+          {personal.title && (
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {personal.title}
+            </p>
+          )}
+          <div className="mt-3 space-y-1 text-sm text-gray-700 dark:text-gray-300">
+            {personal.email && <p>Email: {personal.email}</p>}
+            {personal.phone && <p>Phone: {personal.phone}</p>}
+            {personal.location && <p>Location: {personal.location}</p>}
+            {personal.linkedin && <p>LinkedIn: {personal.linkedin}</p>}
+            {personal.website && <p>Website: {personal.website}</p>}
+            {personal.github && <p>GitHub: {personal.github}</p>}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="mb-6 rounded-lg border border-yellow-300 bg-yellow-50 p-6 text-center dark:border-yellow-700 dark:bg-yellow-900/10">
+          <h2 className="mb-2 text-xl font-semibold text-yellow-800 dark:text-yellow-200">
+            This candidate’s personal info is hidden
+          </h2>
+          <p className="mx-auto mb-4 max-w-lg text-sm text-yellow-700 dark:text-yellow-300">
+            To protect candidate privacy, personal contact details are only
+            visible after unlocking. You can unlock this profile to access their
+            full contact information.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button color="primary" onClick={openApproveModal}>
+              Unlock Candidate
+            </Button>
+            <Button variant="outline" onClick={openRejectModal}>
+              <span className="text-red-600 dark:text-red-400">
+                Reject Candidate
+              </span>
+            </Button>
+          </div>
+          {modalType === 'approve' && (
+            <ApproveCandidateModal
+              vacancy={vacancy}
+              candidate={candidate}
+              isOpen
+              openModal={openApproveModal}
+              closeModal={closeModalHandler}
+              candidateOnJobId={candidateOnJobId}
+            />
+          )}
+          {modalType === 'reject' && (
+            <RejectCandidateModal
+              isOpen
+              openModal={openRejectModal}
+              closeModal={closeModalHandler}
+              candidateOnJobId={candidateOnJobId}
+            />
+          )}
+        </div>
+      )}
 
       {profile && profile?.length > 0 && (
         <Section icon={InfoIcon} title="Profile">

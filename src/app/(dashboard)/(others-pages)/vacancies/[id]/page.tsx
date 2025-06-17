@@ -11,7 +11,8 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  const vacancy = await getManageVacancyInfo(params.id)
+  const { id } = await params
+  const vacancy = await getManageVacancyInfo(id)
 
   if (!vacancy) return notFound()
   if (vacancy.userType === 'client')
@@ -19,5 +20,4 @@ export default async function Page({ params }: PageProps) {
 
   if (vacancy.userType === 'recruiter')
     return <RecruiterVacancyDetailPage vacancy={vacancy} />
-  return
 }

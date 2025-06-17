@@ -1,3 +1,5 @@
+'use client'
+
 import { notFound } from 'next/navigation'
 
 import { Metadata } from 'next'
@@ -24,7 +26,7 @@ export default function ClientVacancyDetailPage({
     <div className="space-y-8 px-4 py-6 sm:px-6 lg:px-8">
       <PageBreadcrumb pageTitle="Manage Vacancy" />
       <SectionHeading title="Vacancy Overview" />
-      <p>{vacancy.userType}</p>
+
       <VacancySummaryCard vacancy={vacancy} />
 
       <SectionHeading title="Submitted Candidates" className="mt-10" />
@@ -32,8 +34,12 @@ export default function ClientVacancyDetailPage({
         {candidates.length > 0 ? (
           candidates.map((candidate) => (
             <CandidateCard
+              vacancy={vacancy}
+              candidateOnJobId={candidate.id}
               key={candidate.id}
+              viewMode="client"
               candidate={candidate.candidateProfileVersion}
+              isDisclosed={candidate.isDisclosed}
             />
           ))
         ) : (
