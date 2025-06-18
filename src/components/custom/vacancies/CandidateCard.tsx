@@ -174,7 +174,7 @@ export default function CandidateCard({
             className="group text-sky-500"
           >
             <EyeIcon className="h-4 w-4" />
-            {isDisclosed && 'View Profile'}
+            View Profile
           </Button>
         </div>
         {!isDisclosed && (

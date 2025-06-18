@@ -8,6 +8,18 @@ const nextConfig = {
     })
     return config
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'localhost',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

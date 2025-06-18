@@ -2,13 +2,10 @@
 
 import type { Metadata } from 'next'
 import { EcommerceMetrics } from '@/components/tailAdmin/ecommerce/EcommerceMetrics'
-import React from 'react'
-// import MonthlyTarget from '@/components/tailAdmin/ecommerce/MonthlyTarget'
-// import MonthlySalesChart from '@/components/tailAdmin/ecommerce/MonthlySalesChart'
-// import StatisticsChart from '@/components/tailAdmin/ecommerce/StatisticsChart'
+import React, { useEffect, useState } from 'react'
 import RecentOrders from '@/components/tailAdmin/ecommerce/RecentOrders'
-import DemographicCard from '@/components/tailAdmin/ecommerce/DemographicCard'
 import { useAuth } from '@/context/auth/auth-context'
+import CompleteProfileCTA from '@/components/custom/common/CompleteProfileCTA'
 
 // export const metadata: Metadata = {
 //   title:
@@ -17,16 +14,18 @@ import { useAuth } from '@/context/auth/auth-context'
 // }
 
 export default function Ecommerce() {
+  const [loaded, setLoaded] = useState(false)
   const { user } = useAuth()
+
+  useEffect(() => {
+    if (user) {
+      setLoaded(true)
+    }
+  }, [user])
 
   return (
     <div className="grid grid-cols-12 gap-4 md:gap-6">
-      <div className="col-span-12 space-y-6 xl:col-span-7">
-        <EcommerceMetrics />
-
-        {/* <MonthlySalesChart /> */}
-      </div>
-      <div className="col-span-12 xl:col-span-5">
+      <div className="col-span-12 space-y-6 xl:col-span-12">
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-semibold">
             Welcome,{' '}
@@ -38,7 +37,12 @@ export default function Ecommerce() {
             Here’s a quick overview of your e-commerce metrics.
           </p>
         </div>
+        {!user?.isProfileComplete && loaded && <CompleteProfileCTA />}
+        <EcommerceMetrics />
+
+        {/* <MonthlySalesChart /> */}
       </div>
+      <div className="col-span-12 xl:col-span-5"></div>
 
       <div className="col-span-12 xl:col-span-5">{/* <MonthlyTarget /> */}</div>
 

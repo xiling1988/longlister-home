@@ -1,4 +1,17 @@
-import { API_URL } from '../constants'
+import {
+  API_URL,
+  defaultCompanyProfileData,
+  defaultRecruiterProfileData,
+} from '../constants'
+import {
+  CLIENT_PROFILE_STEPS,
+  RECRUITER_PROFILE_STEPS,
+} from '../constants/profiles/steps'
+import { UserType } from '../types/profile-completion'
+import {
+  CompanyProfileInitialValuesSchema,
+  recruiterProfileInitialValuesSchema,
+} from '../zod-schemas/profiles/schemas'
 
 export function getCompanyLogo(id: string) {
   return `${API_URL}/company-logos/${id}.jpg`
@@ -59,4 +72,16 @@ export function formatDate(
     day: 'numeric',
     ...options,
   })
+}
+
+export const getDefaultsByType = (type: UserType) =>
+  type === 'client' ? defaultCompanyProfileData : defaultRecruiterProfileData
+
+export const getSchemaByType = (type: UserType) =>
+  type === 'client'
+    ? CompanyProfileInitialValuesSchema
+    : recruiterProfileInitialValuesSchema
+
+export const getSteps = (type: UserType) => {
+  return type === 'client' ? CLIENT_PROFILE_STEPS : RECRUITER_PROFILE_STEPS
 }

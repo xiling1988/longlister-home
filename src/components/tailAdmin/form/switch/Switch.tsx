@@ -8,6 +8,7 @@ interface SwitchProps {
   onChange?: (checked: boolean) => void
   color?: 'blue' | 'gray' // Added prop to toggle color theme
   name?: string // Added name prop for accessibility
+  className?: string // Added className prop for additional styling
 }
 
 const Switch: React.FC<SwitchProps> = ({
@@ -17,6 +18,7 @@ const Switch: React.FC<SwitchProps> = ({
   disabled = false,
   onChange,
   color = 'blue', // Default to blue color
+  className = '',
 }) => {
   const [isChecked, setIsChecked] = useState(defaultChecked)
 
@@ -52,7 +54,7 @@ const Switch: React.FC<SwitchProps> = ({
     <label
       className={`flex cursor-pointer items-center gap-3 text-sm font-medium select-none ${
         disabled ? 'text-gray-400' : 'text-gray-700 dark:text-gray-400'
-      }`}
+      } ${className}`}
       onClick={handleToggle} // Toggle when the label itself is clicked
     >
       <div className="relative">
