@@ -20,18 +20,19 @@ function ExploreListItem({
     <li
       key={vacancy.id}
       onClick={() => setSelectedVacancy(vacancy)}
-      className={`flex cursor-pointer items-center gap-x-2 border-b p-4 transition hover:bg-gray-50 dark:hover:bg-gray-800 ${
-        selectedVacancy?.id === vacancy.id &&
-        'border-gray-200 bg-gray-50 shadow-2xs dark:border-gray-700 dark:bg-gray-800'
+      className={`mb-1 flex cursor-pointer items-center gap-x-2 rounded border-b p-2 transition hover:bg-gray-50 dark:hover:bg-gray-800 ${
+        selectedVacancy?.id === vacancy.id
+          ? 'border-gray-200 bg-gray-100 shadow-2xs hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800'
+          : 'bg-white shadow-sm dark:bg-gray-900'
       }`}
     >
-      <div className="h-full w-full flex-1 rounded-full dark:bg-gray-700">
+      <div className="h-full w-full flex-1 rounded dark:bg-gray-700">
         <Image
           height={40}
           width={40}
           src={`${API_URL}/company-logos/0fb6e83d-9995-44f2-b28c-69b17dd06a55.jpg`}
           alt="Company Logo"
-          className="h-full w-full rounded-full object-center"
+          className="h-full w-full rounded object-center p-5"
           unoptimized
         />
       </div>

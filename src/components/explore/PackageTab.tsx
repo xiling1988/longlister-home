@@ -16,7 +16,7 @@ interface PackageTabProps {
 function PackageTab({ jobPackage }: PackageTabProps) {
   return (
     <>
-      <div className="group relative rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md dark:border-gray-800 dark:bg-white/[0.03]">
+      <div className="group relative mt-8 rounded-2xl border border-gray-200 bg-white p-6 transition hover:shadow-md dark:border-gray-800 dark:bg-white/[0.03]">
         <div className="space-y-1 text-sm text-gray-700 dark:text-white/80">
           <dl className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
             <div>
