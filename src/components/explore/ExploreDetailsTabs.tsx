@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 
+interface ChartTabProps {
+  selectedTab: 'optionOne' | 'optionTwo' | 'optionThree' | 'optionFour'
+  setSelectedTab: React.Dispatch<
+    React.SetStateAction<
+      'optionOne' | 'optionTwo' | 'optionThree' | 'optionFour'
+    >
+  >
+}
 
-
-function ChartTab() {
-  const [selected, setSelected] = useState<
-    'optionOne' | 'optionTwo' | 'optionThree' | 'optionFour'
-  >('optionOne')
+function ExploreDetailsTabs({ selectedTab, setSelectedTab }: ChartTabProps) {
+  // State to manage the selected tab
 
   const getButtonClass = (
     option: 'optionOne' | 'optionTwo' | 'optionThree' | 'optionFour',
   ) =>
-    selected === option
+    selectedTab === option
       ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800'
       : 'text-gray-500 dark:text-gray-400'
 
   return (
     <div className="flex items-center gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900">
       <button
-        onClick={() => setSelected('optionOne')}
+        onClick={() => setSelectedTab('optionOne')}
         className={`w-full rounded-md px-3 py-2 text-theme-sm font-medium hover:text-gray-900 dark:hover:text-white ${getButtonClass(
           'optionOne',
         )}`}
@@ -26,7 +31,7 @@ function ChartTab() {
       </button>
 
       <button
-        onClick={() => setSelected('optionTwo')}
+        onClick={() => setSelectedTab('optionTwo')}
         className={`w-full rounded-md px-3 py-2 text-theme-sm font-medium hover:text-gray-900 dark:hover:text-white ${getButtonClass(
           'optionTwo',
         )}`}
@@ -35,7 +40,7 @@ function ChartTab() {
       </button>
 
       <button
-        onClick={() => setSelected('optionThree')}
+        onClick={() => setSelectedTab('optionThree')}
         className={`w-full rounded-md px-3 py-2 text-theme-sm font-medium hover:text-gray-900 dark:hover:text-white ${getButtonClass(
           'optionThree',
         )}`}
@@ -44,7 +49,7 @@ function ChartTab() {
       </button>
 
       <button
-        onClick={() => setSelected('optionFour')}
+        onClick={() => setSelectedTab('optionFour')}
         className={`w-full rounded-md px-3 py-2 text-theme-sm font-medium hover:text-gray-900 dark:hover:text-white ${getButtonClass(
           'optionFour',
         )}`}
@@ -55,4 +60,4 @@ function ChartTab() {
   )
 }
 
-export default ChartTab
+export default ExploreDetailsTabs

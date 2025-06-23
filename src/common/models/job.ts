@@ -14,7 +14,7 @@ export interface Job {
 
   jobTitle: string | undefined
   jobDescription: string | undefined
-  niceToHaveSkills: string[] | undefined
+  nonNegotiables: string[] | undefined
 
   notifyParties:
     | {

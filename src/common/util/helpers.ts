@@ -74,6 +74,15 @@ export function formatDate(
   })
 }
 
+export function daysLeft(dateString: string) {
+  const now = new Date()
+  const deadline = new Date(dateString)
+  const diff = Math.ceil(
+    (deadline.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+  )
+  return diff >= 0 ? diff : 0
+}
+
 export const getDefaultsByType = (type: UserType) =>
   type === 'client' ? defaultCompanyProfileData : defaultRecruiterProfileData
 
