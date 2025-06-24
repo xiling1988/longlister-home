@@ -17,6 +17,7 @@ export default function ClientVacanciesTable() {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
+  console.log('VACANCIES!!', vacancies)
   useEffect(() => {
     const loadVacancies = async () => {
       setError(null)

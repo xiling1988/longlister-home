@@ -5,6 +5,7 @@ import { Header } from '@/components/salient/Header'
 import { Hero } from '@/components/salient/Hero'
 import { Pricing } from '@/components/salient/Pricing'
 import { PrimaryFeatures } from '@/components/salient/PrimaryFeatures'
+import RecruiterSection from '@/components/salient/RecruiterSection'
 import { SecondaryFeatures } from '@/components/salient/SecondaryFeatures'
 import { Testimonials } from '@/components/salient/Testimonials'
 
@@ -14,11 +15,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <PrimaryFeatures />
-        <SecondaryFeatures />
-        <CallToAction />
-        <Testimonials />
         <Pricing />
+        <PrimaryFeatures />
+        <RecruiterSection />
+        <CallToAction />
+        <SecondaryFeatures />
+        <Testimonials />
         <Faqs />
       </main>
       <Footer />
