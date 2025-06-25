@@ -148,14 +148,14 @@ export default function CandidateCard({
 
         <div className="mt-4 w-full border-t border-gray-900/5 px-6 pt-4">
           <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-            <span>Current Salary</span>
+            <span>Current Salary (monthly)</span>
             <span className="font-medium text-gray-800 dark:text-white/90">
               10000 AED
             </span>
           </div>
 
           <div className="mt-2 flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-            <span>Expected Salary</span>
+            <span>Expected Salary (monthly)</span>
             <span className="font-medium text-gray-800 dark:text-white/90">
               20000 AED
             </span>

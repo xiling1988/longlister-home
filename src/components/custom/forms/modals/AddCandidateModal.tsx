@@ -160,7 +160,7 @@ function AddCandidateModal({
                 <Skeleton count={2} />
               ) : (
                 <>
-                  <Label>Current Salary</Label>
+                  <Label>Current Salary (monthly)</Label>
                   <Input
                     error={
                       !!(
@@ -186,7 +186,7 @@ function AddCandidateModal({
                 <Skeleton count={2} />
               ) : (
                 <>
-                  <Label>Expected Salary</Label>
+                  <Label>Expected Salary (monthly)</Label>
                   <Input
                     error={
                       !!(

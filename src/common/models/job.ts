@@ -38,11 +38,9 @@ export interface Job {
   industry: string | undefined
   status: string | undefined
 
-  salaryMin: number
-  salaryMax: number
+  salaryBudget: number
   bonusStructure?: string
   standardBenefits?: string
-  additionalBenefits?: string
   salaryReviewCycle?: string
   trainingOpportunities?: string
   careerProgression?: string

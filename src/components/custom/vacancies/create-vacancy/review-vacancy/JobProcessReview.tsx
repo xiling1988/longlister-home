@@ -1,7 +1,6 @@
 import React from 'react'
 import { ReviewCardProps } from './JobDetailsReview'
 import { CalenderIcon } from '@/icons'
-import { on } from 'events'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
 import FormSection from '@/components/custom/forms/FormSection'
 import { NotifyParty } from '@/components/custom/forms/NotificationRecipients'
@@ -30,7 +29,7 @@ function JobProcessReview({ onEdit, vacancyData }: ReviewCardProps) {
           </dd>
         </div>
         <div>
-          <dt className="text-base font-medium text-gray-500">Stages</dt>
+          <dt className="text-base font-medium text-gray-500">Interviews</dt>
           <dd className="text-sm text-gray-900 dark:text-white/90">{stages}</dd>
         </div>
         <div>

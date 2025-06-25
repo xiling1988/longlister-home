@@ -25,7 +25,9 @@ function ProcessTab({ jobProcess }: ProcessTabProps) {
               </dd>
             </div>
             <div>
-              <dt className="text-base font-medium text-gray-500">Stages</dt>
+              <dt className="text-base font-medium text-gray-500">
+                Interviews
+              </dt>
               <dd className="text-sm text-gray-900 dark:text-white/90">
                 {jobProcess.stages}
               </dd>

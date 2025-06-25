@@ -57,14 +57,14 @@ function ConfirmVacancyTerms({
               label={`I agree to the terms and conditions`}
               onChange={() => setGeneralTermsAgreed(!generalTermsAgreed)}
             />
-            <p className="text-brand-red">{String(generalTermsAgreed)}</p>
+            {/* <p className="text-brand-red">{String(generalTermsAgreed)}</p> */}
 
             <Switch
               defaultChecked={budgetTermsAgreed}
               label={`I authorize Longlister to charge up to AED ${totalBudget?.toFixed(2)} based on CVs I approve`}
               onChange={() => setBudgetTermsAgreed(!budgetTermsAgreed)}
             />
-            <p className="text-brand-red">{String(budgetTermsAgreed)}</p>
+            {/* <p className="text-brand-red">{String(budgetTermsAgreed)}</p> */}
           </div>
 
           <div className="mt-6 flex w-full items-center justify-end gap-3">

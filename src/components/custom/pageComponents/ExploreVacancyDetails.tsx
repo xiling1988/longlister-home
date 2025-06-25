@@ -21,12 +21,10 @@ function ExploreVacancyDetails({
   setSelectedTab,
 }: ExploreVacancyDetailsProps) {
   const jobPackage = {
-    salaryMin: vacancy.salaryMin || 0,
-    salaryMax: vacancy.salaryMax || 0,
+    salaryBudget: vacancy.salaryBudget || 0,
     bonusStructure: vacancy.bonusStructure || 'N/A',
     salaryReviewCycle: vacancy.salaryReviewCycle || 'N/A',
     standardBenefits: vacancy.standardBenefits || 'N/A',
-    additionalBenefits: vacancy.additionalBenefits || 'N/A',
   }
   const jobProcess = {
     recruitmentTimeline: vacancy.recruitmentTimeline,

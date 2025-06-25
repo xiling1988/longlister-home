@@ -12,13 +12,13 @@ export default function SuccessPage() {
           SUCCESS !
         </h1>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
-          Awesome! Your message has been sent successfully.
+          Awesome! Your vacancy has been created successfully.
         </p>
         <Link
           href="/"
           className="rounded-lg bg-brand-red px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-600"
         >
-          Back to Home Page
+          Back to Dashboard
         </Link>
       </div>
       <footer className="mt-8 text-sm text-gray-500 dark:text-gray-400">

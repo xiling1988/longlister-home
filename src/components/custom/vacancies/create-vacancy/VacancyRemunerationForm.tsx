@@ -38,28 +38,18 @@ function VacancyRemunerationForm({
     <form action={formAction}>
       {/* Salary Fields */}
       <div className="mb-6">
-        <Label>Minimum Salary</Label>
+        <Label>Salary Budget (monthly)</Label>
         <Input
-          name="salaryMin"
+          name="salaryBudget"
           type="number"
           placeholder="e.g. 10000"
           required
           className="mb-4"
-          defaultValue={newVacancyData?.salaryMin || ''}
+          defaultValue={newVacancyData?.salaryBudget || ''}
           onChange={handleInputChange}
-          error={!!newVacancyData?.salaryMin && newVacancyData.salaryMin < 0}
-        />
-
-        <Label>Maximum Salary</Label>
-        <Input
-          name="salaryMax"
-          type="number"
-          placeholder="e.g. 15000"
-          required
-          defaultValue={newVacancyData?.salaryMax || ''}
-          onChange={handleInputChange}
-          error={!!state.errors?.salaryMax}
-          hint={state.errors?.salaryMax && state.errors.salaryMax}
+          error={
+            !!newVacancyData?.salaryBudget && newVacancyData.salaryBudget < 0
+          }
         />
       </div>
 
@@ -83,16 +73,6 @@ function VacancyRemunerationForm({
         error={!!state.errors?.standardBenefits}
         hint={state.errors?.standardBenefits && state.errors.standardBenefits}
         className="mb-4"
-      />
-      <Label>Additional Benefits</Label>
-      <TextArea
-        name="standardBenefits"
-        placeholder="Health insurance, annual leave, etc."
-        className="mb-4"
-        value={newVacancyData?.standardBenefits || ''}
-        onChange={handleTextAreaChange('additionalBenefits')}
-        error={!!state.errors?.standardBenefits}
-        hint={state.errors?.standardBenefits && state.errors.standardBenefits}
       />
 
       {/* Salary Review Cycle */}

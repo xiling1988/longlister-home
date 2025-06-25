@@ -72,8 +72,6 @@ export default function CandidateSuccessCard({
         )}
       </div>
 
-      
-
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

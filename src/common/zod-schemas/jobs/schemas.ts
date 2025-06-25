@@ -61,12 +61,13 @@ export const vacancyRoleResponsibilitiesSchema = z.object({
 })
 
 export const vacancyRemunerationSchema = z.object({
-  salaryMin: z.coerce.number().min(0, 'Salary must be a positive number'),
-  salaryMax: z.coerce.number().min(0, 'Salary must be a positive number'),
+  salaryBudget: z
+    .number()
+    .min(0, 'Salary budget must be higher than 0')
+    .optional(),
   // salaryNegotiable: z.coerce.boolean(),
   bonusStructure: z.string().optional(),
   standardBenefits: z.string().optional(),
-  additionalBenefits: z.string().optional(),
   salaryReviewCycle: z.string().optional(),
   trainingOpportunities: z.string().optional(),
   careerProgression: z.string().optional(),
@@ -80,7 +81,7 @@ export const vacancyRecruitmentProcessSchema = z.object({
   stages: z.coerce.number().min(1, 'At least one stage is required'),
   assessments: z.string().optional(),
   requiredDocs: z.string().optional(),
-  interviewMode: z.enum(['Remote', 'In-Person', 'Hybrid']),
+  interviewMode: z.enum(['In Person', 'Online', 'Phone']),
   decisionProcess: z.string().optional(),
   notifyParties: z
     .array(
@@ -149,16 +150,17 @@ export const vacancyInitialValuesSchema = z.object({
   stakeholders: z.string().optional(),
   assessments: z.string().optional(),
   requiredDocs: z.string().optional(),
-  interviewMode: z.enum(['Remote', 'In-Person', 'Hybrid']).optional(),
+  interviewMode: z.enum(['In Person', 'Online', 'Phone']).optional(),
   decisionProcess: z.string().optional(),
   candidateTips: z.string().optional(),
 
-  salaryMin: z.number().optional(),
-  salaryMax: z.number().optional(),
+  salaryBudget: z
+    .number()
+    .min(0, 'Salary budget must be higher than 0')
+    .optional(),
   salaryNegotiable: z.boolean().optional(),
   bonusStructure: z.string().optional(),
   standardBenefits: z.string().optional(),
-  additionalBenefits: z.string().optional(),
   salaryReviewCycle: z.string().optional(),
   trainingOpportunities: z.string().optional(),
   careerProgression: z.string().optional(),

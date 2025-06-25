@@ -113,7 +113,7 @@ export default function ClientVacanciesTable() {
                             {job.jobTitle}
                           </span>
                           <span className="block text-theme-xs text-gray-500 dark:text-gray-400">
-                            AED {job.salaryMin} - {job.salaryMax}
+                            AED {job.salaryBudget}
                           </span>
                         </div>
                       </div>

@@ -39,7 +39,7 @@ function VacancyRecruitmentProcessForm({
     <form action={formAction}>
       {/* Recruitment Timeline */}
       <div className="mb-6">
-        <Label>Recruitment Timeline (in days)</Label>
+        <Label>Recruitment Timeline (weeks)</Label>
         <Input
           name="recruitmentTimeline"
           type="number"
@@ -57,7 +57,7 @@ function VacancyRecruitmentProcessForm({
 
       {/* Number of Stages */}
       <div className="mb-6">
-        <Label>Number of Stages</Label>
+        <Label>Number of Interviews</Label>
         <Input
           name="stages"
           type="number"
@@ -99,12 +99,13 @@ function VacancyRecruitmentProcessForm({
       {/* Interview Mode */}
       <div className="mb-6">
         <Label>Interview Mode</Label>
+        
         <Select
           name="interviewMode"
           options={[
-            { value: 'Remote', label: 'Remote' },
-            { value: 'In-Person', label: 'In-Person' },
-            { value: 'Hybrid', label: 'Hybrid' },
+            { value: 'In Person', label: 'In Person' },
+            { value: 'Online', label: 'Online' },
+            { value: 'Phone', label: 'Phone' },
           ]}
           onChange={handleSelectChange('interviewMode')}
           defaultValue={newVacancyData?.interviewMode || ''}

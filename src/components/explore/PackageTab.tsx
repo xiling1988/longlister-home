@@ -4,12 +4,10 @@ import Badge from '../tailAdmin/ui/badge/Badge'
 
 interface PackageTabProps {
   jobPackage: {
-    salaryMin?: number
-    salaryMax?: number
+    salaryBudget?: number
     bonusStructure?: string
     salaryReviewCycle?: string
     standardBenefits?: string
-    additionalBenefits?: string
   }
 }
 
@@ -21,20 +19,13 @@ function PackageTab({ jobPackage }: PackageTabProps) {
           <dl className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
             <div>
               <dt className="text-base font-medium text-gray-500">
-                Min Salary
+                Salary Budget (monthly)
               </dt>
               <dd className="text-sm text-gray-900 dark:text-white/90">
-                AED {jobPackage?.salaryMin}
+                AED {jobPackage?.salaryBudget}
               </dd>
             </div>
-            <div>
-              <dt className="text-base font-medium text-gray-500">
-                Max Salary
-              </dt>
-              <dd className="text-sm text-gray-900 dark:text-white/90">
-                AED {jobPackage?.salaryMax}
-              </dd>
-            </div>
+
             <div>
               <dt className="text-base font-medium text-gray-500">
                 Bonus Structure
@@ -55,30 +46,6 @@ function PackageTab({ jobPackage }: PackageTabProps) {
               </dt>
               <dd className="text-sm text-gray-900 dark:text-white/90">
                 {jobPackage?.standardBenefits}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-base font-medium text-gray-500">
-                Additional Benefits
-              </dt>
-              <dd className="text-sm text-gray-900 dark:text-white/90">
-                {jobPackage?.additionalBenefits}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-base font-medium text-gray-500">
-                Additional Benefits
-              </dt>
-              <dd className="text-sm text-gray-900 dark:text-white/90">
-                {jobPackage?.additionalBenefits}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-base font-medium text-gray-500">
-                Additional Benefits
-              </dt>
-              <dd className="text-sm text-gray-900 dark:text-white/90">
-                {jobPackage?.additionalBenefits}
               </dd>
             </div>
           </dl>
