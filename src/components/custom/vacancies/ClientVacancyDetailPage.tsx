@@ -8,6 +8,7 @@ import VacancySummaryCard from './VacancySummaryCard'
 import { Job } from '@/common/models'
 import CandidateCard from './CandidateCard'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
+import ExploreDetailsHeader from '@/components/explore/ExploreDetailsHeader'
 
 interface VacancyDetailPageProps {
   vacancy: Job
@@ -25,8 +26,9 @@ export default function ClientVacancyDetailPage({
   return (
     <div className="space-y-8 px-4 py-6 sm:px-6 lg:px-8">
       <PageBreadcrumb pageTitle="Manage Vacancy" />
-      <SectionHeading title="Vacancy Overview" />
+      {/* <SectionHeading title="Vacancy Overview" /> */}
 
+      {/* <ExploreDetailsHeader selectedVacancy={vacancy} /> */}
       <VacancySummaryCard vacancy={vacancy} />
 
       <SectionHeading title="Submitted Candidates" className="mt-10" />

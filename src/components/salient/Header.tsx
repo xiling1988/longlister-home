@@ -11,11 +11,9 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/salient/Button'
 import { Container } from '@/components/salient/Container'
-import { Logo } from '@/components/salient/Logo'
 import { NavLink } from '@/components/salient/NavLink'
 import Image from 'next/image'
 import fullLogoRed from '../../images/full_logo_red.png'
-import longlistLogo from '../images/longlist_logo_red.png'
 import wordLogoRed from '../../images/word_logo_red.png'
 import { useAuth } from '@/context/auth/auth-context'
 import UserDropdown from '../tailAdmin/header/UserDropdown'
@@ -61,6 +59,7 @@ function MobileNavIcon({ open }: { open: boolean }) {
 }
 
 function MobileNavigation() {
+  const { user } = useAuth()
   return (
     <Popover>
       <PopoverButton
@@ -77,11 +76,19 @@ function MobileNavigation() {
         transition
         className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-brand-cream p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-closed:scale-95 data-closed:opacity-0 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
       >
-        <MobileNavLink href="#features">Features</MobileNavLink>
-        <MobileNavLink href="#testimonials">Testimonials</MobileNavLink>
-        <MobileNavLink href="#pricing">Pricing</MobileNavLink>
+        <MobileNavLink href="#about">About</MobileNavLink>
+        <MobileNavLink href="#howItWorks">How it works</MobileNavLink>
+        <MobileNavLink href="#recruiters">Recruiters</MobileNavLink>
+        <MobileNavLink href="#faqs">FAQs</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
-        <MobileNavLink href="/login">Sign in</MobileNavLink>
+        {user ? (
+          <MobileNavLink href="/">Dashboard</MobileNavLink>
+        ) : (
+          <>
+            <MobileNavLink href="/login">Sign in</MobileNavLink>
+            <MobileNavLink href="/register">Get started</MobileNavLink>
+          </>
+        )}
       </PopoverPanel>
     </Popover>
   )
@@ -115,9 +122,10 @@ export function Header() {
               {/* <Logo className="h-10 w-auto" /> */}
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#features">Features</NavLink>
-              <NavLink href="#testimonials">Testimonials</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink>
+              <NavLink href="#about">About</NavLink>
+              <NavLink href="#howItWorks">How it works</NavLink>
+              <NavLink href="#recruiters">Recruiters</NavLink>
+              <NavLink href="#faqs">FAQs</NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">

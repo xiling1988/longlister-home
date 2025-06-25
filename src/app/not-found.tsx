@@ -1,15 +1,23 @@
 import Link from 'next/link'
 
 import { Button } from '@/components/salient/Button'
-import { Logo } from '@/components/salient/Logo'
 import { SlimLayout } from '@/layout/salient/SlimLayout'
+import Image from 'next/image'
+import FullLogo from '@/images/full_logo_red.png'
 
 export default function NotFound() {
   return (
     <SlimLayout>
-      <div className="flex">
+      <div className="mx-auto w-full">
         <Link href="/home" aria-label="Home">
-          <Logo className="h-10 w-auto" />
+          <Image
+            src={FullLogo}
+            alt="Full Logo"
+            className="h-auto w-full"
+            unoptimized
+            width={40}
+            height={40}
+          />
         </Link>
       </div>
       <p className="mt-20 text-sm font-medium text-gray-700">404</p>

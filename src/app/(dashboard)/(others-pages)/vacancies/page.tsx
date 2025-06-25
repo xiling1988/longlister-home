@@ -12,6 +12,7 @@ import { set } from 'zod/v4'
 import { useAuth } from '@/context/auth/auth-context'
 import RecruiterVacanciesTable from '@/components/tailAdmin/tables/RecruiterVacanciesTable'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
+import Link from 'next/link'
 
 // export const metadata: Metadata = {
 //   title: 'Next.js Profile | TailAdmin - Next.js Dashboard Template',
@@ -32,13 +33,15 @@ export default function Vacancies() {
           My Vacancies
         </h3>
         {user?.userType === 'client' && (
-          <Button
-            onClick={openModal}
-            className="bg-brand-red hover:bg-brand-coral"
-            size="sm"
-          >
-            Create New Vacancy
-          </Button>
+          <Link href={`/vacancies/create`}>
+            <Button
+              // onClick={openModal}
+              className="bg-brand-red hover:bg-brand-coral"
+              size="sm"
+            >
+              Create New Vacancy
+            </Button>
+          </Link>
         )}
         <CreateVacancyModal
           openModal={openModal}

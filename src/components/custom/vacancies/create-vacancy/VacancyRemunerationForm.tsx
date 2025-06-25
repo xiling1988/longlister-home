@@ -153,7 +153,7 @@ function VacancyRemunerationForm({
       <div className="mt-6 flex justify-between px-4">
         <Button
           type="button"
-          className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+          className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
           variant="outline"
           onClick={() => setActiveStep(activeStep - 1)}
           disabled={activeStep === 0}
@@ -164,7 +164,7 @@ function VacancyRemunerationForm({
         {activeStep < steps.length - 1 ? (
           <Button
             type="submit"
-            className="hover:bg-primary-dark rounded-lg bg-brand-red px-4 py-2 text-sm font-medium text-white shadow-sm"
+            className="hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white shadow-sm"
           >
             Next
           </Button>

@@ -1,7 +1,12 @@
+'use client'
+
 import Image from 'next/image'
 
 import { Container } from '@/components/salient/Container'
-import backgroundImage from '@/images/background-faqs.jpg'
+import backgroundImage from '@/images/background-faqs.png'
+import { useState } from 'react'
+import { Button } from './Button'
+import { clientFAQs, recruiterFAQs } from '@/common/constants'
 
 const faqs = [
   [
@@ -58,20 +63,14 @@ const faqs = [
 ]
 
 export function Faqs() {
+  const [activeTab, setActiveTab] = useState<'client' | 'recruiter'>('client')
+  const faqs = activeTab === 'client' ? clientFAQs : recruiterFAQs
   return (
     <section
-      id="faq"
+      id="faqs"
       aria-labelledby="faq-title"
-      className="relative overflow-hidden bg-slate-50 py-20 sm:py-32"
+      className="relative overflow-hidden bg-brand-cream py-20 sm:py-32"
     >
-      <Image
-        className="absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4"
-        src={backgroundImage}
-        alt=""
-        width={1558}
-        height={946}
-        unoptimized
-      />
       <Container className="relative">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2
@@ -80,10 +79,38 @@ export function Faqs() {
           >
             Frequently asked questions
           </h2>
+
           <p className="mt-4 text-lg tracking-tight text-slate-700">
             If you can’t find what you’re looking for, email our support team
             and if you’re lucky someone will get back to you.
           </p>
+          <div className="my-4 flex gap-4">
+            <Button
+              variant={activeTab === 'client' ? 'outline' : 'solid'}
+              color={activeTab === 'client' ? 'brand-red' : 'brand-red'}
+              disabled={activeTab === 'client'}
+              onClick={() => setActiveTab('client')}
+            >
+              For Companies
+            </Button>
+            <Button
+              variant={activeTab === 'recruiter' ? 'outline' : 'solid'}
+              color={activeTab === 'recruiter' ? 'brand-red' : 'brand-red'}
+              onClick={() => setActiveTab('recruiter')}
+              disabled={activeTab === 'recruiter'}
+            >
+              For Recruiters
+            </Button>
+
+            {/* FAQ content goes here */}
+            <div className="mt-8">
+              {activeTab === 'client' ? (
+                <div>{/* Client FAQ content */}</div>
+              ) : (
+                <div>{/* Recruiter FAQ content */}</div>
+              )}
+            </div>
+          </div>
         </div>
         <ul
           role="list"

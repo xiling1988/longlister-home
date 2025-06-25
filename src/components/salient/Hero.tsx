@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 
 import { Button } from '@/components/salient/Button'
@@ -10,8 +12,11 @@ import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
 import smarterRed from '../../images/smarter_red.png'
 import Link from 'next/link'
+import { useState } from 'react'
+import { BookingModal } from '../custom/common/BookingModal'
 
 export function Hero() {
+  const [showModal, setShowModal] = useState(false)
   return (
     <Container className="bg-brand-cream pt-20 pb-16 text-center lg:pt-32">
       <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl sm:text-balance">
@@ -43,62 +48,15 @@ export function Hero() {
         great candidates, fast – without the high agency fees or wasted job ads.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/register" color="brand-red">
+        <Button color="brand-red" onClick={() => setShowModal(true)}>
           Book a Demo
         </Button>
 
         <Button variant="outline" href="/register" color="brand-red">
           Get started now!
         </Button>
-
-        {/* <Button
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          variant="outline"
-        >
-          <svg
-            aria-hidden="true"
-            className="h-3 w-3 flex-none fill-blue-600 group-active:fill-current"
-          >
-            <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
-          </svg>
-          <span className="ml-3">Watch video</span>
-        </Button> */}
       </div>
-      {/* <div className="mt-36 lg:mt-44">
-        <p className="font-display text-base text-slate-900">
-          Trusted by these six companies so far
-        </p>
-        <ul
-          role="list"
-          className="mt-8 flex items-center justify-center gap-x-8 sm:flex-col sm:gap-x-0 sm:gap-y-10 xl:flex-row xl:gap-x-12 xl:gap-y-0"
-        >
-          {[
-            [
-              { name: 'Transistor', logo: logoTransistor },
-              { name: 'Tuple', logo: logoTuple },
-              { name: 'StaticKit', logo: logoStaticKit },
-            ],
-            [
-              { name: 'Mirage', logo: logoMirage },
-              { name: 'Laravel', logo: logoLaravel },
-              { name: 'Statamic', logo: logoStatamic },
-            ],
-          ].map((group, groupIndex) => (
-            <li key={groupIndex}>
-              <ul
-                role="list"
-                className="flex flex-col items-center gap-y-8 sm:flex-row sm:gap-x-12 sm:gap-y-0"
-              >
-                {group.map((company) => (
-                  <li key={company.name} className="flex">
-                    <Image src={company.logo} alt={company.name} unoptimized />
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div> */}
+      <BookingModal open={showModal} onClose={() => setShowModal(false)} />
     </Container>
   )
 }

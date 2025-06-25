@@ -29,25 +29,21 @@ const variantStyles = {
       'ring-brand-red text-brand-red hover:ring-brand-red/70 hover:text-brand-red active:bg-brand-red/10 active:text-brand-red focus-visible:outline-brand-red',
     'brand-cream':
       'ring-brand-cream text-brand-dark hover:ring-brand-cream/70 active:bg-brand-cream/20 focus-visible:outline-brand-cream',
+    blue: '', // fallback value to satisfy TS
   },
 }
 
-type ButtonProps = (
-  | {
-      variant?: 'solid'
-      color?: keyof typeof variantStyles.solid
-    }
-  | {
-      variant: 'outline'
-      color?: keyof typeof variantStyles.outline
-    }
-) &
-  (
-    | Omit<React.ComponentPropsWithoutRef<typeof Link>, 'color'>
-    | (Omit<React.ComponentPropsWithoutRef<'button'>, 'color'> & {
-        href?: undefined
-      })
-  )
+type ButtonProps = {
+  variant?: 'solid' | 'outline'
+  color?:
+    | keyof (typeof variantStyles)['solid']
+    | keyof (typeof variantStyles)['outline']
+} & (
+  | Omit<React.ComponentPropsWithoutRef<typeof Link>, 'color'>
+  | (Omit<React.ComponentPropsWithoutRef<'button'>, 'color'> & {
+      href?: undefined
+    })
+)
 
 export function Button({ className, ...props }: ButtonProps) {
   props.variant ??= 'solid'

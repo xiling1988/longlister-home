@@ -29,12 +29,12 @@ function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
 export function Pricing() {
   return (
     <section
-      id="pricing"
+      id="about"
       aria-label="Pricing"
-      className="relative bg-transparent py-20 sm:py-32"
+      className="relative overflow-hidden bg-transparent py-20 sm:py-32"
     >
       <Image
-        className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
+        className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%] overflow-clip"
         src={backgroundImage}
         alt=""
         width={2245}
@@ -56,15 +56,15 @@ export function Pricing() {
               Longlister sits perfectly in the middle.{' '}
             </span>
             We combine the reach and flexibility of job ads with the expertise
-            of experienced recruiters – without the high costs or long
-            contracts. It’s the first platform built for businesses who want
-            quality hires, fast, and without breaking the bank.
+            of experienced recruiters without the high costs or long contracts.
+            It’s the first platform built for businesses who want quality hires,
+            fast and without breaking the bank.
           </p>
         </div>
         <div className="group -mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-3 xl:mx-0 xl:gap-x-8">
           <div className="transition-transform duration-300 group-hover:-rotate-4 hover:rotate-0">
             <LeftPlan
-              name="Cheap, but flooded with unqualified applicants"
+              name="Cheap but flooded with unqualified applicants"
               price="Job Adverts"
               description="Good for anyone who is self-employed and just getting started."
               href="/register"
@@ -77,7 +77,7 @@ export function Pricing() {
               ]}
             />
           </div>
-          <div className="transition-transform duration-300 group-hover:scale-105">
+          <div className="transition-transform duration-300 group-hover:scale-101">
             <LonglisterPlan
               featured
               name="Better quality, but expensive and slow"
@@ -85,12 +85,11 @@ export function Pricing() {
               description="Perfect for small / medium sized businesses."
               href="/register"
               features={[
-                'Send 25 quotes and invoices',
-                'Connect up to 5 bank accounts',
-                'Track up to 50 expenses per month',
-
-                'Bulk reconcile transactions',
-                'Track in multiple currencies',
+                'Vetted freelance recruiters on demand',
+                'Faster than ads, cheaper than agencies',
+                'Choose your own timeline and budget',
+                'No fixed contracts, no costly retainers',
+                'Flexible, smart pricing based on urgency',
               ]}
             />
           </div>
@@ -101,7 +100,7 @@ export function Pricing() {
               description="For even the biggest enterprise companies."
               href="/register"
               features={[
-                'Large upfront fees or long-term retainers',
+                'Large fees or long-term retainers',
                 'Lack of transparency on candidate sourcing',
                 'Slow turnaround times – especially for niche roles',
                 'Rigid processes that don’t flex to your business needs',

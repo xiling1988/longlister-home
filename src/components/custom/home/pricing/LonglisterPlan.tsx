@@ -66,30 +66,34 @@ export default function LonglisterPlan({
         unoptimized
         className="mt-4 mb-6 h-16 w-auto object-cover"
       />
-      <h3 className="font-display mt-5 text-center text-lg text-brand-dark">
+      {/* <h3 className="font-display mt-5 text-center text-lg text-brand-dark">
         {name}
-      </h3>
-      <p
+      </h3> */}
+      {/* <p
         className={clsx(
           'mt-2 text-center text-base',
           featured ? 'text-brand-dark' : 'text-brand-dark',
         )}
       >
         {description}
-      </p>
+      </p> */}
 
       <ul
         role="list"
         className={clsx(
-          'order-last mt-10 flex flex-col gap-y-3 text-sm',
+          'mt-10 flex flex-col gap-y-3 text-left text-sm',
           featured ? 'text-white' : 'text-slate-200',
         )}
       >
         {features.map((feature) => (
-          <li key={feature} className="mx-auto flex text-center">
-            <Badge variant="light" className="bg-brand-coral text-brand-cream">
+          <li key={feature} className="mx-auto flex text-left">
+            <Badge
+              variant="light"
+              color="light"
+              className="bg-brand-cream text-brand-coral"
+            >
               <CheckIcon
-                className={featured ? 'text-white' : 'text-slate-400'}
+                className={featured ? 'text-brand-red' : 'text-slate-400'}
               />
               <span className="ml-4">{feature}</span>
             </Badge>
@@ -98,7 +102,7 @@ export default function LonglisterPlan({
       </ul>
       <Button
         href={href}
-        variant={featured ? 'solid' : 'outline'}
+        variant="solid"
         color="brand-red"
         className="mt-8 transition-transform duration-200 hover:scale-105"
         aria-label={`Get started with the ${name} plan for ${price}`}

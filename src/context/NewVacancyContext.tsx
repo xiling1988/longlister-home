@@ -34,21 +34,14 @@ const defaultNewVacancyData: NewVacancyInitialValuesType = {
   primaryContactPosition: '',
   primaryContactPhone: '',
   companyDescription: `
-  <h3>Who we are</h3><p>Introduce your company...</p><br>
-  <h3>What we do</h3><p>Describe your products/services...</p><br>
-  <h3>Our mission</h3><p>State your company's mission...</p><br>
-  <h3>Our vision</h3><p>Describe your long-term goals...</p><br>
+  
 `,
   companyCulture: `
-  <h3>Our Culture</h3><p>Describe your corporate culture...</p><br>
-  <h3>Our Core Values</h3><p>What does your company value the most...</p><br>
-  <h3>Management Style</h3><p>Tell us about your atmosphere and relationships...</p><br>
+  
 `,
-  jobTitle: 'Bimbaa',
+  jobTitle: '',
   jobDescription: `
-  <h3>Our Culture</h3><p>Describe your corporate culture...</p><br>
-  <h3>Our Core Values</h3><p>What does your company value the most...</p><br>
-  <h3>Management Style</h3><p>Tell us about your atmosphere and relationships...</p><br>
+  
 `,
   // initialGoals: '',
   // reportingTo: 'Will Carter',
@@ -58,28 +51,28 @@ const defaultNewVacancyData: NewVacancyInitialValuesType = {
   // challenges: 'Knowing what to do since your so productive',
   // successMetrics: 'Do you think youre doing a good job?',
   // requiredSkills: 'You better bring skills',
-  nonNegotiables: ['That is also important'],
+  nonNegotiables: [],
   recruitmentTimeline: 2,
   stages: 2,
-  stakeholders: 'At the cafe',
-  assessments: 'A few coding problems',
-  requiredDocs: 'Just your id',
-  interviewMode: 'In-Person',
-  decisionProcess: 'I take the decisions',
-  // candidateTips: 'Just be yourself',
+  stakeholders: '',
+  assessments: '',
+  requiredDocs: '',
+  interviewMode: undefined,
+  decisionProcess: '',
+  // candidateTips: '',
   salaryMin: 100000,
   salaryMax: 1200000,
   maxCvs: 1,
-  deadline: '7',
+  deadline: '',
   cvPriceBudget: 1000,
   // salaryNegotiable: true,
-  bonusStructure: 'Bonus is yours',
-  standardBenefits: 'aall the perks',
-  additionalBenefits: 'Alll of the above',
-  salaryReviewCycle: 'Annually',
-  trainingOpportunities: 'Udemy for you for free',
-  careerProgression: 'I said it twice',
-  companyPerks: 'All of them my man',
+  bonusStructure: '',
+  standardBenefits: '',
+  additionalBenefits: '',
+  salaryReviewCycle: '',
+  trainingOpportunities: '',
+  careerProgression: '',
+  companyPerks: '',
   notifyParties: [],
   vacancyTermsAndConditionsAgreed: false,
   vacancyBudgetTermsAndConditionsAgreed: false,

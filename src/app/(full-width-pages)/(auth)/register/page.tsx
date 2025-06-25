@@ -21,8 +21,8 @@ import { tr } from 'zod/v4/locales'
 // }
 
 const options = [
-  { value: 'recruiter', label: 'Freelance Recruiter' },
-  { value: 'client', label: 'Hiring Company / Recruitment Agency' },
+  // { value: 'recruiter', label: 'Freelance Recruiter' },
+  { value: 'client', label: 'Hiring Company' },
 ]
 
 export default function Register() {

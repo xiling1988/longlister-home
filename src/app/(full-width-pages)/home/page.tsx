@@ -19,8 +19,6 @@ export default function Home() {
         <PrimaryFeatures />
         <RecruiterSection />
         <CallToAction />
-        <SecondaryFeatures />
-        <Testimonials />
         <Faqs />
       </main>
       <Footer />
