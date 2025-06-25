@@ -9,6 +9,8 @@ import { useNewVacancyContext } from '@/context/NewVacancyContext'
 import { newVacancyRoleResponsibilitiesAction } from '@/app/(dashboard)/(others-pages)/vacancies/create/actions'
 import { FormErrors } from '@/common/util/errors'
 import { StepComponentProps } from './FormLayout'
+import Select from '@/components/tailAdmin/form/Select'
+import TextArea from '@/components/tailAdmin/form/input/TextArea'
 
 const initialState: FormErrors = {}
 
@@ -16,10 +18,9 @@ function VacancyRoleResponsibilitiesForm({
   handleInputChange,
   activeStep,
   steps,
-  setActiveStep,
-  handleTextAreaChange,
   handleSelectChange,
-  handleNotififyPartiesChange,
+  handleTextAreaChange,
+  setActiveStep,
 }: StepComponentProps) {
   const { newVacancyData, updateVacancyData } = useNewVacancyContext()
   const [state, formAction] = useActionState(
@@ -35,7 +36,7 @@ function VacancyRoleResponsibilitiesForm({
 
   return (
     <form action={formAction}>
-      <div>
+      <div className="mb-8">
         <Label>Job Title</Label>
         <Input
           name="jobTitle"
@@ -49,6 +50,7 @@ function VacancyRoleResponsibilitiesForm({
         />
         <MultiElementInput
           title="Non-Negotiables"
+          error={!!state.errors?.nonNegotiables}
           name="nonNegotiables"
           items={newVacancyData?.nonNegotiables || []}
           placeholder="Enter a responsibility"
@@ -69,6 +71,11 @@ function VacancyRoleResponsibilitiesForm({
             })
           }}
         />
+        {state.errors?.nonNegotiables && (
+          <p className={`mt-1.5 text-xs text-error-500`}>
+            {state.errors?.nonNegotiables}
+          </p>
+        )}
         <RichTextEditor
           title="Job Description"
           className="mt-8 rounded-lg"
@@ -85,6 +92,73 @@ function VacancyRoleResponsibilitiesForm({
           name="jobDescription"
           value={newVacancyData.companyCulture}
         />
+        <div className="flex items-center justify-between gap-4">
+          <div className="w-full">
+            <Label>Work Mode</Label>
+            <Select
+              name="workMode"
+              options={[
+                { value: 'Remote', label: 'Remote' },
+                { value: 'On-site', label: 'On-site' },
+                { value: 'Hybrid', label: 'Hybrid' },
+              ]}
+              onChange={handleSelectChange('workMode')}
+              defaultValue={newVacancyData?.workMode || ''}
+              error={!!state.errors?.workMode}
+              hint={state.errors?.workMode && state.errors.workMode}
+              className="w-full"
+            />
+          </div>
+          <div className="w-full">
+            <Label>Base Location</Label>
+            <Input
+              name="baseLocation"
+              type="text"
+              placeholder="City, Country"
+              required
+              error={!!state.errors?.baseLocation}
+              hint={state.errors?.baseLocation && state.errors?.baseLocation}
+              defaultValue={newVacancyData?.baseLocation || ''}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="w-full">
+            <Label>Type of Hire</Label>
+            <Select
+              name="hireType"
+              options={[
+                { value: 'Permanent', label: 'Permanent' },
+                { value: 'Part-time', label: 'Part-time' },
+                { value: 'Contract', label: 'Contract' },
+              ]}
+              onChange={handleSelectChange('hireType')}
+              defaultValue={newVacancyData?.hireType || ''}
+              error={!!state.errors?.hireType}
+              hint={state.errors?.hireType && state.errors.hireType}
+              className=""
+            />
+          </div>
+        </div>
+        {(newVacancyData?.hireType === 'Contract' ||
+          newVacancyData?.hireType === 'Part-time') && (
+          <>
+            <Label className="mt-6">
+              {newVacancyData.hireType} hire details
+            </Label>
+            <TextArea
+              name="hireTypeDetails"
+              placeholder="Describe working days, hours, and any other relevant details"
+              required
+              value={newVacancyData?.hireTypeDetails || ''}
+              onChange={handleTextAreaChange('hireTypeDetails')}
+              error={!!state.errors?.hireTypeDetails}
+              hint={
+                state.errors?.hireTypeDetails && state.errors.hireTypeDetails
+              }
+              className="mb-4"
+            />
+          </>
+        )}
       </div>
       <div className="mt-6 flex justify-between px-4">
         <Button

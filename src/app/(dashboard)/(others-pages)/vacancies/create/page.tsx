@@ -11,7 +11,7 @@ import VacancyReviewForm from '@/components/custom/vacancies/create-vacancy/Vaca
 import VacancyRoleResponsibilitiesForm from '@/components/custom/vacancies/create-vacancy/VacancyRoleResponsibilitiesForm'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import { NewVacancyDataProvider } from '@/context/NewVacancyContext'
-import { CalenderIcon, DollarLineIcon, InfoIcon } from '@/icons'
+import { Calendar1Icon, DollarSign, InfoIcon } from 'lucide-react'
 import React, { useState } from 'react'
 import { set } from 'zod/v4'
 
@@ -34,17 +34,17 @@ function CreateVacancyPage() {
     {
       title: 'Remuneration',
       component: VacancyRemunerationForm,
-      icon: DollarLineIcon,
+      icon: DollarSign,
     },
     {
       title: 'Recruitment Process',
       component: VacancyRecruitmentProcessForm,
-      icon: CalenderIcon,
+      icon: Calendar1Icon,
     },
     {
       title: 'Review & Submit',
       component: VacancyReviewForm,
-      icon: CalenderIcon,
+      icon: Calendar1Icon,
     },
   ]
   return (

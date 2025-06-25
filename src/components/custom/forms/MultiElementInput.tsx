@@ -13,6 +13,7 @@ interface MultiElementInputProps {
   items?: string[]
   placeholder?: string
   className?: string
+  error?: boolean
   updateVacancyData?: (data: { nonNegotiables: string[] }) => void
 }
 
@@ -21,6 +22,7 @@ function MultiElementInput({
   name,
   items = [],
   placeholder = 'Enter value',
+  error = false,
   className = '',
   updateVacancyData = () => {},
 }: MultiElementInputProps) {
@@ -60,6 +62,7 @@ function MultiElementInput({
       <div className="mb-4 flex gap-x-2">
         <Input
           name={name}
+          error={error}
           value={currentValue} // <-- controlled input
           onChange={(e) => setCurrentValue(e.target.value)}
           placeholder={placeholder}

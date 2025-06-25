@@ -9,12 +9,12 @@ import Image from 'next/image'
 import FullLogo from '@/images/full_logo_red.png'
 import Label from '@/components/tailAdmin/form/Label'
 import Select from '@/components/tailAdmin/form/Select'
-import { ChevronDownIcon, EyeCloseIcon, EyeIcon } from '@/icons'
 import { useActionState, useState } from 'react'
 import Input from '@/components/tailAdmin/form/input/InputField'
 import signUpAction from './signUpAction'
 import Alert from '@/components/tailAdmin/ui/alert/Alert'
 import { tr } from 'zod/v4/locales'
+import { EyeClosedIcon, EyeIcon } from 'lucide-react'
 
 // export const metadata: Metadata = {
 //   title: 'Sign Up',
@@ -135,7 +135,7 @@ export default function Register() {
               {showPassword ? (
                 <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
               ) : (
-                <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400" />
               )}
             </button>
           </div>

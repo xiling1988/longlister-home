@@ -29,7 +29,8 @@ export default function RecruiterVacanciesTable() {
 
       try {
         const data = await getMyVacanciesRecruiter()
-        setVacancies(data)
+        const filteredJobs = data.filter((job: Job) => job.status === 'ACTIVE')
+        setVacancies(filteredJobs)
       } catch (err: any) {
         setError(err.message)
       } finally {

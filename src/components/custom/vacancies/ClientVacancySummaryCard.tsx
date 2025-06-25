@@ -12,7 +12,7 @@ interface VacancySummaryCardProps {
   vacancy: Job
 }
 
-export default function VacancySummaryCard({
+export default function ClientVacancySummaryCard({
   vacancy,
 }: VacancySummaryCardProps) {
   const [vacancyAdded, setVacancyAdded] = useState(false)
@@ -22,7 +22,7 @@ export default function VacancySummaryCard({
   return (
     <div className="mb-6 flex-col items-start justify-between gap-4">
       {/* Logo */}
-      <div className="my-4 rounded-xl  flex">
+      <div className="my-4 flex rounded-xl">
         {/* Top row: logo + company + actions */}
         <div className="flex items-center justify-between gap-4">
           {/* Logo + Company */}

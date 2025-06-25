@@ -33,17 +33,15 @@ const defaultNewVacancyData: NewVacancyInitialValuesType = {
   primaryContactName: '',
   primaryContactPosition: '',
   primaryContactPhone: '',
-  companyDescription: `
-  
-`,
-  companyCulture: `
-  
-`,
+  companyDescription: ``,
+  companyCulture: ``,
   jobTitle: '',
-  jobDescription: `
-  
-`,
+  jobDescription: ``,
   nonNegotiables: [],
+  workMode: 'On-site',
+  baseLocation: '',
+  hireType: 'Permanent',
+  hireTypeDetails: '',
   recruitmentTimeline: undefined,
   stages: undefined,
   stakeholders: '',
@@ -51,7 +49,7 @@ const defaultNewVacancyData: NewVacancyInitialValuesType = {
   requiredDocs: '',
   interviewMode: undefined,
   decisionProcess: '',
-  // candidateTips: '',
+  currency: '',
   salaryBudget: undefined,
   maxCvs: 1,
   deadline: '7',

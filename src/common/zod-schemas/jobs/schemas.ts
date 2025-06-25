@@ -31,31 +31,30 @@ export const vacancyCompanyInfoSchema = z.object({
 export const vacancyRoleResponsibilitiesSchema = z.object({
   jobTitle: z.string().min(3, 'Job title is required'),
   jobDescription: z.string().min(1, 'Job Responsibilities are required'),
-  // initialGoals: z.string().optional(),
-  // reportingTo: z.string().optional(),
-  // teamCollaboration: z.string().optional(),
-  // toolsUsed: z.string().optional(),
-  // growthOpportunities: z.string().optional(),
-  // challenges: z.string().optional(),
-  // successMetrics: z.string().optional(),
-  // requiredSkills: z.string().min(1, 'At least one required skill is needed'),
   nonNegotiables: z
     .union([
-      z.array(z.string()), // Accepts a direct array
-      z.string().transform((val) => {
-        try {
-          const parsed = JSON.parse(val)
-          if (
-            Array.isArray(parsed) &&
-            parsed.every((item) => typeof item === 'string')
-          ) {
-            return parsed
+      z.array(z.string()).min(3, { message: 'At least 3 items are required' }),
+      z
+        .string()
+        .transform((val) => {
+          try {
+            const parsed = JSON.parse(val)
+            if (
+              Array.isArray(parsed) &&
+              parsed.every((item) => typeof item === 'string')
+            ) {
+              return parsed
+            }
+          } catch (error) {
+            // If parsing fails, return an empty array
           }
-        } catch (error) {
-          // If parsing fails, return an empty array
-        }
-        return []
-      }),
+          return []
+        })
+        .pipe(
+          z.array(z.string()).min(3, {
+            message: 'At least 3 Non Negotiables are required',
+          }),
+        ),
     ])
     .default([]), // Ensures it's always an array, even if missing
 })
@@ -132,6 +131,10 @@ export const vacancyInitialValuesSchema = z.object({
 
   jobTitle: z.string().optional(),
   jobDescription: z.string().optional(),
+  workMode: z.enum(['Remote', 'Hybrid', 'On-site']).optional(),
+  baseLocation: z.string().optional(),
+  hireType: z.enum(['Permanent', 'Contract', 'Part-time']).optional(),
+  hireTypeDetails: z.string().optional(),
   initialGoals: z.string().optional(),
   reportingTo: z.string().optional(),
   teamCollaboration: z.string().optional(),
@@ -153,7 +156,7 @@ export const vacancyInitialValuesSchema = z.object({
   interviewMode: z.enum(['In Person', 'Online', 'Phone']).optional(),
   decisionProcess: z.string().optional(),
   candidateTips: z.string().optional(),
-
+  currency: z.string().optional(),
   salaryBudget: z
     .number()
     .min(0, 'Salary budget must be higher than 0')

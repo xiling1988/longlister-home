@@ -15,6 +15,10 @@ export interface Job {
   jobTitle: string | undefined
   jobDescription: string | undefined
   nonNegotiables: string[] | undefined
+  workMode: 'Remote' | 'Hybrid' | 'On-site' | undefined
+  baseLocation: string | undefined
+  hireType: 'Permanent' | 'Contract' | 'Part-time' | undefined
+  hireTypeDetails: string | undefined
 
   notifyParties:
     | {

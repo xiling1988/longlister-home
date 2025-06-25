@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation'
 
 import { Metadata } from 'next'
 import SectionHeading from '../common/SectionHeading'
-import VacancySummaryCard from './VacancySummaryCard'
+import VacancySummaryCard from './ClientVacancySummaryCard'
 import { Job } from '@/common/models'
 import CandidateCard from './CandidateCard'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import ExploreDetailsHeader from '@/components/explore/ExploreDetailsHeader'
+import ClientVacancySummaryCard from './ClientVacancySummaryCard'
 
 interface VacancyDetailPageProps {
   vacancy: Job
@@ -29,7 +30,7 @@ export default function ClientVacancyDetailPage({
       {/* <SectionHeading title="Vacancy Overview" /> */}
 
       {/* <ExploreDetailsHeader selectedVacancy={vacancy} /> */}
-      <VacancySummaryCard vacancy={vacancy} />
+      <ClientVacancySummaryCard vacancy={vacancy} />
 
       <SectionHeading title="Submitted Candidates" className="mt-10" />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

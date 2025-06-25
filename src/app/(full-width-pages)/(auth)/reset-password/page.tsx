@@ -8,10 +8,10 @@ import { useActionState, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
-import { EyeCloseIcon, EyeIcon } from '@/icons'
 import Alert from '@/components/tailAdmin/ui/alert/Alert'
 import resetPasswordAction from './resetPasswordAction'
 import { useSearchParams } from 'next/navigation'
+import { EyeClosedIcon, EyeIcon } from 'lucide-react'
 
 export default function ResetPassword({
   params,
@@ -86,7 +86,7 @@ export default function ResetPassword({
               {showPassword ? (
                 <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
               ) : (
-                <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400" />
               )}
             </button>
           </div>
@@ -114,7 +114,7 @@ export default function ResetPassword({
               {showPassword ? (
                 <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
               ) : (
-                <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400" />
               )}
             </button>
           </div>

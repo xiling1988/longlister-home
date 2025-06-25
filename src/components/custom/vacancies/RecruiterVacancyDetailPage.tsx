@@ -3,15 +3,14 @@ import { notFound } from 'next/navigation'
 
 import { Metadata } from 'next'
 import SectionHeading from '../common/SectionHeading'
-import VacancySummaryCard from './VacancySummaryCard'
+import VacancySummaryCard from './ClientVacancySummaryCard'
 import { CandidateOnJob, Job } from '@/common/models'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import { useModal } from '@/hooks/useModal'
-import { useAuth } from '@/context/auth/auth-context'
 import Button from '@/components/tailAdmin/ui/button/Button'
-import CreateVacancyModal from './create-vacancy/CreateVacancyModal'
 import AddCandidateModal from '../forms/modals/AddCandidateModal'
 import CandidateCard from './CandidateCard'
+import RecruiterVacancySummaryCard from './RecruiterVacancySummaryCard'
 
 interface VacancyDetailPageProps {
   vacancy: Job
@@ -34,14 +33,6 @@ export default function RecruiterVacancyDetailPage({
           Vacancy Overview
         </h3>
 
-        <Button
-          onClick={openModal}
-          className="bg-brand-red hover:bg-brand-coral"
-          size="sm"
-        >
-          Add Candidate
-        </Button>
-
         <AddCandidateModal
           openModal={openModal}
           vacancyId={vacancy.id || ''}
@@ -49,9 +40,19 @@ export default function RecruiterVacancyDetailPage({
           isOpen={isOpen}
         />
       </div>
-      <VacancySummaryCard vacancy={vacancy} />
+      <RecruiterVacancySummaryCard vacancy={vacancy} openModal={openModal} />
 
-      <SectionHeading title="Submitted Candidates" className="mt-10" />
+      <div className="flex items-center justify-between">
+        <SectionHeading title="Submitted Candidates" className="mt-10" />
+        <Button
+          onClick={openModal}
+          className="bg-brand-red hover:bg-brand-coral"
+          size="sm"
+        >
+          Add Candidate
+        </Button>
+      </div>
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {candidates.length > 0 ? (
           candidates.map((candidate: CandidateOnJob) => (

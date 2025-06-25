@@ -11,6 +11,7 @@ import { useNewVacancyContext } from '@/context/NewVacancyContext'
 import { newVacancyRemunerationAction } from '@/app/(dashboard)/(others-pages)/vacancies/create/actions'
 import { FormErrors } from '@/common/util/errors'
 import { StepComponentProps } from './FormLayout'
+import { currencies } from '@/common/constants'
 
 const initialState: FormErrors = {}
 
@@ -37,20 +38,34 @@ function VacancyRemunerationForm({
   return (
     <form action={formAction}>
       {/* Salary Fields */}
-      <div className="mb-6">
-        <Label>Salary Budget (monthly)</Label>
-        <Input
-          name="salaryBudget"
-          type="number"
-          placeholder="e.g. 10000"
-          required
-          className="mb-4"
-          defaultValue={newVacancyData?.salaryBudget || ''}
-          onChange={handleInputChange}
-          error={
-            !!newVacancyData?.salaryBudget && newVacancyData.salaryBudget < 0
-          }
-        />
+      <div className="flex items-center gap-4">
+        <div className="mb-6">
+          <Label>Currency</Label>
+          <Select
+            name="currency"
+            options={currencies}
+            onChange={handleSelectChange('currency')}
+            placeholder="Select a salary currency"
+            defaultValue={newVacancyData?.currency || ''}
+            error={!!state.errors?.currency}
+            hint={state.errors?.currency && state.errors.currency}
+          />
+        </div>
+
+        <div className="mb-6 flex-1">
+          <Label>Salary Budget (monthly)</Label>
+          <Input
+            name="salaryBudget"
+            type="number"
+            placeholder="e.g. 10000"
+            required
+            defaultValue={newVacancyData?.salaryBudget || ''}
+            onChange={handleInputChange}
+            error={
+              !!newVacancyData?.salaryBudget && newVacancyData.salaryBudget < 0
+            }
+          />
+        </div>
       </div>
 
       <Label>Bonus Structure</Label>

@@ -1,7 +1,7 @@
 import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import Button from '@/components/tailAdmin/ui/button/Button'
-import { BoxIcon } from '@/icons'
+import { BoxIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import React from 'react'
 
