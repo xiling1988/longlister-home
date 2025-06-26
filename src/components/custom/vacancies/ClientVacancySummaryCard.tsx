@@ -26,19 +26,9 @@ export default function ClientVacancySummaryCard({
         {/* Top row: logo + company + actions */}
         <div className="flex items-center justify-between gap-4">
           {/* Logo + Company */}
-          <div className="flex items-center gap-4">
-            {/* <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded dark:bg-gray-800">
-              <Image
-                src={`${API_URL}/company-logos/${vacancy.clientId}.jpg`}
-                alt={vacancy?.companyName || 'Company Logo'}
-                width={56}
-                height={56}
-                className="h-full w-full object-cover p-3"
-                unoptimized
-              />
-            </div> */}
+          {/* <div className="flex items-center gap-4">
             <h4 className="text-md font-bold">{vacancy.companyName}</h4>
-          </div>
+          </div> */}
         </div>
 
         {/* Job Info */}

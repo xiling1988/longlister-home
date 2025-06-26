@@ -35,16 +35,18 @@ export default function ClientVacancyDetailPage({
       <SectionHeading title="Submitted Candidates" className="mt-10" />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {candidates.length > 0 ? (
-          candidates.map((candidate) => (
-            <CandidateCard
-              vacancy={vacancy}
-              candidateOnJobId={candidate.id}
-              key={candidate.id}
-              viewMode="client"
-              candidate={candidate.candidateProfileVersion}
-              isDisclosed={candidate.isDisclosed}
-            />
-          ))
+          [...candidates]
+            .reverse()
+            .map((candidate) => (
+              <CandidateCard
+                vacancy={vacancy}
+                candidateOnJobId={candidate.id}
+                key={candidate.id}
+                viewMode="client"
+                candidate={candidate.candidateProfileVersion}
+                isDisclosed={candidate.isDisclosed}
+              />
+            ))
         ) : (
           <p className="text-gray-500 dark:text-gray-400">
             No candidates submitted yet for this vacancy.

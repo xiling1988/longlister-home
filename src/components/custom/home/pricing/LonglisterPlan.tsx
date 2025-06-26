@@ -91,11 +91,12 @@ export default function LonglisterPlan({
               variant="light"
               color="light"
               className="bg-brand-cream text-brand-coral"
+              startIcon={<CheckIcon className="" />}
             >
-              <CheckIcon
+              {/* <CheckIcon
                 className={featured ? 'text-brand-red' : 'text-slate-400'}
-              />
-              <span className="ml-4">{feature}</span>
+              /> */}
+              <span className="">{feature}</span>
             </Badge>
           </li>
         ))}

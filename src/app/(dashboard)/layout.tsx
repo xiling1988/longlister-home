@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuth } from '@/context/auth/auth-context'
 import { SidebarProvider, useSidebar } from '@/context/SidebarContext'
 import AppHeader from '@/layout/tailAdmin/AppHeader'
 import AppSidebar from '@/layout/tailAdmin/AppSidebar'
@@ -8,6 +9,7 @@ import React from 'react'
 
 function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   const { isExpanded, isHovered, isMobileOpen } = useSidebar()
+  const { user } = useAuth()
 
   // Dynamic class for main content margin based on sidebar state
   const mainContentMargin = isMobileOpen

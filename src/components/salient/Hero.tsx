@@ -12,7 +12,7 @@ export function Hero() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <Container className="bg-brand-cream pt-20 pb-16 text-center lg:pt-32">
+    <Container className="h-[calc(100vh-6rem)] bg-brand-cream pt-20 pb-16 text-center lg:pt-32">
       <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl sm:text-balance">
         Recruitment just got <br />
         <span className="relative whitespace-nowrap text-brand-red">
@@ -35,14 +35,6 @@ export function Hero() {
               loopCount={Infinity}
               showCursor={true}
             />
-            {/* <Image
-              height={100}
-              width={100}
-              alt="sho"
-              src={smarterRed}
-              unoptimized
-              className="inline h-18 w-auto"
-            /> */}
           </span>
         </span>{' '}
       </h1>

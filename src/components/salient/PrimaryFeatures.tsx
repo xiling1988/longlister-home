@@ -7,10 +7,10 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/salient/Container'
 import backgroundImage from '@/images/howItWorks_bg.png'
-import screenshotExpenses from '@/images/screenshots/expenses.png'
+import exploreSection from '@/images/screenshots/exploreSection.png'
 import screenshotPayroll from '@/images/screenshots/payroll.png'
 import screenshotReporting from '@/images/screenshots/reporting.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+import manageVacancyClient from '@/images/screenshots/manageVacancyClient.png'
 import createVacancy from '@/images/screenshots/createVacancy.png'
 import wordLogo from '../../images/word_logo_red.png'
 
@@ -24,19 +24,19 @@ const features = [
     title: 'Freelancers Compete',
     description:
       'Recruiters submit their best suited candidates to win the job',
-    image: screenshotExpenses,
+    image: exploreSection,
   },
   {
     title: 'Pay per CV',
     description:
       'Full CV Access: Only pay for the Candidates you choose to contact',
-    image: screenshotVatReturns,
+    image: manageVacancyClient,
   },
-  {
-    title: 'Build a recruiter team',
-    description: 'Favourite freelancers for repeat work in Project Mode',
-    image: screenshotReporting,
-  },
+  // {
+  //   title: 'Build a recruiter team',
+  //   description: 'Favourite freelancers for repeat work in Project Mode',
+  //   image: screenshotReporting,
+  // },
 ]
 
 export function PrimaryFeatures() {

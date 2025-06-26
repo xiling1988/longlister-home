@@ -5,7 +5,7 @@ export interface Job {
   id: string | undefined
   createdAt: string | undefined
   userType: string | undefined
-  clientId: string | undefined
+  clientId: string
 
   companyType: string | undefined
   companyDescription: string | undefined

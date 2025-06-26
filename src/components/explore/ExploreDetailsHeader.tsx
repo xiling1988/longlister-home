@@ -43,7 +43,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
   return (
     <div className="mb-6 flex-col items-start justify-between gap-4 px-6">
       {/* Logo */}
-      <div className="my-4 rounded-2xl border p-6">
+      <div className="my-4 rounded-2xl p-6">
         {/* Top row: logo + company + actions */}
         <div className="flex items-center justify-between gap-4">
           {/* Logo + Company */}
@@ -54,7 +54,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
                 alt={selectedVacancy?.companyName || 'Company Logo'}
                 width={56}
                 height={56}
-                className="h-full w-full object-cover p-3"
+                className="h-full w-full object-cover"
                 unoptimized
               />
             </div>
@@ -100,7 +100,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
           <h5 className="text-lg font-semibold text-brand-coral dark:text-gray-300">
             Budget
           </h5>
-          <div className="grid grid-cols-2 gap-3 rounded-2xl border p-4">
+          <div className="grid grid-cols-2 gap-3 rounded-2xl p-4">
             <div className="col-span-1 flex-col items-center">
               <div className="flex items-center gap-1 pb-2">
                 <DollarSignIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
@@ -125,7 +125,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
               <div className="flex items-center gap-1 pb-2">
                 {' '}
                 <DollarSignIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                <span className="text-xs">Price per CV: </span>
+                <span className="text-xs">Profile Target: </span>
               </div>
 
               <Badge className="col-span-1 bg-brand-100 text-sm text-brand-700 dark:bg-brand-900 dark:text-brand-300">
@@ -145,15 +145,14 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
           </div>
         </div>
         <div className="col-span-1 flex flex-col gap-2">
-          <h5 className="text-right text-lg font-semibold text-brand-coral dark:text-gray-300">
+          <h5 className="text-left text-lg font-semibold text-brand-coral dark:text-gray-300">
             Non-Negotiables
           </h5>
-          <div className="flex h-full w-full flex-wrap gap-2 overflow-y-auto rounded-2xl border p-4">
+          <div className="flex h-full w-full flex-wrap gap-2 overflow-y-auto rounded-2xl p-4">
             {selectedVacancy.nonNegotiables?.map((skill, index) => (
               <Badge
                 key={index}
-                variant="solid"
-                className="h-9 text-center text-sm text-brand-700 dark:bg-brand-900 dark:text-brand-300"
+                className="col-span-1 bg-brand-100 text-sm text-brand-700  dark:bg-brand-900 dark:text-brand-300"
               >
                 {skill}
               </Badge>

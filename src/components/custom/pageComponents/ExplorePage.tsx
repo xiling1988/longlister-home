@@ -38,12 +38,12 @@ export default function ExplorePage({ vacancies = [] }: ExplorePageProps) {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Explore Vacancies" />
+      <PageBreadcrumb pageTitle="Recruiter Dashboard - Explore Vacancies" />
       <div className="flex h-[calc(100vh-6rem)] overflow-hidden rounded-lg border border-gray-100 shadow-sm dark:border-gray-800">
         {/* LEFT: Vacancy List */}
         <div className="w-full max-w-[400px] overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
-          <ul className="divide-y divide-gray-100 bg-gray-100 py-1 dark:divide-gray-800">
-            {vacancies.map((vacancy) => (
+          <ul className="divide-y divide-gray-100 bg-white dark:divide-gray-800">
+            {[...vacancies].reverse().map((vacancy) => (
               <ExploreListItem
                 vacancy={vacancy}
                 selectedVacancy={selectedVacancy}

@@ -11,10 +11,23 @@ import { useAuth } from '@/context/auth/auth-context'
 import { API_URL } from '@/common/constants'
 import { UserCircleIcon } from '@/icons'
 import { ChevronDoubleDownIcon } from '@heroicons/react/16/solid'
+import { getCompanyLogo, getRecruiterAvatar } from '@/common/util/helpers'
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
+  const { user, setUser } = useAuth()
+
+  const avatarUrl =
+    user?.userType === 'client'
+      ? getCompanyLogo(user.id) || '/images/default-company.png'
+      : user?.userType === 'recruiter'
+        ? user.recruiterProfile?.avatar
+          ? getRecruiterAvatar(user.recruiterProfile.avatar)
+          : '/images/default-recruiter.png'
+        : '/images/default-user.png'
+
+  console.log('LOGGING USER FROM USER DROPDOWN', user)
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.stopPropagation()
@@ -24,8 +37,6 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false)
   }
-
-  const { user, setUser } = useAuth()
 
   const handleLogout = async () => {
     await logoutAction()
@@ -44,8 +55,10 @@ export default function UserDropdown() {
           <Image
             width={44}
             height={44}
-            src="/images/user/owner.jpg"
+            src={avatarUrl}
             alt="User"
+            unoptimized
+            className=""
           />
         </span>
 
