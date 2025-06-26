@@ -43,11 +43,6 @@ export default function Vacancies() {
             </Button>
           </Link>
         )}
-        <CreateVacancyModal
-          openModal={openModal}
-          closeModal={closeModal}
-          isOpen={isOpen}
-        />
       </div>
       <div className="space-y-6">
         {user?.userType === 'client' && <ClientVacanciesTable />}

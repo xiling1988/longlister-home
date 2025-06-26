@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@/components/tailAdmin/ui/button/Button'
-import { useActionState, useEffect, useTransition } from 'react'
+import { useActionState, useEffect, useState, useTransition } from 'react'
 import { FormErrors } from '@/common/util/errors'
 import { useModal } from '@/hooks/useModal'
 import { StepComponentProps } from '../CompleteProfileFormLayout'
@@ -28,7 +28,7 @@ export default function CompanyProfileReviewForm({
   setActiveStep,
   setSuccess,
 }: StepComponentProps) {
-  const { profileData } = useProfileCompletionContext()
+  const { profileData, resetData } = useProfileCompletionContext()
   const { isOpen, openModal, closeModal } = useModal()
   const [isPending, startTransition] = useTransition()
   const [state, formAction] = useActionState(
@@ -53,6 +53,7 @@ export default function CompanyProfileReviewForm({
 
   useEffect(() => {
     if (state.success && !state.errors) {
+      resetData()
       setSuccess && setSuccess(true)
     }
   }, [state, setSuccess])

@@ -4,20 +4,13 @@ import Image from 'next/image'
 
 import { Button } from '@/components/salient/Button'
 import { Container } from '@/components/salient/Container'
-import logoLaravel from '@/images/logos/laravel.svg'
-import logoMirage from '@/images/logos/mirage.svg'
-import logoStatamic from '@/images/logos/statamic.svg'
-import logoStaticKit from '@/images/logos/statickit.svg'
-import logoTransistor from '@/images/logos/transistor.svg'
-import logoTuple from '@/images/logos/tuple.svg'
-import smarterRed from '../../images/smarter_red.png'
-import Link from 'next/link'
 import { useState } from 'react'
 import { BookingModal } from '../custom/common/BookingModal'
 import { ReactTyped } from 'react-typed'
 
 export function Hero() {
   const [showModal, setShowModal] = useState(false)
+
   return (
     <Container className="bg-brand-cream pt-20 pb-16 text-center lg:pt-32">
       <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-6xl sm:text-balance">
@@ -34,24 +27,13 @@ export function Hero() {
           <span className="relative">
             {' '}
             <ReactTyped
-              backSpeed={50}
-              onBegin={function noRefCheck() {}}
-              onComplete={function noRefCheck() {}}
-              onDestroy={function noRefCheck() {}}
-              onLastStringBackspaced={function noRefCheck() {}}
-              onReset={function noRefCheck() {}}
-              onStart={function noRefCheck() {}}
-              onStop={function noRefCheck() {}}
-              onStringTyped={function noRefCheck() {}}
-              onTypingPaused={function noRefCheck() {}}
-              onTypingResumed={function noRefCheck() {}}
-              startWhenVisible
+              backSpeed={70}
+              startWhenVisible={true}
               strings={['SMARTER', 'FASTER', 'CHEAPER', 'LEANER', 'SAFER']}
-              typeSpeed={50}
+              typeSpeed={70}
               loop
               loopCount={Infinity}
               showCursor={true}
-              typedRef={function noRefCheck() {}}
             />
             {/* <Image
               height={100}

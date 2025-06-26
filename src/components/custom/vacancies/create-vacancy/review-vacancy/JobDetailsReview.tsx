@@ -7,6 +7,9 @@ import { useModal } from '@/hooks/useModal'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
 import CreateVacancyModal from '../CreateVacancyModal'
 import FormSection from '@/components/custom/forms/FormSection'
+import { Html } from 'next/document'
+import HtmlPreview from '@/components/custom/common/HtmlPreview'
+import HtmlPreviewModal from '@/components/custom/common/HtmlPreviewModal'
 
 export interface ReviewCardProps {
   vacancyData: any
@@ -54,7 +57,8 @@ function JobDetailsReview({ onEdit, vacancyData }: ReviewCardProps) {
             </Button>
           </dd>
         </div>
-        <CreateVacancyModal
+        <HtmlPreviewModal
+          html={jobDescription}
           openModal={openModal}
           closeModal={closeModal}
           isOpen={isOpen}

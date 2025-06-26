@@ -31,6 +31,7 @@ export function ProfileCompletionProvider({
     getDefaultsByType(userType),
   )
   const [dataLoaded, setDataLoaded] = useState(false)
+  const [suppressWrite, setSuppressWrite] = useState(false)
 
   const LOCAL_STORAGE_KEY = 'completeProfileData'
   const schema = getSchemaByType(userType)
@@ -47,10 +48,10 @@ export function ProfileCompletionProvider({
   }, [profileData, userType])
 
   useEffect(() => {
-    if (dataLoaded) {
+    if (dataLoaded && !suppressWrite) {
       writeToLocalStorage()
     }
-  }, [profileData, dataLoaded, writeToLocalStorage])
+  }, [profileData, dataLoaded, writeToLocalStorage, suppressWrite])
 
   useEffect(() => {
     readFromLocalStorage()
@@ -90,8 +91,12 @@ export function ProfileCompletionProvider({
   }
 
   const resetData = () => {
+    setSuppressWrite(true)
     setProfileData(defaults)
     localStorage.removeItem(LOCAL_STORAGE_KEY)
+
+    // reset suppressWrite after a short delay (to allow profileData update to finish)
+    setTimeout(() => setSuppressWrite(false), 0)
   }
 
   return (

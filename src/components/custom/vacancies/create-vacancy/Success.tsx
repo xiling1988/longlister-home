@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
 
-export default function SuccessPage() {
+export default function SuccessPage({ message }: { message: string }) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 py-10 text-center dark:bg-gray-900">
       <div className="rounded-2xl bg-white p-10 shadow-xl dark:bg-gray-800">
@@ -9,10 +9,10 @@ export default function SuccessPage() {
           <CheckCircle className="h-16 w-16 text-green-500" />
         </div>
         <h1 className="mb-4 text-3xl font-bold text-gray-800 dark:text-white">
-          SUCCESS !
+          SUCCESS!
         </h1>
         <p className="mb-8 text-gray-600 dark:text-gray-300">
-          Awesome! Your vacancy has been created successfully.
+          {message || 'Your action was successful!'}
         </p>
         <Link
           href="/"

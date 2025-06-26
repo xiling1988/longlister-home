@@ -6,6 +6,8 @@ import { Bold, Italic, List, ListOrdered, Quote } from 'lucide-react'
 import React from 'react'
 import Select from '@/components/tailAdmin/form/Select'
 import Button from '@/components/tailAdmin/ui/button/Button'
+import HtmlPreviewModal from '../common/HtmlPreviewModal'
+import { useModal } from '@/hooks/useModal'
 
 interface RichTextEditorProps {
   title: string
@@ -24,6 +26,7 @@ export default function RichTextEditor({
   placeholder = 'Write something...',
   className = '',
 }: RichTextEditorProps) {
+  const { openModal, closeModal, isOpen } = useModal()
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -111,11 +114,7 @@ export default function RichTextEditor({
           variant="plain"
           size="sm"
           className="ml-3"
-          onClick={() => {
-            const html = editor.getHTML()
-            console.log('Preview HTML:', html)
-            // You can implement a modal or a preview component here
-          }}
+          onClick={openModal}
           disabled={!value}
         >
           Preview
@@ -125,6 +124,12 @@ export default function RichTextEditor({
       <EditorContent
         editor={editor}
         className="tiptap min-h-[200px] rounded-xl"
+      />
+      <HtmlPreviewModal
+        html={editor.getHTML()}
+        openModal={openModal}
+        closeModal={closeModal}
+        isOpen={isOpen}
       />
     </div>
   )

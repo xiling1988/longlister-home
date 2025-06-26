@@ -51,7 +51,7 @@ function CreateVacancyPage() {
     <NewVacancyDataProvider>
       <PageBreadcrumb pageTitle="New Vacancy" />
       {success ? (
-        <SuccessPage />
+        <SuccessPage message="Your vacancy was created successfully!" />
       ) : (
         <>
           <Sliders />

@@ -33,28 +33,17 @@ export default function RecruiterSection() {
             <span className="block">
               {' '}
               <ReactTyped
-                backSpeed={50}
-                onBegin={function noRefCheck() {}}
-                onComplete={function noRefCheck() {}}
-                onDestroy={function noRefCheck() {}}
-                onLastStringBackspaced={function noRefCheck() {}}
-                onReset={function noRefCheck() {}}
-                onStart={function noRefCheck() {}}
-                onStop={function noRefCheck() {}}
-                onStringTyped={function noRefCheck() {}}
-                onTypingPaused={function noRefCheck() {}}
-                onTypingResumed={function noRefCheck() {}}
-                startWhenVisible
+                backSpeed={70}
+                startWhenVisible={true}
                 strings={[
                   'no middlemen.',
                   'no faffing around.',
                   'no hullabaloo.',
                 ]}
-                typeSpeed={50}
+                typeSpeed={70}
                 loop
                 loopCount={Infinity}
                 showCursor={true}
-                typedRef={function noRefCheck() {}}
               />
             </span>
           </h2>

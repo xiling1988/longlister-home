@@ -27,7 +27,7 @@ function CompleteProfilePage() {
     <ProfileCompletionProvider>
       <PageBreadcrumb pageTitle="New Vacancy" />
       {success ? (
-        <SuccessPage />
+        <SuccessPage message="Your user profile was completed successfully!" />
       ) : (
         <>
           <h2

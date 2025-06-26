@@ -141,16 +141,11 @@ export const vacancyInitialValuesSchema = z.object({
   toolsUsed: z.string().optional(),
   growthOpportunities: z.string().optional(),
   challenges: z.string().optional(),
-  successMetrics: z.string().optional(),
-  requiredSkills: z.string().optional(),
-  // Array of strings for niceToHaveSkills:
+  // Array of strings for nonNegotiables:
   nonNegotiables: z.array(z.string()).optional(),
-
-  // niceToHaveSkills: z.string().optional(),
 
   recruitmentTimeline: z.number().optional(),
   stages: z.number().optional(),
-  stakeholders: z.string().optional(),
   assessments: z.string().optional(),
   requiredDocs: z.string().optional(),
   interviewMode: z.enum(['In Person', 'Online', 'Phone']).optional(),
