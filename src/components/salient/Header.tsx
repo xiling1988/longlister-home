@@ -94,15 +94,15 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export function Header({ transparent = false }: { transparent?: boolean }) {
   const { user } = useAuth()
   console.log('LOGGING USER', user)
   return (
-    <header className="bg-brand-cream py-5">
+    <header className={`${transparent ? 'bg-transparent' : 'bg-brand-cream'}`}>
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
+            <Link href="/home" aria-label="Home">
               <Image
                 height={100}
                 width={100}
@@ -122,10 +122,10 @@ export function Header() {
               {/* <Logo className="h-10 w-auto" /> */}
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#about">About</NavLink>
-              <NavLink href="#howItWorks">How it works</NavLink>
-              <NavLink href="#recruiters">Recruiters</NavLink>
-              <NavLink href="#faqs">FAQs</NavLink>
+              <NavLink href="/home/#about">About</NavLink>
+              <NavLink href="/home/#howItWorks">How it works</NavLink>
+              <NavLink href="/home/#recruiters">Recruiters</NavLink>
+              <NavLink href="/home/#faqs">FAQs</NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">

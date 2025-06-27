@@ -16,6 +16,19 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
   const [vacancyAdded, setVacancyAdded] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
+  const vacancyLink = `http://localhost:8080/public/vacancies/${selectedVacancy.id}`
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(vacancyLink)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error(err)
+      // Optional: set some error state
+    }
+  }
 
   const handleAddVacancyToWorkspace = async () => {
     setLoading(true)
@@ -62,16 +75,16 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
           </div>
 
           {/* Actions */}
+
           <div className="flex gap-2">
             <Button
               variant="outline"
               className="bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-              onClick={() => {
-                // TODO: handle share action
-              }}
+              onClick={handleCopy}
             >
-              Share with Candidate
+              {copied ? 'Link copied!' : 'Share with Candidate'}
             </Button>
+
             <Button
               className="hover:bg-opacity-90 rounded-md bg-brand-coral px-4 py-2 text-sm font-medium text-white shadow-sm"
               onClick={handleAddVacancyToWorkspace}
@@ -152,7 +165,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
             {selectedVacancy.nonNegotiables?.map((skill, index) => (
               <Badge
                 key={index}
-                className="col-span-1 bg-brand-100 text-sm text-brand-700  dark:bg-brand-900 dark:text-brand-300"
+                className="col-span-1 bg-brand-100 text-sm text-brand-700 dark:bg-brand-900 dark:text-brand-300"
               >
                 {skill}
               </Badge>

@@ -15,7 +15,7 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={`mb-6 flex flex-col justify-between gap-2 sm:flex-row sm:items-center ${className}`}
+      className={`flex flex-col justify-between gap-2 sm:flex-row sm:items-center ${className}`}
     >
       <div>
         <h2 className="text-xl font-semibold text-gray-800 dark:text-white">

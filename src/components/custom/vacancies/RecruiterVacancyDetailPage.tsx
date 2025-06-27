@@ -43,7 +43,7 @@ export default function RecruiterVacancyDetailPage({
       <RecruiterVacancySummaryCard vacancy={vacancy} openModal={openModal} />
 
       <div className="flex items-center justify-between">
-        <SectionHeading title="Submitted Candidates" className="mt-10" />
+        <SectionHeading title="Submitted Candidates" className="" />
         <Button
           onClick={openModal}
           className="bg-brand-red hover:bg-brand-coral"
@@ -55,16 +55,18 @@ export default function RecruiterVacancyDetailPage({
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {candidates.length > 0 ? (
-          candidates.map((candidate: CandidateOnJob) => (
-            <CandidateCard
-              vacancy={vacancy}
-              candidateOnJobId={candidate.id}
-              viewMode="recruiter"
-              key={candidate.id}
-              candidate={candidate.candidateProfileVersion}
-              isDisclosed={candidate.isDisclosed}
-            />
-          ))
+          [...candidates]
+            .reverse()
+            .map((candidate: CandidateOnJob) => (
+              <CandidateCard
+                vacancy={vacancy}
+                candidateOnJobId={candidate.id}
+                viewMode="recruiter"
+                key={candidate.id}
+                candidate={candidate.candidateProfileVersion}
+                isDisclosed={candidate.isDisclosed}
+              />
+            ))
         ) : (
           <p className="text-gray-500 dark:text-gray-400">
             No candidates submitted yet for this vacancy.

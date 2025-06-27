@@ -8,9 +8,7 @@ import Button from '../ui/button/Button'
 import logoutAction from '@/app/(full-width-pages)/(auth)/logoutAction'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/auth/auth-context'
-import { API_URL } from '@/common/constants'
-import { UserCircleIcon } from '@/icons'
-import { ChevronDoubleDownIcon } from '@heroicons/react/16/solid'
+import defaultProfileImage from '@/images/background-call-to-action.png'
 import { getCompanyLogo, getRecruiterAvatar } from '@/common/util/helpers'
 
 export default function UserDropdown() {
@@ -20,12 +18,12 @@ export default function UserDropdown() {
 
   const avatarUrl =
     user?.userType === 'client'
-      ? getCompanyLogo(user.id) || '/images/default-company.png'
+      ? getCompanyLogo(user.id) || defaultProfileImage
       : user?.userType === 'recruiter'
         ? user.recruiterProfile?.avatar
           ? getRecruiterAvatar(user.recruiterProfile.avatar)
           : '/images/default-recruiter.png'
-        : '/images/default-user.png'
+        : defaultProfileImage
 
   console.log('LOGGING USER FROM USER DROPDOWN', user)
 
@@ -58,7 +56,7 @@ export default function UserDropdown() {
             src={avatarUrl}
             alt="User"
             unoptimized
-            className=""
+            className={`h-11 object-cover ${!user && 'blur-xs'}`}
           />
         </span>
 

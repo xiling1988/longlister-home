@@ -5,11 +5,9 @@ import Image, { type ImageProps } from 'next/image'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 import { ReactTyped } from 'react-typed'
-
-import { Container } from '@/components/salient/Container'
-import screenshotContacts from '@/images/screenshots/contacts.png'
-import screenshotInventory from '@/images/screenshots/inventory.png'
 import exploreSection from '@/images/screenshots/exploreSection.png'
+import manageVacancyTA from '@/images/screenshots/manageVacancyTA.png'
+import getPaid from '@/images/screenshots/getPaid.png'
 
 export default function RecruiterSection() {
   return (
@@ -105,7 +103,7 @@ const features: Array<Feature> = [
       'Source and brief your candidates. Submit your best profiles and track your progress in one place',
     description:
       'We don’t offer this as part of our software but that statement is inarguably true. Accurate inventory tracking would help you for sure.',
-    image: screenshotInventory,
+    image: manageVacancyTA,
     icon: function InventoryIcon() {
       return (
         <>
@@ -133,7 +131,7 @@ const features: Array<Feature> = [
       "Earn for every approved candidate at the end of your vacancy's deadline — no hire required",
     description:
       'This also isn’t actually a feature, it’s just some friendly advice. We definitely recommend that you do this, you’ll feel really organized and professional.',
-    image: screenshotContacts,
+    image: getPaid,
     icon: function ContactsIcon() {
       return (
         <>
