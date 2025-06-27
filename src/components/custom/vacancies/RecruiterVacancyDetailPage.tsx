@@ -26,12 +26,12 @@ export default function RecruiterVacancyDetailPage({
   //   const candidates = await getCandidatesByVacancyId(params.id)
 
   return (
-    <div className="space-y-8 px-4 py-6 sm:px-6 lg:px-8">
-      <PageBreadcrumb pageTitle={vacancy.jobTitle || ''} />
-      <div className="mb-2 flex items-center justify-between lg:mb-7">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+    <div className="space-y-8 px-4 py-1 sm:px-6 lg:px-1">
+      <PageBreadcrumb pageTitle={`Vacancy Overview`} />
+      <div className="mb-2 flex items-center justify-between lg:mb-0">
+        {/* <h3 className="text-xl font-semibold text-gray-800 dark:text-white/90">
           Vacancy Overview
-        </h3>
+        </h3> */}
 
         <AddCandidateModal
           openModal={openModal}

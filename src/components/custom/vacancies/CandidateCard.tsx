@@ -177,7 +177,7 @@ export default function CandidateCard({
             View Profile
           </Button>
         </div>
-        {!isDisclosed && (
+        {viewMode === 'client' && !isDisclosed && (
           <div className="flex items-center gap-x-2 py-4 text-left">
             <Button size="sm" variant="primary" onClick={openRejectModal}>
               <XIcon className="h-4 w-4" />
@@ -199,7 +199,7 @@ export default function CandidateCard({
           openModal={openViewModal}
           closeModal={closeModalHandler}
           cv={candidate.details}
-          isDisclosed={isDisclosed}
+          isDisclosed={viewMode === 'recruiter' ? true : isDisclosed}
           vacancy={vacancy}
           candidate={candidate}
           candidateOnJobId={candidateOnJobId}

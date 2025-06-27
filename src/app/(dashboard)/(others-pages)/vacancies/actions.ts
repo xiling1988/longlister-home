@@ -1,7 +1,7 @@
 'use server'
 
 import { JOBS_API_URL } from '@/common/constants/index'
-import { get, getHeaders } from '@/common/util/fetch'
+import { get, getHeaders, remove } from '@/common/util/fetch'
 
 export const getMyVacanciesClient = async () => {
   console.log('FETCH REQUEST: ', JOBS_API_URL, '/jobs/company/my-jobs')
@@ -20,6 +20,14 @@ export const getMyVacanciesRecruiter = async () => {
     throw new Error(data.error.message)
   }
 
+  return data
+}
+
+export const removeVacancyFromWorkspace = async (id: string) => {
+  const data = await remove(JOBS_API_URL, `jobs/remove-from-workspace/${id}`)
+  if (data.error) {
+    throw new Error(data.error.message)
+  }
   return data
 }
 

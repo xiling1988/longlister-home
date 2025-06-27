@@ -42,6 +42,7 @@ export interface Job {
   industry: string | undefined
   status: string | undefined
 
+  currency: string | undefined
   salaryBudget: number
   bonusStructure?: string
   standardBenefits?: string

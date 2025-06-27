@@ -9,7 +9,7 @@ import { ReactTyped } from 'react-typed'
 import { Container } from '@/components/salient/Container'
 import screenshotContacts from '@/images/screenshots/contacts.png'
 import screenshotInventory from '@/images/screenshots/inventory.png'
-import screenshotProfitLoss from '@/images/screenshots/profit-loss.png'
+import exploreSection from '@/images/screenshots/exploreSection.png'
 
 export default function RecruiterSection() {
   return (
@@ -70,7 +70,7 @@ const features: Array<Feature> = [
       'Choose from a sea of fully qualified vacancies with clear briefs and live demand',
     description:
       'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
-    image: screenshotProfitLoss,
+    image: exploreSection,
     icon: function ReportingIcon() {
       let id = useId()
       return (

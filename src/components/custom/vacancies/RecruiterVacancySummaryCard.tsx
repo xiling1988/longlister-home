@@ -25,7 +25,7 @@ function RecruiterVacancySummaryCard({
   return (
     <div className="mb-6 flex-col items-start justify-between gap-4">
       {/* Logo */}
-      <div className="my-4 rounded-2xl border p-6">
+      <div className="my-4 rounded-2xl">
         {/* Top row: logo + company + actions */}
         <div className="flex items-center justify-between gap-4">
           {/* Logo + Company */}
