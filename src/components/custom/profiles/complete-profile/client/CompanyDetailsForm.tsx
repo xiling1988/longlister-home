@@ -33,7 +33,7 @@ export default function ClientCompanyDetailsForm({
     if (!state.errors && state.success) {
       setActiveStep(activeStep + 1)
     }
-  }, [state, setActiveStep])
+  }, [state, setActiveStep, activeStep])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

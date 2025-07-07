@@ -56,7 +56,7 @@ export default function ForgotPassword() {
         Forgot your password?{' '}
       </h2>
       <p className="mt-2 -mb-5 text-sm text-gray-700">
-        Type your user email and we'll send you a reset link
+        {" Type your user email and we'll send you a reset link"}
       </p>
       <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-8">
         <div className="-mb-3">

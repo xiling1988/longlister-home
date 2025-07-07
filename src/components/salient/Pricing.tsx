@@ -48,7 +48,7 @@ export function Pricing() {
               <SwirlyDoodle className="absolute top-1/2 left-0 h-[1em] w-full fill-brand-coral" />
               <span className="relative text-brand-red">The GAP</span>
             </span>{' '}
-            we're filling
+            {'we&apos;re filling'}
           </h2>
           <p className="mx-auto mt-8 max-w-4xl text-lg text-brand-dark">
             Right now, you’ve got two options for finding talent.{' '}
@@ -57,7 +57,9 @@ export function Pricing() {
             </span>
             We combine the reach and flexibility of job ads with the expertise
             of experienced recruiters without the high costs or long contracts.
-            It’s the first platform built for businesses who want quality hires,
+            {
+              '  It’s the first platform built for businesses who want quality hires,'
+            }
             fast and without breaking the bank.
           </p>
         </div>
@@ -104,7 +106,7 @@ export function Pricing() {
                 'Lack of transparency on candidate sourcing',
                 'Slow turnaround times – especially for niche roles',
                 'Rigid processes that don’t flex to your business needs',
-                "Limited control – you wait while they 'work their list'",
+                'Limited control – you wait while they &apos;work their list&apos;',
               ]}
             />
           </div>

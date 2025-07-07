@@ -37,7 +37,7 @@ export const Modal: React.FC<ModalProps> = ({
     return () => {
       document.removeEventListener('keydown', handleEscape)
     }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, disableEscape])
 
   useEffect(() => {
     if (isOpen) {

@@ -6,9 +6,9 @@ import RecruiterVacancyDetailPage from '@/components/custom/vacancies/RecruiterV
 import { Metadata } from 'next'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const metadata: Metadata = {

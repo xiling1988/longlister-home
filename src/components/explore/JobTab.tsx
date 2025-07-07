@@ -1,4 +1,3 @@
-import { Html } from 'next/document'
 import React from 'react'
 import HtmlPreview from '../custom/common/HtmlPreview'
 

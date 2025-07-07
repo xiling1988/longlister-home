@@ -32,7 +32,7 @@ function VacancyRoleResponsibilitiesForm({
     if (!state.errors && state.success) {
       setActiveStep(activeStep + 1)
     }
-  }, [state, setActiveStep])
+  }, [state, setActiveStep, activeStep])
 
   return (
     <form action={formAction}>

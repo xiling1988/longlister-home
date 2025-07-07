@@ -27,7 +27,6 @@ function ApproveCandidateModal({
   candidateOnJobId,
   disableEscape = false,
 }: ApproveCandidateModalProps) {
-  if (!isOpen) return null
   const [state, formAction, isPending] = useActionState(
     approveCandidate,
     initialState,
@@ -51,6 +50,7 @@ function ApproveCandidateModal({
   const future = current + price
   const maxReached = approvedCount + 1 >= vacancy.maxCvs
 
+  if (!isOpen) return null
   return (
     <Modal
       isOpen={isOpen}

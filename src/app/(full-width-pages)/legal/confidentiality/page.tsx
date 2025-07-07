@@ -1,4 +1,5 @@
 import { CheckCircleIcon, InfoIcon } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Confidentiality() {
   return (
@@ -89,7 +90,9 @@ export default function Confidentiality() {
               </p>
             </blockquote>
             <figcaption className="mt-6 flex gap-x-4">
-              <img
+              <Image
+                height={100}
+                width={100}
                 alt=""
                 src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 className="size-6 flex-none rounded-full bg-gray-50"
@@ -110,10 +113,11 @@ export default function Confidentiality() {
           </p>
         </div>
         <figure className="mt-16">
-          <img
-            alt=""
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&w=1310&h=873&q=80&facepad=3"
-            className="aspect-video rounded-xl bg-gray-50 object-cover"
+          <Image
+            src="/images/confidential.png"
+            width={800}
+            height={600}
+            alt="Confidentiality"
           />
           <figcaption className="mt-4 flex gap-x-2 text-sm/6 text-gray-500">
             <InfoIcon

@@ -36,16 +36,6 @@ export default function FullCandidateProfileViewer({
   candidate,
   candidateOnJobId,
 }: Props) {
-  if (!cv)
-    return <p className="text-sm text-gray-500">No profile data available.</p>
-
-  // Type guard to check if cv has 'personal' property
-  function hasPersonal(
-    cv: FullCandidateCV | LimitedCandidateCV,
-  ): cv is FullCandidateCV & { personal: any } {
-    return (cv as any).personal !== undefined
-  }
-
   const { openModal, closeModal, isOpen } = useModal()
   const [modalType, setModalType] = useState<null | 'reject' | 'approve'>(null)
   const openRejectModal = () => setModalType('reject')
@@ -77,6 +67,16 @@ export default function FullCandidateProfileViewer({
       {children}
     </div>
   )
+
+  if (!cv)
+    return <p className="text-sm text-gray-500">No profile data available.</p>
+
+  // Type guard to check if cv has 'personal' property
+  function hasPersonal(
+    cv: FullCandidateCV | LimitedCandidateCV,
+  ): cv is FullCandidateCV & { personal: any } {
+    return (cv as any).personal !== undefined
+  }
 
   return (
     <div className="mx-auto max-w-5xl rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-gray-800">

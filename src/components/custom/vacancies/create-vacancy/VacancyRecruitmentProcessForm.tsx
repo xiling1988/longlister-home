@@ -33,7 +33,7 @@ function VacancyRecruitmentProcessForm({
     if (!state.errors && state.success) {
       setActiveStep(activeStep + 1)
     }
-  }, [state, setActiveStep])
+  }, [state, setActiveStep, activeStep])
 
   return (
     <form action={formAction}>
@@ -99,7 +99,7 @@ function VacancyRecruitmentProcessForm({
       {/* Interview Mode */}
       <div className="mb-6">
         <Label>Interview Mode</Label>
-        
+
         <Select
           name="interviewMode"
           options={[

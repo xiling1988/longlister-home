@@ -267,7 +267,7 @@ const AppSidebar: React.FC = () => {
     if (!submenuMatched) {
       setOpenSubmenu(null)
     }
-  }, [pathname, isActive])
+  }, [pathname, isActive, navigationItems])
 
   useEffect(() => {
     // Set the height of the submenu items when the submenu is opened

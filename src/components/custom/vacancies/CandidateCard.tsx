@@ -129,7 +129,7 @@ export default function CandidateCard({
             <MapIcon className="h-6 w-5 text-gray-400" />
           </dt>
           <dd className="text-sm text-brand-red dark:text-gray-400">
-            'Current Location'
+            Current Location
           </dd>
         </div>
 

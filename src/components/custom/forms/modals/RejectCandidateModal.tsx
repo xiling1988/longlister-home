@@ -4,7 +4,7 @@ import TextArea from '@/components/tailAdmin/form/input/TextArea'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import { Modal } from '@/components/tailAdmin/ui/modal'
 
-import React, { useActionState, useEffect, useState } from 'react'
+import React, { useActionState, useCallback, useEffect, useState } from 'react'
 
 interface ModalProps {
   openModal: () => void
@@ -27,16 +27,16 @@ function RejectCandidateModal({
   const [reason, setReason] = useState('')
   const [state, formAction] = useActionState(rejectCandidate, initialState)
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setReason('')
     closeModal()
-  }
+  }, [closeModal])
 
   useEffect(() => {
     if (state.success) {
       handleClose()
     }
-  }, [state.success, handleSubmit, handleClose])
+  }, [state.success, handleClose])
 
   return (
     <Modal

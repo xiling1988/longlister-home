@@ -7,7 +7,6 @@ import { useModal } from '@/hooks/useModal'
 import Badge from '@/components/tailAdmin/ui/badge/Badge'
 import CreateVacancyModal from '../CreateVacancyModal'
 import FormSection from '@/components/custom/forms/FormSection'
-import { Html } from 'next/document'
 import HtmlPreview from '@/components/custom/common/HtmlPreview'
 import HtmlPreviewModal from '@/components/custom/common/HtmlPreviewModal'
 

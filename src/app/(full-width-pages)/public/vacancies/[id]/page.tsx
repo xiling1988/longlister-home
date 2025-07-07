@@ -8,9 +8,14 @@ export const metadata: Metadata = {
   title: 'Vacancy Details',
 }
 
-export async function page({ params }: { params: { id: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   try {
-    const vacancy: Job = await fetchPublicVacancyInfo(params.id)
+    const { id } = await params
+    const vacancy: Job = await fetchPublicVacancyInfo(id)
 
     return <PublicVacancyDetailsPage vacancy={vacancy} />
   } catch (error) {
@@ -18,11 +23,11 @@ export async function page({ params }: { params: { id: string } }) {
       <div className="p-8 text-center">
         <h1 className="mb-4 text-2xl font-bold">Vacancy Not Available</h1>
         <p className="text-gray-600">
-          The vacancy you’re looking for does not exist or couldn’t be loaded.
+          {
+            'The vacancy you’re looking for does not exist or couldn’t be loaded.'
+          }
         </p>
       </div>
     )
   }
 }
-
-export default page

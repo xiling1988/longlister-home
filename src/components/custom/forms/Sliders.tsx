@@ -54,7 +54,7 @@ export default function Sliders() {
       cvPriceBudget: singlePrice,
       totalBudget: price,
     })
-  }, [price, singlePrice])
+  }, [price, singlePrice, cvCount, deadline, updateVacancyData])
 
   return (
     <div

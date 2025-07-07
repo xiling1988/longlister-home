@@ -37,28 +37,7 @@ export function ProfileCompletionProvider({
   const schema = getSchemaByType(userType)
   const defaults = getDefaultsByType(userType)
 
-  const writeToLocalStorage = useCallback(() => {
-    localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify({
-        userType,
-        profileData,
-      }),
-    )
-  }, [profileData, userType])
-
-  useEffect(() => {
-    if (dataLoaded && !suppressWrite) {
-      writeToLocalStorage()
-    }
-  }, [profileData, dataLoaded, writeToLocalStorage, suppressWrite])
-
-  useEffect(() => {
-    readFromLocalStorage()
-    setDataLoaded(true)
-  }, [userType])
-
-  const readFromLocalStorage = () => {
+  const readFromLocalStorage = useCallback(() => {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (!raw) {
       setProfileData(defaults)
@@ -84,7 +63,29 @@ export function ProfileCompletionProvider({
       console.warn('Failed to parse profile data from storage', err)
       setProfileData(defaults)
     }
-  }
+  }, [defaults, schema, userType])
+
+  useEffect(() => {
+    readFromLocalStorage()
+    setDataLoaded(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const writeToLocalStorage = useCallback(() => {
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
+      JSON.stringify({
+        userType,
+        profileData,
+      }),
+    )
+  }, [profileData, userType])
+
+  useEffect(() => {
+    if (dataLoaded && !suppressWrite) {
+      writeToLocalStorage()
+    }
+  }, [profileData, dataLoaded, writeToLocalStorage, suppressWrite])
 
   const updateProfileData = (data: any) => {
     setProfileData((prev) => ({ ...prev, ...data }))

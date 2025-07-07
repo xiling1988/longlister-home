@@ -56,7 +56,7 @@ export default function CompanyProfileReviewForm({
       resetData()
       setSuccess && setSuccess(true)
     }
-  }, [state, setSuccess])
+  }, [state, setSuccess, resetData])
 
   return (
     <div className="space-y-8">
