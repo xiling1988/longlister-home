@@ -4,6 +4,7 @@ import {
   GroupIcon,
   List,
   ListIcon,
+  SearchCheckIcon,
   UserCircleIcon,
 } from 'lucide-react'
 
@@ -26,11 +27,55 @@ export const navItems: NavItem[] = [
     name: 'Vacancies',
     path: '/vacancies',
   },
+  // {
+  //   icon: GroupIcon,
+  //   name: 'Candidates',
+  //   path: '/candidates',
+  //   // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
+  // },
   {
-    icon: GroupIcon,
-    name: 'Candidates',
-    path: '/candidates',
-    // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
+    icon: UserCircleIcon,
+    name: 'User Profile',
+    path: '/profile',
+  },
+
+  //   {
+  //     name: 'Tables',
+  //     icon: TableIcon,
+  //     subItems: [{ name: 'Basic Tables', path: '/basic-tables', pro: false }],
+  //   },
+  //   {
+  //     name: 'Pages',
+  //     icon: PageIcon,
+  //     subItems: [
+  //       { name: 'Blank Page', path: '/blank', pro: false },
+  //       { name: '404 Error', path: '/error-404', pro: false },
+  //     ],
+  //   },
+]
+
+export const recruiterNavItems: NavItem[] = [
+  {
+    icon: GridIcon,
+    name: 'Dashboard',
+    path: '/',
+    // subItems: [{ name: 'Ecommerce', path: '/', pro: false }],
+  },
+  {
+    icon: BriefcaseIcon,
+    name: 'Vacancies',
+    path: '/vacancies',
+  },
+  // {
+  //   icon: GroupIcon,
+  //   name: 'Candidates',
+  //   path: '/candidates',
+  //   // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
+  // },
+  {
+    icon: SearchCheckIcon,
+    name: 'Explore Longlister',
+    path: '/explore',
   },
   {
     icon: UserCircleIcon,

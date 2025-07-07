@@ -81,10 +81,10 @@ export default function LoginPage() {
           <Label>Email</Label>
           <Input
             type="email"
-            // defaultValue={email}
+            name="email"
             placeholder="you@example.com"
             className="bg-white"
-            name="email"
+            autoComplete="username"
             required
             error={!!state.errors?.email}
             hint={state.errors?.email && state.errors?.email}
@@ -97,6 +97,7 @@ export default function LoginPage() {
               type={showPassword ? 'text' : 'password'}
               name="password"
               required
+              autoComplete="current-password"
               error={!!state.errors?.password}
               hint={state.errors?.password && state.errors?.password}
               placeholder="Password"

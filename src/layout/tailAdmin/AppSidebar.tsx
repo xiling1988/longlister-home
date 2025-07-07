@@ -8,7 +8,12 @@ import fullLogoRed from '@/images/full_logo_red.png'
 import listLogoRed from '@/images/list_logo_red.png'
 import { ChevronDownIcon, HorizontaLDots } from '../../icons'
 import { useAuth } from '@/context/auth/auth-context'
-import { NavItem, navItems, othersItems } from '@/common/constants'
+import {
+  NavItem,
+  navItems,
+  recruiterNavItems,
+  othersItems,
+} from '@/common/constants'
 
 // type NavItem = {
 //   name: string
@@ -92,12 +97,15 @@ const AppSidebar: React.FC = () => {
   const pathname = usePathname()
   const { user } = useAuth()
 
+  const navigationItems =
+    user?.userType === 'recruiter' ? recruiterNavItems : navItems
+
   const renderMenuItems = (
-    navItems: NavItem[],
+    navigationItems: NavItem[],
     menuType: 'main' | 'others',
   ) => (
     <ul className="flex flex-col gap-4">
-      {navItems.map((nav, index) => (
+      {navigationItems.map((nav, index) => (
         <li key={nav.name}>
           {nav.subItems ? (
             <button
@@ -239,7 +247,7 @@ const AppSidebar: React.FC = () => {
     // Check if the current path matches any submenu item
     let submenuMatched = false
     ;['main', 'others'].forEach((menuType) => {
-      const items = menuType === 'main' ? navItems : othersItems
+      const items = menuType === 'main' ? navigationItems : othersItems
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
@@ -344,7 +352,7 @@ const AppSidebar: React.FC = () => {
                   <HorizontaLDots />
                 )}
               </h2>
-              {renderMenuItems(navItems, 'main')}
+              {renderMenuItems(navigationItems, 'main')}
             </div>
 
             <div className="">

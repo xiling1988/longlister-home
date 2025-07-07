@@ -124,7 +124,7 @@ function RecruiterVacanciesTableRow({
         {job.recruiters?.length}
       </TableCell>
       <TableCell className="px-1 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-        {job.cvPriceBudget} {job.currency}
+        {Number(Number(job.cvPriceBudget) / 2).toFixed(2)} {job.currency}
       </TableCell>
       <TableCell className="px-1 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
         {job.totalBudget} {job.currency}

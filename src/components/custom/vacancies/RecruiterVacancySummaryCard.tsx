@@ -8,6 +8,7 @@ import { DollarSignIcon } from 'lucide-react'
 
 import { addVacancyToWorkspace } from '@/app/(dashboard)/(others-pages)/explore/actions'
 import Button from '@/components/tailAdmin/ui/button/Button'
+import PublicJobShareButton from '../common/PublicJobShareButton'
 
 interface ExploreDetailsHeaderProps {
   vacancy: Job
@@ -45,15 +46,7 @@ function RecruiterVacancySummaryCard({
 
           {/* Actions */}
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              className="bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-              onClick={() => {
-                // TODO: handle share action
-              }}
-            >
-              Share with Candidate
-            </Button>
+            <PublicJobShareButton vacancyId={vacancy.id || ''} />
             <Button
               onClick={openModal}
               className="bg-brand-red hover:bg-brand-coral"
@@ -86,11 +79,12 @@ function RecruiterVacancySummaryCard({
             <div className="col-span-1 flex-col items-center">
               <div className="flex items-center gap-1 pb-2">
                 <DollarSignIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                <span className="text-xs">Price per CV: </span>
+                <span className="text-xs">Earnings per CV: </span>
               </div>
 
               <Badge className="col-span-1 bg-brand-100 text-sm text-brand-700 dark:bg-brand-900 dark:text-brand-300">
-                {vacancy?.cvPriceBudget} AED
+                {Number(Number(vacancy.cvPriceBudget) / 2).toFixed(2)}{' '}
+                {vacancy.currency}
               </Badge>
             </div>
             <div className="col-span-1 flex-col items-center gap-1">

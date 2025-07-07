@@ -7,6 +7,7 @@ import { daysLeft, formatDate } from '@/common/util/helpers'
 import { DollarSignIcon } from 'lucide-react'
 import Button from '../tailAdmin/ui/button/Button'
 import { addVacancyToWorkspace } from '@/app/(dashboard)/(others-pages)/explore/actions'
+import PublicJobShareButton from '../custom/common/PublicJobShareButton'
 
 interface ExploreDetailsHeaderProps {
   selectedVacancy: Job
@@ -16,19 +17,6 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
   const [vacancyAdded, setVacancyAdded] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [copied, setCopied] = useState(false)
-  const vacancyLink = `http://localhost:8080/public/vacancies/${selectedVacancy.id}`
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(vacancyLink)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error(err)
-      // Optional: set some error state
-    }
-  }
 
   const handleAddVacancyToWorkspace = async () => {
     setLoading(true)
@@ -77,13 +65,7 @@ function ExploreDetailsHeader({ selectedVacancy }: ExploreDetailsHeaderProps) {
           {/* Actions */}
 
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              className="bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-              onClick={handleCopy}
-            >
-              {copied ? 'Link copied!' : 'Share with Candidate'}
-            </Button>
+            <PublicJobShareButton vacancyId={selectedVacancy?.id || ''} />
 
             <Button
               className="hover:bg-opacity-90 rounded-md bg-brand-coral px-4 py-2 text-sm font-medium text-white shadow-sm"
