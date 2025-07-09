@@ -15,6 +15,7 @@ import { DocumentArrowDownIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import RejectCandidateModal from '../forms/modals/RejectCandidateModal'
 import ApproveCandidateModal from '../forms/modals/ApproveCandidateModal'
+import { getCandidateCV } from '@/common/util/helpers'
 
 interface CandidateCardProps {
   vacancy: Job
@@ -92,7 +93,7 @@ export default function CandidateCard({
 
         {viewMode === 'recruiter' || isDisclosed ? (
           <Link
-            href={`${JOBS_API_URL}/candidate-cvs/${candidate.id}.pdf`}
+            href={getCandidateCV(candidate.id)}
             target="_blank"
             className="flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-3"
           >

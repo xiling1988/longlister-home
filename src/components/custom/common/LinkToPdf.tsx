@@ -1,4 +1,5 @@
 import { JOBS_API_URL } from '@/common/constants'
+import { getCandidateCV } from '@/common/util/helpers'
 import { DocumentIcon } from '@heroicons/react/16/solid'
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline'
 import { DockIcon } from 'lucide-react'
@@ -8,7 +9,7 @@ import React from 'react'
 function LinkToPdf({ candidateVersionId }: { candidateVersionId: string }) {
   return (
     <Link
-      href={`${JOBS_API_URL}/candidate-cvs/${candidateVersionId}.pdf`}
+      href={getCandidateCV(candidateVersionId)}
       target="_blank"
       className="flex h-full w-full items-center justify-center rounded-lg transition-colors dark:hover:bg-gray-700"
     >

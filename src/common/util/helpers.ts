@@ -1,5 +1,6 @@
 import {
   API_URL,
+  CANDIDATE_CV_BASE_URL,
   COMPANY_LOGOS_BASE_URL,
   defaultCompanyProfileData,
   defaultRecruiterProfileData,
@@ -21,6 +22,10 @@ export function getCompanyLogo(id: string) {
 
 export function getRecruiterAvatar(avatar: string) {
   return `${RECRUITER_AVATARS_BASE_URL}/${avatar}.png`
+}
+
+export function getCandidateCV(profileVersionId: string) {
+  return `${CANDIDATE_CV_BASE_URL}/${profileVersionId}.pdf`
 }
 
 export function getVacancyImage(id: string) {
