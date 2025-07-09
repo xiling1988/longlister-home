@@ -4,3 +4,5 @@ export const AUTH_API_URL = process.env.NEXT_PUBLIC_AUTH_API_URL as string
 export const PAYMENTS_API_URL = process.env.NEXT_PUBLIC_PAYMENTS_URL as string
 export const STRIPE_PUBLISHABLE_KEY = process.env
   .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+export const RECRUITER_AVATARS_BASE_URL = process.env
+  .NEXT_PUBLIC_RECRUITER_AVATARS_BASE_URL as string

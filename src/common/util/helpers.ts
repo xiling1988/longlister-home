@@ -2,6 +2,7 @@ import {
   API_URL,
   defaultCompanyProfileData,
   defaultRecruiterProfileData,
+  RECRUITER_AVATARS_BASE_URL,
 } from '../constants'
 import {
   CLIENT_PROFILE_STEPS,
@@ -18,7 +19,7 @@ export function getCompanyLogo(id: string) {
 }
 
 export function getRecruiterAvatar(avatar: string) {
-  return `${API_URL}/recruiter-avatars/${avatar}.png`
+  return `${RECRUITER_AVATARS_BASE_URL}/${avatar}.png`
 }
 
 export function getVacancyImage(id: string) {
