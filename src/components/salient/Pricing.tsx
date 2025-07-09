@@ -48,7 +48,7 @@ export function Pricing() {
               <SwirlyDoodle className="absolute top-1/2 left-0 h-[1em] w-full fill-brand-coral" />
               <span className="relative text-brand-red">The GAP</span>
             </span>{' '}
-            {'we&apos;re filling'}
+            {"we're filling"}
           </h2>
           <p className="mx-auto mt-8 max-w-4xl text-lg text-brand-dark">
             Right now, you’ve got two options for finding talent.{' '}
@@ -106,7 +106,7 @@ export function Pricing() {
                 'Lack of transparency on candidate sourcing',
                 'Slow turnaround times – especially for niche roles',
                 'Rigid processes that don’t flex to your business needs',
-                'Limited control – you wait while they &apos;work their list&apos;',
+                "Limited control – you wait while they work their list",
               ]}
             />
           </div>
