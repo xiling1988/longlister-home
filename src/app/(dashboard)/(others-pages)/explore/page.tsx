@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import React from 'react'
 import { getExploreVacancies } from './actions'
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Explore Vacancies',
   description: 'Browse and explore job vacancies',
 }
