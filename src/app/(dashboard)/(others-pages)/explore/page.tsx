@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import { Job } from '@/common/models'
 import ExploreListItem from '@/components/explore/ExploreListItem'
@@ -59,7 +59,7 @@ export default function ExplorePage() {
   }
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <PageBreadcrumb pageTitle="Recruiter Dashboard - Explore Vacancies" />
       <div className="flex h-[calc(100vh-6rem)] overflow-hidden rounded-lg border border-gray-100 shadow-sm dark:border-gray-800">
         {/* LEFT: Vacancy List */}
@@ -88,7 +88,7 @@ export default function ExplorePage() {
           )}
         </div>
       </div>
-    </>
+    </Suspense>
   )
 }
 

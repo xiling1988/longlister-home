@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/salient/Button'
 import FullLogo from '@/images/full_logo_red.png'
 import { SlimLayout } from '@/layout/salient/SlimLayout'
-import { useActionState, useEffect, useState } from 'react'
+import { Suspense, useActionState, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
@@ -24,6 +24,7 @@ export default function ResetPassword() {
   const token = searchParams.get('token')
 
   return (
+    
     <SlimLayout>
       <div className="mx-auto w-full">
         <Link href="/home" aria-label="Home">
