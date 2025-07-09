@@ -38,7 +38,6 @@ export async function get(url: string, path: string) {
   const res = await fetch(`${url}/${path}`, {
     credentials: 'include',
     headers: headers,
-    // headers: await { ...getHeaders() },
   })
   if (!res.ok) {
     throw new Error(`HTTP error! status: ${res.status}: ${res.statusText}`)
