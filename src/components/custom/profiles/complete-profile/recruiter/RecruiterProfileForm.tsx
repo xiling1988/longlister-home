@@ -98,6 +98,11 @@ export default function RecruiterProfileForm({
         value={(profileData as RecruiterProfileInitialValuesType).bio || ''}
         onChange={(html) => updateProfileData({ bio: html })}
       />
+      {state.errors?.bio && (
+        <p className="text-sm text-red-600 dark:text-red-400">
+          {state.errors?.bio}
+        </p>
+      )}
       <input
         type="hidden"
         name="bio"

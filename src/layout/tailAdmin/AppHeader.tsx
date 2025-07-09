@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
+import fullLogo from '@/images/full_logo_red.png'
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false)
@@ -89,7 +90,7 @@ const AppHeader: React.FC = () => {
               width={154}
               height={32}
               className="dark:hidden"
-              src="./images/logo/logo.svg"
+              src={fullLogo}
               alt="Logo"
             />
             <Image
@@ -100,7 +101,6 @@ const AppHeader: React.FC = () => {
               alt="Logo"
             />
           </Link>
-
           <button
             onClick={toggleApplicationMenu}
             className="z-99999 flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-800"

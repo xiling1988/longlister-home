@@ -31,23 +31,6 @@ export const recruiterPersonalDetailsSchema = z.object({
   avatar: z.string().optional(),
 })
 
-export const recruiterPaymentDetailsSchema = z.object({
-  cardNumber: z.string().regex(/^\d{16}$/, 'Card number must be 16 digits'),
-
-  expiryDate: z
-    .string()
-    .regex(
-      /^(0[1-9]|1[0-2])\/([0-9]{2})$/,
-      'Expiry date must be in MM/YY format',
-    ),
-
-  cvc: z.string().regex(/^\d{3,4}$/, 'CVC/CVV must be 3 or 4 digits'),
-
-  cardHolderName: z
-    .string()
-    .min(2, 'Cardholder name must be at least 2 characters'),
-})
-
 export const recruiterProfileInitialValuesSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
@@ -58,10 +41,6 @@ export const recruiterProfileInitialValuesSchema = z.object({
   phoneNumber: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
-  cardNumber: z.string().optional(),
-  expiryDate: z.string().optional(),
-  cvc: z.string().optional(),
-  cardHolderName: z.string().optional(),
   website: z.string().url().optional(),
   avatar: z.string().optional(),
 })
@@ -69,7 +48,6 @@ export const recruiterProfileInitialValuesSchema = z.object({
 export const recruiterCompleteProfileSchema = z.object({
   ...recruiterPersonalDetailsSchema.shape,
   ...recruiterProfileSchema.shape,
-  ...recruiterPaymentDetailsSchema.shape,
 })
 
 export type RecruiterProfileData = z.infer<

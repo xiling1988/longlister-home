@@ -124,7 +124,7 @@ export default function RecruiterPersonalDetailsForm({
         </div>
 
         <div>
-          <Label>LinkedIn (Optional)</Label>
+          <Label>LinkedIn</Label>
           <Input
             name="linkedIn"
             placeholder="https://linkedin.com/in/yourname"
@@ -138,7 +138,7 @@ export default function RecruiterPersonalDetailsForm({
         </div>
 
         <div>
-          <Label>Website (Optional)</Label>
+          <Label>Website</Label>
           <Input
             name="website"
             placeholder="https://your-portfolio.com"
@@ -149,6 +149,7 @@ export default function RecruiterPersonalDetailsForm({
           />
         </div>
       </div>
+      
 
       <input
         type="hidden"
