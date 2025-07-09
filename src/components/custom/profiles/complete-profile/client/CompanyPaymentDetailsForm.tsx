@@ -51,7 +51,10 @@ export default function CompanyPaymentDetails({
     }
 
     const inputData = new FormData()
-    inputData.append('cardHolderName', profileData.cardHolderName || '')
+    inputData.append(
+      'cardHolderName',
+      (profileData as CompanyProfileInitialValuesType).cardHolderName || '',
+    )
 
     const response = await getStripeDataAction(inputData)
     if (response.errors) {
@@ -82,7 +85,7 @@ export default function CompanyPaymentDetails({
       payment_method: {
         card: cardElement,
         billing_details: {
-          name: profileData.cardHolderName,
+          name: (profileData as CompanyProfileInitialValuesType).cardHolderName,
         },
       },
     })
@@ -100,7 +103,10 @@ export default function CompanyPaymentDetails({
 
     // ✅ 5. Store the paymentMethodId
     const formData = new FormData()
-    formData.append('cardHolderName', profileData.cardHolderName || '')
+    formData.append(
+      'cardHolderName',
+      (profileData as CompanyProfileInitialValuesType).cardHolderName || '',
+    )
     formData.append(
       'stripePaymentMethodId',
       setupIntent.payment_method as string,
@@ -136,7 +142,10 @@ export default function CompanyPaymentDetails({
                   onChange={(e) =>
                     updateProfileData({ cardHolderName: e.target.value })
                   }
-                  defaultValue={profileData.cardHolderName || ''}
+                  defaultValue={
+                    (profileData as CompanyProfileInitialValuesType)
+                      .cardHolderName || ''
+                  }
                   error={
                     !!state.errors?.cardHolderName || !!errors?.cardHolderName
                   }
