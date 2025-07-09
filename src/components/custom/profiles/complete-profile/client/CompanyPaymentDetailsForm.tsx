@@ -159,6 +159,7 @@ export default function CompanyPaymentDetails({
                     options={{ style: { base: { fontSize: '16px' } } }}
                   />
                 </div>
+                
               </div>
               <div className="col-span-1">
                 <Label>Expiration*</Label>

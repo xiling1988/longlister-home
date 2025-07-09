@@ -6,3 +6,5 @@ export const STRIPE_PUBLISHABLE_KEY = process.env
   .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 export const RECRUITER_AVATARS_BASE_URL = process.env
   .NEXT_PUBLIC_RECRUITER_AVATARS_BASE_URL as string
+export const COMPANY_LOGOS_BASE_URL = process.env
+  .NEXT_PUBLIC_COMPANY_LOGOS_BASE_URL as string

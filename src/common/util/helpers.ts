@@ -1,5 +1,6 @@
 import {
   API_URL,
+  COMPANY_LOGOS_BASE_URL,
   defaultCompanyProfileData,
   defaultRecruiterProfileData,
   RECRUITER_AVATARS_BASE_URL,
@@ -15,7 +16,7 @@ import {
 } from '../zod-schemas/profiles/schemas'
 
 export function getCompanyLogo(id: string) {
-  return `${API_URL}/company-logos/${id}.jpg`
+  return `${COMPANY_LOGOS_BASE_URL}/${id}.jpg`
 }
 
 export function getRecruiterAvatar(avatar: string) {
