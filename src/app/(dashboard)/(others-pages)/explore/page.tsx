@@ -1,18 +1,14 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
 import { Job } from '@/common/models'
 import ExploreListItem from '@/components/explore/ExploreListItem'
 import ExploreVacancyDetails from '@/components/custom/pageComponents/ExploreVacancyDetails'
 import { getExploreVacancies } from './actions'
 
-interface ExplorePageProps {
-  vacancies?: Job[]
-}
-
-export default function ExplorePage({ vacancies = [] }: ExplorePageProps) {
+function ExplorePageContent() {
   const [selectedVacancy, setSelectedVacancy] = useState<Job | null>(null)
   const [selectedTab, setSelectedTab] = useState<
     'optionOne' | 'optionTwo' | 'optionThree' | 'optionFour'
@@ -53,7 +49,7 @@ export default function ExplorePage({ vacancies = [] }: ExplorePageProps) {
         setSelectedVacancy(found)
       }
     }
-  }, [jobIdFromUrl, vacancies])
+  }, [jobIdFromUrl, jobs])
 
   const handleSelectVacancy = (vacancy: Job) => {
     setSelectedVacancy(vacancy)
@@ -91,6 +87,14 @@ export default function ExplorePage({ vacancies = [] }: ExplorePageProps) {
         </div>
       </div>
     </>
+  )
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-[calc(100vh-6rem)]">Loading...</div>}>
+      <ExplorePageContent />
+    </Suspense>
   )
 }
 
