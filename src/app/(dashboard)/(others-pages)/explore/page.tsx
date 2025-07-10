@@ -92,7 +92,13 @@ function ExplorePageContent() {
 
 export default function ExplorePage() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-[calc(100vh-6rem)]">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex h-[calc(100vh-6rem)] items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
       <ExplorePageContent />
     </Suspense>
   )
