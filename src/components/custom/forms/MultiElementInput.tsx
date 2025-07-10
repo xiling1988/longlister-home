@@ -101,6 +101,7 @@ function MultiElementInput({
           ))}
         </div>
       )}
+      <input type="hidden" name={name} value={JSON.stringify(values)} />
     </div>
   )
 }

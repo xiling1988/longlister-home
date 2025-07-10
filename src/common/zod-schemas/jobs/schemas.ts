@@ -60,7 +60,7 @@ export const vacancyRoleResponsibilitiesSchema = z.object({
 })
 
 export const vacancyRemunerationSchema = z.object({
-  salaryBudget: z
+  salaryBudget: z.coerce
     .number()
     .min(0, 'Salary budget must be higher than 0')
     .optional(),

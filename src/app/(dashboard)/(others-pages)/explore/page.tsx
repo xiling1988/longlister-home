@@ -100,9 +100,10 @@ export default function ExplorePage() {
       }
     >
       <ExplorePageContent />
-    </Suspense>
+    </Suspense> 
   )
 }
+
 
 // import ExplorePage from '@/components/custom/pageComponents/ExplorePage'
 // import { Metadata } from 'next'
