@@ -43,7 +43,7 @@ export default function ExplorePage({ vacancies = [] }: ExplorePageProps) {
         {/* LEFT: Vacancy List */}
         <div className="w-full max-w-[400px] overflow-y-auto border-r border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
           <ul className="divide-y divide-gray-100 bg-white dark:divide-gray-800">
-            {[...vacancies].reverse().map((vacancy) => (
+            {vacancies.map((vacancy) => (
               <ExploreListItem
                 vacancy={vacancy}
                 selectedVacancy={selectedVacancy}
