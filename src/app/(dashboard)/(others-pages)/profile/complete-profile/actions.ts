@@ -298,6 +298,7 @@ export async function getStripeDataAction(formData: FormData): Promise<
   const { error, stripeCustomerId } = await createStripeCustomerAction()
   if (error || !stripeCustomerId) {
     console.log('❌ Error creating Stripe customer:', error)
+    console.log({ errors: { api: getErrorMessage(error) } })
     return { errors: { api: String(getErrorMessage(error)) } }
   }
 
