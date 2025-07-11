@@ -58,6 +58,7 @@ export default function CompanyPaymentDetails({
 
     const response = await getStripeDataAction(inputData)
     if (response.errors) {
+      console.log('error from getStripeDataAction:', response.errors)
       setErrors(response.errors)
       return
     }
@@ -67,6 +68,7 @@ export default function CompanyPaymentDetails({
 
     // ✅ 2. Create SetupIntent
     if (!clientSecret) {
+      console.log('Logging error: clientSecret is missing')
       setErrors({
         clientSecret: 'Failed to create SetupIntent. Please try again.',
       })
@@ -76,6 +78,7 @@ export default function CompanyPaymentDetails({
     // ✅ 3. Get card details from Stripe Element
     const cardElement = elements.getElement(CardNumberElement)
     if (!cardElement) {
+      console.log('Logging error: CardElement not found')
       setErrors({ cardElement: 'Card element not found. Please try again.' })
       return
     }
@@ -90,7 +93,7 @@ export default function CompanyPaymentDetails({
       },
     })
     if (error) {
-      console.error('❌ Stripe error:', error.message)
+      console.log('Logging error: ', error)
       setErrors({ stripe: error.message })
       return
     }
@@ -159,7 +162,6 @@ export default function CompanyPaymentDetails({
                     options={{ style: { base: { fontSize: '16px' } } }}
                   />
                 </div>
-                
               </div>
               <div className="col-span-1">
                 <Label>Expiration*</Label>
