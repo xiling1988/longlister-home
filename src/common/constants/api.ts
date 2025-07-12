@@ -10,3 +10,4 @@ export const COMPANY_LOGOS_BASE_URL = process.env
   .NEXT_PUBLIC_COMPANY_LOGOS_BASE_URL as string
 export const CANDIDATE_CV_BASE_URL = process.env
   .NEXT_PUBLIC_CANDIDATE_CV_BASE_URL as string
+export const DOMAIN_URL = process.env.NEXT_PUBLIC_DOMAIN_URL as string

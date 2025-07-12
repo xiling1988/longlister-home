@@ -21,7 +21,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'storage.googleapis.com',
-        pathname: '/longlister-static/recruiter-avatars/**',
+        pathname: '/longlister-static/**',
       },
     ],
   },

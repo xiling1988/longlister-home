@@ -1,9 +1,10 @@
+import { DOMAIN_URL } from '@/common/constants'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import React, { useState } from 'react'
 
 function PublicJobShareButton({ vacancyId }: { vacancyId: string }) {
   const [copied, setCopied] = useState(false)
-  const vacancyLink = `http://localhost:8080/public/vacancies/${vacancyId}`
+  const vacancyLink = `${DOMAIN_URL}/public/vacancies/${vacancyId}`
 
   const handleCopy = async () => {
     try {

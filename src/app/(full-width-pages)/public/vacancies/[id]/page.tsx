@@ -1,6 +1,5 @@
 import PublicVacancyDetailsPage from '@/components/custom/pageComponents/PublicVacancyDetailsPage'
 import { Metadata } from 'next'
-import { type FC } from 'react'
 import { fetchPublicVacancyInfo } from './actions'
 import { Job } from '@/common/models'
 

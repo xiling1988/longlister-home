@@ -3,7 +3,7 @@ import Badge from '@/components/tailAdmin/ui/badge/Badge'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { Job } from '@/common/models'
-import { daysLeft, formatDate } from '@/common/util/helpers'
+import { daysLeft, formatDate, getCompanyLogo } from '@/common/util/helpers'
 import { DollarSignIcon } from 'lucide-react'
 
 import { addVacancyToWorkspace } from '@/app/(dashboard)/(others-pages)/explore/actions'
@@ -33,7 +33,7 @@ function RecruiterVacancySummaryCard({
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded dark:bg-gray-800">
               <Image
-                src={`${API_URL}/company-logos/${vacancy.clientId}.jpg`}
+                src={getCompanyLogo(vacancy.clientId)}
                 alt={vacancy?.companyName || 'Company Logo'}
                 width={56}
                 height={56}
