@@ -119,7 +119,8 @@ export const NewVacancyDataProvider = ({
 
     if (user?.clientProfile) {
       const userData = {
-        companyType: user.clientProfile.companyType as CompanyType,
+        companyType: 'company', // Default to 'company' if not agency
+        // companyType: user.clientProfile.companyType as CompanyType,
         companyName: user.clientProfile.companyName,
         legalName: user.clientProfile.legalName,
         companyDescription: user.clientProfile.overview,

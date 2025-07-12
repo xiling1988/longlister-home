@@ -92,6 +92,11 @@ function VacancyRoleResponsibilitiesForm({
           name="jobDescription"
           value={newVacancyData.companyCulture}
         />
+        <input
+          type="hidden"
+          name="companyType"
+          value={newVacancyData.companyType}
+        />
         <div className="flex items-center justify-between gap-4">
           <div className="w-full">
             <Label>Work Mode</Label>
