@@ -63,12 +63,14 @@ function VacancyRoleResponsibilitiesForm({
             updateVacancyData({
               ...newVacancyData,
               nonNegotiables,
-              companyType:
-                newVacancyData.companyType === 'company' ||
-                newVacancyData.companyType === 'agency'
-                  ? newVacancyData.companyType
-                  : undefined,
+              companyType: 'company',
             })
+            // companyType:
+            //     newVacancyData.companyType === 'company' ||
+            //     newVacancyData.companyType === 'agency'
+            //       ? newVacancyData.companyType
+            //       : undefined,
+            // })
           }}
         />
         {state.errors?.nonNegotiables && (
