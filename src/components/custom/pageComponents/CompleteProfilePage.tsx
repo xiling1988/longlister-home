@@ -25,17 +25,19 @@ function CompleteProfilePage() {
   const steps = getSteps(userType) // <-- your dynamic step generator
   return (
     <ProfileCompletionProvider>
-      <PageBreadcrumb pageTitle="New Vacancy" />
+      <PageBreadcrumb
+        pageTitle={`Complete ${userType === 'client' ? 'Company' : 'Recruiter'} Profile`}
+      />
       {success ? (
         <SuccessPage message="Your user profile was completed successfully!" />
       ) : (
         <>
-          <h2
+          {/* <h2
             className="my-4 text-xl font-semibold text-gray-800 dark:text-white/90"
             x-text="pageName"
           >
-            Vacancy Details
-          </h2>
+            {userType === 'client' ? 'Company' : 'Recruiter'} Details
+          </h2> */}
           <div className="min-h-screen rounded-2xl border border-gray-200 bg-white px-5 py-7 xl:px-10 xl:py-12 dark:border-gray-800 dark:bg-white/[0.03]">
             <CompleteProfileFormLayout
               steps={steps}

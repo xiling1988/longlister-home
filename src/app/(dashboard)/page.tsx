@@ -16,56 +16,42 @@ import { useRouter } from 'next/navigation'
 
 export default function Ecommerce() {
   const [loaded, setLoaded] = useState(false)
-  // const { user } = useAuth()
+  const { user } = useAuth()
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setLoaded(true)
-  //   }
-  // }, [user])
-
-  //////////////////////////// WHILE NO DASHBOARD PAGE /////////////////////////////
+  useEffect(() => {
+    if (user) {
+      setLoaded(true)
+    }
+  }, [user])
 
   const router = useRouter()
 
   useEffect(() => {
+    if (user?.isProfileComplete) {
+      // Redirect to the vacancies page if the profile is complete
+      router.replace('/vacancies')
+      return
+    }
     router.replace('/vacancies')
   }, [router])
+  //////////////////////////// WHILE NO DASHBOARD PAGE /////////////////////////////
 
-  return null // or a loading spinner if you prefer
+  // return null // or a loading spinner if you prefer
 
-  // return (
-  //   <div className="grid grid-cols-12 gap-4 md:gap-6">
-  //     <div className="col-span-12 space-y-6 xl:col-span-12">
-  //       <div className="flex flex-col gap-4">
-  //         <h2 className="text-xl font-semibold">
-  //           Welcome,{' '}
-  //           {user?.recruiterProfile?.firstName ||
-  //             user?.clientProfile?.companyName}
-  //           !
-  //         </h2>
-  //         <p className="text-gray-600">
-  //           Here’s a quick overview of your e-commerce metrics.
-  //         </p>
-  //       </div>
-  //       {!user?.isProfileComplete && loaded && <CompleteProfileCTA />}
-  //       <EcommerceMetrics />
+  //////////////////////////// DASHBOARD PAGE /////////////////////////////
 
-  //       {/* <MonthlySalesChart /> */}
-  //     </div>
-  //     <div className="col-span-12 xl:col-span-5"></div>
-
-  //     <div className="col-span-12 xl:col-span-5">{/* <MonthlyTarget /> */}</div>
-
-  //     <div className="col-span-12">{/* <StatisticsChart /> */}</div>
-
-  //     {/* <div className="col-span-12 xl:col-span-5"> */}
-  //     {/* <DemographicCard /> */}
-  //     {/* </div> */}
-
-  //     <div className="col-span-12 xl:col-span-7">
-  //       <RecentOrders />
-  //     </div>
-  //   </div>
-  // )
+  return (
+    <div className="grid grid-cols-12 gap-4 md:gap-6">
+      <div className="col-span-12 space-y-6 xl:col-span-12">
+        <div className="flex flex-col gap-4">
+          <h2 className="text-xl font-semibold">Welcome to Longlister</h2>
+          <p className="text-gray-600">
+            Before getting started, please complete your profile to unlock all
+            features.
+          </p>
+        </div>
+        {!user?.isProfileComplete && loaded && <CompleteProfileCTA />}
+      </div>
+    </div>
+  )
 }

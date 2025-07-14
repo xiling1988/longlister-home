@@ -47,7 +47,7 @@ function RecruiterVacanciesTableRow({
               <Image
                 width={100}
                 height={100}
-                src={getCompanyLogo(job.clientId || '')}
+                src={getCompanyLogo(job.clientId)}
                 unoptimized
                 alt={job?.companyName || 'Company Logo'}
                 // loading="lazy"

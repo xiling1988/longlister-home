@@ -98,6 +98,15 @@ export default function CompanyPaymentDetails({
       return
     }
 
+    if (setupIntent.status !== 'succeeded') {
+      console.log('SetupIntent not succeeded:', setupIntent.status)
+      setErrors({
+        stripe: 'Card setup incomplete. Please try again.',
+      })
+      // setLoading(false)
+      return
+    }
+
     const paymentMethodId = setupIntent.payment_method
 
     updateProfileData({
@@ -122,7 +131,11 @@ export default function CompanyPaymentDetails({
   }
 
   useEffect(() => {
-    if (!state.errors && state.success) setActiveStep((s: number) => s + 1)
+    if (!state.errors && state.success) {
+      setActiveStep((s: number) => s + 1)
+    } else if (state.errors) {
+      setErrors((prev) => ({ ...prev, ...state.errors }))
+    }
   }, [state, setActiveStep])
 
   return (
@@ -140,7 +153,7 @@ export default function CompanyPaymentDetails({
               <div className="col-span-2 sm:col-span-1">
                 <Label htmlFor="cardHolderName">Full name (as on card)*</Label>
                 <Input
-                  type="name"
+                  type="text"
                   name="cardHolderName"
                   onChange={(e) =>
                     updateProfileData({ cardHolderName: e.target.value })
@@ -180,6 +193,9 @@ export default function CompanyPaymentDetails({
                 </div>
               </div>
             </div>
+            {errors.stripe && (
+              <div className="mb-4 text-red-500">{errors.stripe}</div>
+            )}
 
             <Button type="submit" className="w-full">
               Save and Continue
