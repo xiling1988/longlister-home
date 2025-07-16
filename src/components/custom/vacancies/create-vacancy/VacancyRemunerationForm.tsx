@@ -124,7 +124,7 @@ function VacancyRemunerationForm({
         name="careerProgression"
         placeholder="Describe access to training, certifications, etc."
         value={newVacancyData?.careerProgression || ''}
-        onChange={handleTextAreaChange('trainingOpportunities')}
+        onChange={handleTextAreaChange('careerProgression')}
         error={!!state.errors?.trainingOpportunities}
         hint={
           state.errors?.trainingOpportunities &&

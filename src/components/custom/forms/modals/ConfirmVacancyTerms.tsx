@@ -4,6 +4,7 @@ import Label from '@/components/tailAdmin/form/Label'
 import Switch from '@/components/tailAdmin/form/switch/Switch'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import { Modal } from '@/components/tailAdmin/ui/modal'
+import Link from 'next/link'
 
 import React, { useState } from 'react'
 
@@ -50,6 +51,18 @@ function ConfirmVacancyTerms({
     >
       <ComponentCard title="Confirm Vacancy Terms" className="w-full">
         <form className="">
+          <h2 className="mb-4">
+            Please carefully read the{' '}
+            <span>
+              <Link
+                className="text-brand-red hover:underline"
+                href={'/legal/user-terms'}
+                target="_blank"
+              >
+                Terms and Conditions
+              </Link>
+            </span>
+          </h2>
           <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
             <Switch
               defaultChecked={generalTermsAgreed}

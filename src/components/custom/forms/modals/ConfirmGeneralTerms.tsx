@@ -48,7 +48,7 @@ function ConfirmGeneralTerms({
         <form className="">
           <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
             <Link
-              href={'/terms-and-conditions'}
+              href={'/legal/user-terms'}
               target="_blank"
               className="col-span-3"
             >
