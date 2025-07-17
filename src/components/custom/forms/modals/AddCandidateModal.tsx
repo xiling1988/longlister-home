@@ -20,6 +20,8 @@ import CandidateSuccessCard from './CandidateSuccessCard'
 import { CandidateProfileVersion } from '@/common/models'
 import { uploadCandidateSubmission } from '@/app/(dashboard)/(others-pages)/vacancies/[id]/actions'
 import CVDropzone from '../CVDropzone'
+import { currencies } from '@/common/constants'
+import Select from '@/components/tailAdmin/form/Select'
 
 interface CreateVacancyModalProps {
   openModal: () => void
@@ -35,10 +37,12 @@ function AddCandidateModal({
   vacancyId,
 }: CreateVacancyModalProps) {
   const [cvFile, setCvFile] = useState<File | null>(null)
-  const [state, formAction, isPending] = useActionState(
+  const [state, formAction] = useActionState(
     uploadCandidateSubmission,
     initialState,
   )
+  const isPending = true
+  const [currency, setCurrency] = useState<string>('')
   const [candidate, setCandidate] = useState<CandidateProfileVersion | null>(
     null,
   )
@@ -49,8 +53,19 @@ function AddCandidateModal({
       if ('candidate' in state.success) {
         setCandidate(state.success.candidate)
       }
+      // Reset form state on success
+      setCurrency('')
+      setCvFile(null)
     }
   }, [state.success])
+
+  const handleCloseModal = () => {
+    // Reset form state when modal closes
+    setCurrency('')
+    setCvFile(null)
+    setCandidate(null)
+    closeModal()
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -60,6 +75,11 @@ function AddCandidateModal({
 
     if (cvFile) {
       data.append('cv', cvFile)
+    }
+
+    // Ensure currency is included in form data
+    if (currency) {
+      data.set('currency', currency)
     }
 
     startTransition(() => {
@@ -98,120 +118,150 @@ function AddCandidateModal({
             candidate={state.success.candidate as CandidateProfileVersion}
           />
         ) : (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
-            <CVDropzone cvFile={cvFile} setCvFile={setCvFile} />
+          <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
+            <CVDropzone cvFile={cvFile} setCvFile={setCvFile} isPending />
             <input type="hidden" name="vacancyId" value={vacancyId} />
-            <div className="col-span-1">
-              {isPending ? (
-                <Skeleton count={5} />
-              ) : (
-                <>
-                  <Label>Current Location</Label>
-                  <Input
-                    error={
-                      !!(
-                        'location' in (state.errors ?? {}) &&
-                        (state.errors as any).location
-                      )
-                    }
-                    hint={
-                      ('location' in (state.errors ?? {}) &&
-                        (state.errors as any).location?.message) ||
-                      ''
-                    }
-                    disabled={isPending}
-                    name="location"
-                    type="text"
-                    placeholder="Dubai, UAE"
-                  />
-                </>
-              )}
-            </div>
+            <div className="col-span-3 flex gap-4">
+              <div className="flex-1">
+                {isPending ? (
+                  <Skeleton count={5} />
+                ) : (
+                  <>
+                    <Label>Current Location</Label>
+                    <Input
+                      error={
+                        !!(
+                          'location' in (state.errors ?? {}) &&
+                          (state.errors as any).location
+                        )
+                      }
+                      hint={
+                        ('location' in (state.errors ?? {}) &&
+                          (state.errors as any).location?.message) ||
+                        ''
+                      }
+                      disabled={isPending}
+                      name="location"
+                      type="text"
+                      placeholder="Dubai, UAE"
+                    />
+                  </>
+                )}
+              </div>
 
-            <div className="col-span-1">
-              {isPending ? (
-                <Skeleton count={5} />
-              ) : (
-                <>
-                  <Label>Notice Period (Months)</Label>
-                  <Input
-                    error={
-                      !!(
-                        'noticePeriod' in (state.errors ?? {}) &&
-                        (state.errors as any).noticePeriod
-                      )
-                    }
-                    hint={
-                      ('noticePeriod' in (state.errors ?? {}) &&
-                        (state.errors as any).noticePeriod?.message) ||
-                      ''
-                    }
-                    disabled={isPending}
-                    name="noticePeriod"
-                    type="number"
-                    placeholder="3"
-                  />
-                </>
-              )}
+              <div className="flex-1">
+                {isPending ? (
+                  <Skeleton count={5} />
+                ) : (
+                  <>
+                    <Label>Notice Period (Months)</Label>
+                    <Input
+                      error={
+                        !!(
+                          'noticePeriod' in (state.errors ?? {}) &&
+                          (state.errors as any).noticePeriod
+                        )
+                      }
+                      hint={
+                        ('noticePeriod' in (state.errors ?? {}) &&
+                          (state.errors as any).noticePeriod?.message) ||
+                        ''
+                      }
+                      disabled={isPending}
+                      name="noticePeriod"
+                      type="number"
+                      placeholder="3"
+                    />
+                  </>
+                )}
+              </div>
             </div>
-
-            <div className="col-span-1">
-              {isPending ? (
-                <Skeleton count={2} />
-              ) : (
-                <>
-                  <Label>Current Salary (monthly)</Label>
-                  <Input
-                    error={
-                      !!(
-                        'currentSalary' in (state.errors ?? {}) &&
-                        (state.errors as any).currentSalary
-                      )
-                    }
-                    hint={
-                      ('currentSalary' in (state.errors ?? {}) &&
-                        (state.errors as any).currentSalary?.message) ||
-                      ''
-                    }
-                    disabled={isPending}
-                    name="currentSalary"
-                    type="text"
-                    placeholder="AED"
-                  />
-                </>
-              )}
-            </div>
-            <div className="col-span-1">
-              {isPending ? (
-                <Skeleton count={2} />
-              ) : (
-                <>
-                  <Label>Expected Salary (monthly)</Label>
-                  <Input
-                    error={
-                      !!(
-                        'expectedSalary' in (state.errors ?? {}) &&
-                        (state.errors as any).expectedSalary
-                      )
-                    }
-                    hint={
-                      ('expectedSalary' in (state.errors ?? {}) &&
-                        (state.errors as any).expectedSalary?.message) ||
-                      ''
-                    }
-                    disabled={isPending}
-                    name="expectedSalary"
-                    type="number"
-                    placeholder="AED"
-                  />
-                </>
-              )}
+            <div className="col-span-3 flex gap-4">
+              <div>
+                {isPending ? (
+                  <Skeleton count={2} />
+                ) : (
+                  <>
+                    <Label>Currency</Label>
+                    <Select
+                      name="currency"
+                      options={currencies}
+                      onChange={(value) => setCurrency(value)}
+                      placeholder="Select a salary currency"
+                      defaultValue={currency}
+                      error={
+                        !!(
+                          'currency' in (state.errors ?? {}) &&
+                          (state.errors as any).currency
+                        )
+                      }
+                      hint={
+                        ('currency' in (state.errors ?? {}) &&
+                          (state.errors as any).currency?.message) ||
+                        ''
+                      }
+                    />
+                  </>
+                )}
+              </div>
+              <div className="flex-1">
+                {isPending ? (
+                  <Skeleton count={2} />
+                ) : (
+                  <>
+                    <Label>Current Salary (monthly)</Label>
+                    <Input
+                      error={
+                        !!(
+                          'currentSalary' in (state.errors ?? {}) &&
+                          (state.errors as any).currentSalary
+                        )
+                      }
+                      hint={
+                        ('currentSalary' in (state.errors ?? {}) &&
+                          (state.errors as any).currentSalary?.message) ||
+                        ''
+                      }
+                      disabled={isPending}
+                      name="currentSalary"
+                      type="text"
+                      placeholder={currency}
+                    />
+                  </>
+                )}
+              </div>
+              <div className="flex-1">
+                {isPending ? (
+                  <Skeleton count={2} />
+                ) : (
+                  <>
+                    <Label>Expected Salary (monthly)</Label>
+                    <Input
+                      error={
+                        !!(
+                          'expectedSalary' in (state.errors ?? {}) &&
+                          (state.errors as any).expectedSalary
+                        )
+                      }
+                      hint={
+                        ('expectedSalary' in (state.errors ?? {}) &&
+                          (state.errors as any).expectedSalary?.message) ||
+                        ''
+                      }
+                      disabled={isPending}
+                      name="expectedSalary"
+                      type="number"
+                      placeholder={currency}
+                    />
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}
 
         <div className="mt-6 flex w-full items-center justify-end gap-3">
-          <Button size="sm" variant="outline" onClick={closeModal}>
+          <Button size="sm" variant="outline" onClick={handleCloseModal}>
             Close
           </Button>
           {!state.success && (

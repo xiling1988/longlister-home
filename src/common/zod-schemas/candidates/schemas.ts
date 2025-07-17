@@ -23,6 +23,7 @@ export const candidateSchema = z.object({
     .refine((num) => num <= 36, {
       message: 'Notice period cannot exceed 36 months.',
     }),
+    currency: z.string().min(1, { message: 'Currency is required.' }),
   currentSalary: z.string().optional(),
   expectedSalary: z.string().optional(),
 })

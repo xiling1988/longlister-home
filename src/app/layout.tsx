@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     default: 'Longlister - Recruitment Revolution',
   },
   description:
-    'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
+    'Longlister connects companies with top freelance recruiters, making hiring faster, more flexible, and performance-based—only pay when you hire.',
 }
 
 const inter = Inter({

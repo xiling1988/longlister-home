@@ -7,7 +7,7 @@ import {
   CardElement,
 } from '@stripe/react-stripe-js'
 import { FormEvent, startTransition, useEffect, useState } from 'react'
-
+import stripeBadge from '@/images/stripeBadge.png'
 import { useProfileCompletionContext } from '@/context/ProfileCompletionContext'
 import { useActionState } from 'react'
 import {
@@ -21,6 +21,11 @@ import Label from '@/components/tailAdmin/form/Label'
 import Input from '@/components/tailAdmin/form/input/InputField'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import { CompanyProfileInitialValuesType } from '@/common/zod-schemas/profiles/schemas'
+import Image from 'next/image'
+import StripeInfoTooltip from '@/components/custom/common/Tooltip'
+import Tooltip from '@/components/custom/common/Tooltip'
+import { InfoIcon } from 'lucide-react'
+import Link from 'next/link'
 
 const initialState: FormErrors = {}
 
@@ -142,8 +147,41 @@ export default function CompanyPaymentDetails({
     <section className="bg-white py-8 antialiased md:py-2 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+          <h2 className="mb-2 text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
             Payment
+            <span className="mr-3 inline">
+              <Image
+                src={stripeBadge}
+                alt="Powered by Stripe"
+                width={500}
+                height={300}
+                unoptimized
+                className="ml-4 inline h-8 w-auto"
+              />
+            </span>
+            <Tooltip
+              icon={
+                <InfoIcon
+                  size={24}
+                  className="cursor-pointer text-brand-coral hover:text-brand-red"
+                />
+              }
+            >
+              <p>
+                You won’t be charged now. We collect your payment details
+                securely via Stripe so you can start posting jobs and unlocking
+                candidate profiles. You’ll only be charged at the end of each
+                vacancy’s deadline based on disclosed candidates. See our{' '}
+                <Link
+                  href="/legal/user-terms"
+                  target="_blank"
+                  className="text-brand-coral underline hover:text-brand-red"
+                >
+                  User Terms
+                </Link>{' '}
+                for more info.
+              </p>
+            </Tooltip>
           </h2>
           <form
             onSubmit={handleSubmit}

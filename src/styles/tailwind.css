@@ -249,6 +249,38 @@
   }
 }
 
+@layer utilities {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.95);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 200ms ease-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fade-out 150ms ease-in forwards;
+  }
+}
+
 @utility menu-item {
   @apply relative flex w-full items-center gap-3 rounded-lg px-3 py-2 text-theme-sm font-medium;
 }

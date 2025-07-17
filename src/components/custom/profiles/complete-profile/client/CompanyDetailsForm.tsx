@@ -156,7 +156,7 @@ export default function ClientCompanyDetailsForm({
         </div>
         <div className="col-span-2 h-4 rounded-2xl bg-transparent"></div>
         <div>
-          <Label>Website (Optional)</Label>
+          <Label>Website</Label>
           <Input
             name="website"
             defaultValue={
