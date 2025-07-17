@@ -11,6 +11,11 @@ export interface CandidateProfileVersion {
   id: string
   candidateId: string
   addedByRecruiterId: string
+  location: string
+  noticePeriod: number
+  currency?: string
+  currentSalary?: number
+  expectedSalary?: number
   details: FullCandidateCV
 }
 

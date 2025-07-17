@@ -37,11 +37,10 @@ function AddCandidateModal({
   vacancyId,
 }: CreateVacancyModalProps) {
   const [cvFile, setCvFile] = useState<File | null>(null)
-  const [state, formAction] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     uploadCandidateSubmission,
     initialState,
   )
-  const isPending = true
   const [currency, setCurrency] = useState<string>('')
   const [candidate, setCandidate] = useState<CandidateProfileVersion | null>(
     null,
@@ -80,6 +79,8 @@ function AddCandidateModal({
     // Ensure currency is included in form data
     if (currency) {
       data.set('currency', currency)
+    } else {
+      data.set('currency', '') // Force currency to exist
     }
 
     startTransition(() => {
@@ -119,8 +120,20 @@ function AddCandidateModal({
           />
         ) : (
           <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3">
-            <CVDropzone cvFile={cvFile} setCvFile={setCvFile} isPending />
+            <CVDropzone
+              cvFile={cvFile}
+              setCvFile={setCvFile}
+              isPending={isPending}
+            />
             <input type="hidden" name="vacancyId" value={vacancyId} />
+            {'cv' in (state.errors ?? {}) && (
+              <div className="text-sm text-brand-red">
+                <p className="">
+                  {('cv' in (state.errors ?? {}) && (state.errors as any).cv) ||
+                    ''}
+                </p>
+              </div>
+            )}
             <div className="col-span-3 flex gap-4">
               <div className="flex-1">
                 {isPending ? (
@@ -197,7 +210,7 @@ function AddCandidateModal({
                       }
                       hint={
                         ('currency' in (state.errors ?? {}) &&
-                          (state.errors as any).currency?.message) ||
+                          (state.errors as any).currency) ||
                         ''
                       }
                     />
@@ -219,7 +232,7 @@ function AddCandidateModal({
                       }
                       hint={
                         ('currentSalary' in (state.errors ?? {}) &&
-                          (state.errors as any).currentSalary?.message) ||
+                          (state.errors as any).currentSalary) ||
                         ''
                       }
                       disabled={isPending}
@@ -245,7 +258,7 @@ function AddCandidateModal({
                       }
                       hint={
                         ('expectedSalary' in (state.errors ?? {}) &&
-                          (state.errors as any).expectedSalary?.message) ||
+                          (state.errors as any).expectedSalary) ||
                         ''
                       }
                       disabled={isPending}

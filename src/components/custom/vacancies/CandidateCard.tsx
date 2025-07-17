@@ -45,6 +45,8 @@ export default function CandidateCard({
     closeModal()
   }
 
+  console.log('candidate:', candidate)
+
   return (
     <div className="w-full rounded-xl bg-white ring-1 ring-gray-900/5 transition-shadow duration-200 ease-in-out hover:shadow-lg dark:bg-gray-900 dark:ring-gray-800">
       <div className="flex items-start justify-between p-4">
@@ -130,7 +132,7 @@ export default function CandidateCard({
             <MapIcon className="h-6 w-5 text-gray-400" />
           </dt>
           <dd className="text-sm text-brand-red dark:text-gray-400">
-            Current Location
+            {candidate.location}
           </dd>
         </div>
 
@@ -141,7 +143,8 @@ export default function CandidateCard({
             <CalendarDaysIcon className="h-6 w-5 text-gray-400" />
           </dt>
           <dd className="text-sm text-gray-600 dark:text-gray-400">
-            1 month notice
+            {candidate.noticePeriod}{' '}
+            {candidate.noticePeriod > 1 ? 'months' : 'month'}
           </dd>
         </div>
 
@@ -151,14 +154,18 @@ export default function CandidateCard({
           <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
             <span>Current Salary (monthly)</span>
             <span className="font-medium text-gray-800 dark:text-white/90">
-              10000 AED
+              {candidate.currentSalary
+                ? `${candidate.currentSalary} ${candidate.currency}`
+                : 'Not specified'}
             </span>
           </div>
 
           <div className="mt-2 flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
             <span>Expected Salary (monthly)</span>
             <span className="font-medium text-gray-800 dark:text-white/90">
-              20000 AED
+              {candidate.expectedSalary
+                ? `${candidate.expectedSalary} ${candidate.currency}`
+                : 'Not specified'}
             </span>
           </div>
         </div>

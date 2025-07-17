@@ -25,7 +25,7 @@ export async function uploadCandidateSubmission(
 
   // Convert FormData to an object
   const data = Object.fromEntries(formData.entries())
-
+  console.log('DATA: ', data)
   const validation = candidateSchema.safeParse(data)
 
   if (!validation.success) {
@@ -33,9 +33,11 @@ export async function uploadCandidateSubmission(
       acc[issue.path[0]] = issue.message
       return acc
     }, {})
-
+    console.error('Validation errors:', errors)
     return { errors }
   }
+
+  console.log('Validation successful, validattion DATA:', validation.data)
 
   try {
     const headers = await getHeaders()

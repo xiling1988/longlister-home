@@ -19,6 +19,8 @@ export default function CandidateSuccessCard({
   const { full_name, title, email, phone } = profile.personal
   const experience = profile.experience || []
 
+  console.log('LOGGING CANDIDATE:', candidate)
+
   return (
     <div className="rounded-2xl border border-gray-200 p-5 lg:p-6 dark:border-gray-800">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
