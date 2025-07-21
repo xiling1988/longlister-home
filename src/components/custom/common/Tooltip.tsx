@@ -4,12 +4,19 @@ import { Info } from 'lucide-react'
 import Link from 'next/link'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 
+type TooltipPosition = 'top' | 'bottom' | 'left' | 'right'
+
 type TooltipProps = {
   icon: ReactNode
-  children: ReactNode // rich tooltip content
+  children: ReactNode
+  position?: TooltipPosition
 }
 
-export default function Tooltip({ icon, children }: TooltipProps) {
+export default function Tooltip({
+  icon,
+  children,
+  position = 'bottom',
+}: TooltipProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -30,6 +37,34 @@ export default function Tooltip({ icon, children }: TooltipProps) {
       }
     }
   }, [isHovered])
+
+  const getPositionClasses = () => {
+    switch (position) {
+      case 'top':
+        return 'bottom-7 left-1/2 -translate-x-1/2'
+      case 'left':
+        return 'right-7 top-1/2 -translate-y-1/2'
+      case 'right':
+        return 'left-7 top-1/2 -translate-y-1/2'
+      case 'bottom':
+      default:
+        return 'top-7 left-1/2 -translate-x-1/2'
+    }
+  }
+
+  const getArrowClasses = () => {
+    switch (position) {
+      case 'top':
+        return 'absolute bottom-[-6px] left-1/2 -translate-x-1/2 rotate-45'
+      case 'left':
+        return 'absolute right-[-6px] top-1/2 -translate-y-1/2 rotate-45'
+      case 'right':
+        return 'absolute left-[-6px] top-1/2 -translate-y-1/2 rotate-45'
+      case 'bottom':
+      default:
+        return 'absolute top-[-6px] left-1/2 -translate-x-1/2 rotate-45'
+    }
+  }
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -56,12 +91,12 @@ export default function Tooltip({ icon, children }: TooltipProps) {
 
       {isVisible && (
         <div
-          className={`animate-fade-in absolute top-9 left-1/2 z-10 w-72 -translate-x-1/2 rounded-md bg-gray-900 px-3 py-2 text-sm text-white shadow-lg ${isHovered ? 'animate-fade-in' : 'animate-fade-out'}`}
+          className={`absolute z-10 w-72 rounded-md bg-gray-900 px-3 py-2 text-sm text-white shadow-lg ${getPositionClasses()} ${isHovered ? 'animate-fade-in' : 'animate-fade-out'}`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           {/* Arrow */}
-          <div className="absolute top-[-6px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-gray-900"></div>
+          <div className={`h-3 w-3 bg-gray-900 ${getArrowClasses()}`} />
           {children}
         </div>
       )}
