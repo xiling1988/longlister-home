@@ -66,12 +66,12 @@ export const recruiterNavItems: NavItem[] = [
     name: 'Vacancies',
     path: '/vacancies',
   },
-  // {
-  //   icon: GroupIcon,
-  //   name: 'Candidates',
-  //   path: '/candidates',
-  //   // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
-  // },
+  {
+    icon: GroupIcon,
+    name: 'Candidates',
+    path: '/candidates',
+    // subItems: [{ name: 'Form Elements', path: '/form-elements', pro: false }],
+  },
   {
     icon: SearchCheckIcon,
     name: 'Explore Longlister',

@@ -92,14 +92,19 @@ export async function remove(url: string, path: string) {
     'Content-Type': 'application/json',
     ...(await getHeaders()),
   }
-  const res = await fetch(`${url}/${path}`, {
-    method: 'DELETE',
-    credentials: 'include',
-    headers: headers,
-  })
-  if (!res.ok) {
-    throw new Error(`HTTP error! status: ${res.status} : ${res.statusText}`)
-  }
+  try {
+    const res = await fetch(`${url}/${path}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: headers,
+    })
+    // if (!res.ok) {
+    //   throw new Error(`HTTP error! status: ${res.status} : ${res.statusText}`)
+    // }
 
-  return res.json()
+    return res.json()
+  } catch (error) {
+    console.error('Error in remove function:', error)
+    return { error: getErrorMessage(error) }
+  }
 }
