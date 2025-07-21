@@ -33,7 +33,7 @@ export default function Ecommerce() {
       return
     }
     router.replace('/vacancies')
-  }, [router])
+  }, [router, user])
   //////////////////////////// WHILE NO DASHBOARD PAGE /////////////////////////////
 
   // return null // or a loading spinner if you prefer

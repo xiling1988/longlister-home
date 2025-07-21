@@ -208,8 +208,8 @@ function RecruiterCandidatesPage({ myCandidates }: CandidatesPageProps) {
                               <Info className="h-8 w-auto text-brand-coral" />
                             }
                           >
-                            You can't delete a candidate that has already been
-                            disclosed by the client.
+                            You can&apos;t delete a candidate that has already
+                            been disclosed by the client.
                           </Tooltip>
                         ) : null}
                       </TableCell>
