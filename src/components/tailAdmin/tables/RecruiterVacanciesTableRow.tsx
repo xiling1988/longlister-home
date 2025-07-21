@@ -126,9 +126,7 @@ function RecruiterVacanciesTableRow({
       <TableCell className="px-1 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
         {Number(Number(job.cvPriceBudget) / 2).toFixed(2)} {job.currency}
       </TableCell>
-      <TableCell className="px-1 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
-        {job.totalBudget} {job.currency}
-      </TableCell>
+
       <TableCell className="px-1 py-3 text-theme-sm text-gray-500 dark:text-gray-400">
         <button onClick={toggleDropdown} className="dropdown-toggle relative">
           <EllipsisVertical />

@@ -45,7 +45,7 @@ export default function CandidateCard({
     closeModal()
   }
 
-  console.log('candidate:', candidate)
+  // console.log('candidate:', candidate)
 
   return (
     <div className="w-full rounded-xl bg-white ring-1 ring-gray-900/5 transition-shadow duration-200 ease-in-out hover:shadow-lg dark:bg-gray-900 dark:ring-gray-800">

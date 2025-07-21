@@ -114,12 +114,6 @@ export default function RecruiterVacanciesTable() {
                 >
                   Earnings / CV
                 </TableCell>
-                <TableCell
-                  isHeader
-                  className="px-1 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
-                >
-                  Vacancy Budget
-                </TableCell>
                 {/* <TableCell
                   isHeader
                   className="px-3 py-3 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400"
