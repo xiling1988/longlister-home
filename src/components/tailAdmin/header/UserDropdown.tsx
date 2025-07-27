@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropdown } from '../ui/dropdown/Dropdown'
 import { DropdownItem } from '../ui/dropdown/DropdownItem'
 import Button from '../ui/button/Button'
@@ -10,11 +10,12 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/auth/auth-context'
 import defaultProfileImage from '@/images/background-call-to-action.png'
 import { getCompanyLogo, getRecruiterAvatar } from '@/common/util/helpers'
+import { User } from '@/common/models'
 
-export default function UserDropdown() {
+export default function UserDropdown({ user }: { user: User | null }) {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
-  const { user, setUser } = useAuth()
+  const { contextLogout, setUser } = useAuth()
 
   const avatarUrl =
     user?.userType === 'client'
@@ -132,7 +133,7 @@ export default function UserDropdown() {
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
-              href="/profile/complete-profile"
+              href="/profile"
               className="group flex items-center gap-3 rounded-lg px-3 py-2 text-theme-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
             >
               <svg

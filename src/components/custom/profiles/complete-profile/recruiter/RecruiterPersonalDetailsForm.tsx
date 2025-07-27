@@ -13,7 +13,7 @@ import Avatar from '@/components/tailAdmin/ui/avatar/Avatar'
 import { recruiterPersonalDetailsAction } from '@/app/(dashboard)/(others-pages)/profile/complete-profile/actions'
 
 const initialState: FormErrors = {}
-const AVATAR_OPTIONS = [
+export const AVATAR_OPTIONS = [
   'avatar-1',
   'avatar-2',
   'avatar-3',
@@ -149,7 +149,6 @@ export default function RecruiterPersonalDetailsForm({
           />
         </div>
       </div>
-      
 
       <input
         type="hidden"

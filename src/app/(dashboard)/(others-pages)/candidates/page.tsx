@@ -1,19 +1,9 @@
-import CreateVacancyModal from '@/components/custom/vacancies/create-vacancy/CreateVacancyModal'
-import ComponentCard from '@/components/tailAdmin/common/ComponentCard'
-import BasicTableOne from '@/components/tailAdmin/tables/BasicTableOne'
-import Button from '@/components/tailAdmin/ui/button/Button'
-import UserAddressCard from '@/components/tailAdmin/user-profile/UserAddressCard'
-import UserInfoCard from '@/components/tailAdmin/user-profile/UserInfoCard'
-import UserMetaCard from '@/components/tailAdmin/user-profile/UserMetaCard'
-import { useModal } from '@/hooks/useModal'
 import { Metadata } from 'next'
 import React from 'react'
 import { getMyCandidates } from './actions'
 import RecruiterCandidatesPage from '@/components/custom/pageComponents/RecruiterCandidatesPage'
-import ClientCandidatesPage from '@/components/custom/pageComponents/ClientCandidatesPage'
 import { notFound } from 'next/navigation'
 import PageBreadcrumb from '@/components/tailAdmin/common/PageBreadCrumb'
-// import { getMyVacanciesClient } from './actions'
 
 export const metadata: Metadata = {
   title: 'My Candidates',

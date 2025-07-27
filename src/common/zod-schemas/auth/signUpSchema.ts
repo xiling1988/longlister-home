@@ -44,3 +44,32 @@ export const resetPasswordSchema = z
     message: "Passwords don't match",
     path: ['confirmPassword'], // 👈 error will appear under confirmPassword field
   })
+
+export const changeEmailSchema = z.object({
+  email: z.string().refine((val) => email().safeParse(val).success, {
+    message: 'Invalid email address',
+  }),
+  // confirmChangeEmail must be true to proceed with email change
+  confirmChangeEmail: z
+    .preprocess((val) => val === 'on', z.boolean())
+    .refine((val) => val === true, {
+      message: 'You must confirm the change of email address',
+    }),
+})
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(6, {
+      message: 'Current password must be at least 6 characters',
+    }),
+    newPassword: z.string().min(6, {
+      message: 'New password must be at least 6 characters',
+    }),
+    confirmNewPassword: z.string().min(6, {
+      message: 'Confirm new password must be at least 6 characters',
+    }),
+  })
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
+    message: "New passwords don't match",
+    path: ['confirmNewPassword'], // 👈 error will appear under confirmNewPassword field
+  })

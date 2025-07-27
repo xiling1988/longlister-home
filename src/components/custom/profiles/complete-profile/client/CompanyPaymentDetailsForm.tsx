@@ -12,8 +12,6 @@ import { useProfileCompletionContext } from '@/context/ProfileCompletionContext'
 import { useActionState } from 'react'
 import {
   companyPaymentDetailsAction,
-  createSetupIntentAction,
-  createStripeCustomerAction,
   getStripeDataAction,
 } from '@/app/(dashboard)/(others-pages)/profile/complete-profile/actions'
 import { FormErrors } from '@/common/util/errors'
@@ -22,7 +20,6 @@ import Input from '@/components/tailAdmin/form/input/InputField'
 import Button from '@/components/tailAdmin/ui/button/Button'
 import { CompanyProfileInitialValuesType } from '@/common/zod-schemas/profiles/schemas'
 import Image from 'next/image'
-import StripeInfoTooltip from '@/components/custom/common/Tooltip'
 import Tooltip from '@/components/custom/common/Tooltip'
 import { InfoIcon } from 'lucide-react'
 import Link from 'next/link'

@@ -13,7 +13,7 @@ export async function verifyAuth() {
     }
 
     // Fetch user data using getMe
-    const user = await getMe()
+    const user = await getMe({ next: { tags: ['user-profile'] } })
 
     // Check for unauthorized response
     if (user?.statusCode === 401 || user?.message === 'Unauthorized') {

@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
         if (isAuth) {
           // If authenticated, fetch user details
-          const me = await getMe()
+          const me = await getMe({ next: { tags: ['user-profile'] } })
           setUser(me)
         } else {
           setUser(null)

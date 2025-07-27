@@ -8,8 +8,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 import fullLogo from '@/images/full_logo_red.png'
+import { User } from '@/common/models'
 
-const AppHeader: React.FC = () => {
+type AppHeaderProps = {
+  user: User | null
+}
+
+const AppHeader: React.FC<AppHeaderProps> = ({ user }) => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false)
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar()
@@ -172,7 +177,7 @@ const AppHeader: React.FC = () => {
             {/* <!-- Notification Menu Area --> */}
           </div>
           {/* <!-- User Area --> */}
-          <UserDropdown />
+          <UserDropdown user={user} />
         </div>
       </div>
     </header>

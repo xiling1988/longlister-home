@@ -36,7 +36,7 @@ export const navItems: NavItem[] = [
   {
     icon: UserCircleIcon,
     name: 'User Profile',
-    path: '/profile/complete-profile',
+    path: '/profile',
   },
 
   //   {
@@ -80,7 +80,7 @@ export const recruiterNavItems: NavItem[] = [
   {
     icon: UserCircleIcon,
     name: 'User Profile',
-    path: '/profile/complete-profile',
+    path: '/profile',
   },
 
   //   {

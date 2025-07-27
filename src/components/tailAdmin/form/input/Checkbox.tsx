@@ -7,6 +7,7 @@ interface CheckboxProps {
   id?: string
   onChange: (checked: boolean) => void
   disabled?: boolean
+  name?: string
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -16,6 +17,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   className = '',
   disabled = false,
+  name = '',
 }) => {
   return (
     <label
@@ -28,11 +30,12 @@ const Checkbox: React.FC<CheckboxProps> = ({
           id={id}
           type="checkbox"
           className={`h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-300 checked:border-transparent checked:bg-brand-500 disabled:opacity-60 dark:border-gray-700 ${className}`}
+          name={name}
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
           disabled={disabled}
         />
-        {checked && (
+        {/* {checked && (
           <svg
             className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"
             xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +52,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
               strokeLinejoin="round"
             />
           </svg>
-        )}
+        )} */}
         {disabled && (
           <svg
             className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform"

@@ -125,6 +125,7 @@ export const companyPaymentMethodSchema = z.object({
     .min(2, 'Cardholder name must be at least 2 characters'),
 
   stripePaymentMethodId: z.string().min(1, 'Payment method is missing'),
+  stripeCustomerId: z.string().optional(),
 })
 
 // The companyProfileInitialValues includes all the individual fields from the three schemas above but as  zod optional fields:
@@ -157,6 +158,11 @@ export const CompanyProfileInitialValuesSchema = z.object({
   companyCultureDescription: z.string().optional(),
   cardHolderName: z.string().optional(),
   stripePaymentMethodId: z.string().optional(),
+})
+
+export const userCredentialsSchema = z.object({
+  email: z.string().email('Must be a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
 })
 
 export const completeCompanyProfileSchema = z.object({

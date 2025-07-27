@@ -134,7 +134,7 @@ export async function recruiterCompleteProfileAction(
 
 ////////////////////////// Client Profile Actions /////////////////////////
 
-async function uploadClientLogo(file: File) {
+export async function uploadClientLogo(file: File) {
   const formData = new FormData()
   formData.append('image', file)
 
@@ -295,6 +295,7 @@ export async function getStripeDataAction(formData: FormData): Promise<
   console.log('✅ Valid form submission:', validation.data)
   console.log('ON TO THE NEXT STEP: CREATE STRIPE CUSTOMER')
 
+  // ✅ 1. Create Stripe Customer - Returns existing customer id or creates a new one
   const { error, stripeCustomerId } = await createStripeCustomerAction()
   if (error || !stripeCustomerId) {
     console.log('❌ Error creating Stripe customer:', error)

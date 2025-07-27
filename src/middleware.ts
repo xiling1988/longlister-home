@@ -6,6 +6,8 @@ const protectedRoutes = [
   '/', // Root route is the dashboard
   '/dashboard/.*',
   '/explore',
+  '/profile',
+  '/profile/.*',
   '/profile/complete-profile',
   '/vacancies',
   '/vacancies/.*',
@@ -139,7 +141,8 @@ export const config = {
     '/', // Root route
     '/dashboard/:path*',
     '/explore',
-    '/profile/complete-profile',
+    '/profile/:path*',
+    // '/profile/complete-profile',
     '/vacancies/:path*',
     '/candidates',
     '/login',

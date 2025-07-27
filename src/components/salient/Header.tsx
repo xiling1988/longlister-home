@@ -130,7 +130,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             {user ? (
-              <UserDropdown />
+              <UserDropdown user={user} />
             ) : (
               <>
                 <div className="hidden md:block">

@@ -19,14 +19,14 @@ const initialState: FormErrors = {}
 
 type Option = { value: string; label: string }
 
-const experienceOptions: Option[] = [
+export const experienceOptions: Option[] = [
   { value: '0-1 years', label: '0-1 years' },
   { value: '2-5 years', label: '2-5 years' },
   { value: '6-10 years', label: '6-10 years' },
   { value: '10+ years', label: '10+ years' },
 ]
 
-const industryOptions: Option[] = [
+export const industryOptions: Option[] = [
   { value: 'Technology', label: 'Technology' },
   { value: 'Healthcare', label: 'Healthcare' },
   { value: 'Finance', label: 'Finance' },

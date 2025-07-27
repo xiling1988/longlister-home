@@ -1,6 +1,8 @@
 import { format } from 'path'
 import { ApprovalSuccess, RejectionSuccess, Success } from './success'
 
+export const initialState: FormErrors = {}
+
 export interface FormErrors {
   [key: string]: string | undefined
 }
