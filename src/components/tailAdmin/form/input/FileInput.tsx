@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
 interface FileInputProps {
   className?: string
@@ -25,5 +25,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     )
   },
 )
+
+FileInput.displayName = 'FileInput'
 
 export default FileInput
