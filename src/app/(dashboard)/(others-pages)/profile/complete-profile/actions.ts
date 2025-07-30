@@ -16,6 +16,7 @@ import {
   RecruiterProfileInitialValuesType,
   recruiterProfileSchema,
 } from '@/common/zod-schemas/profiles/schemas'
+import { revalidateTag } from 'next/cache'
 import { ca } from 'zod/v4/locales'
 
 ////////////////////////// Recruiter Profile Actions /////////////////////////
@@ -144,6 +145,7 @@ export async function uploadClientLogo(file: File) {
     method: 'POST',
     headers: headers,
   })
+  revalidateTag('user-profile')
 }
 
 export async function companyDetailsAction(
@@ -265,6 +267,23 @@ export async function companyPaymentDetailsAction(
 
   // 🛠️ Process submission (e.g., save to DB)
   console.log('✅ Valid form submission:', validation.data)
+
+  const paymentMethodData = validation.data
+
+  const requestData = new FormData()
+  Object.entries(paymentMethodData).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      requestData.append(`clientProfile.${key}`, value)
+    }
+  })
+  console.log('✅ Sending PATCH request with FormData:', requestData)
+
+  // ✅ Send FormData instead of JSON
+  const response = await patch('users/me/payment-method', requestData)
+  if (response.error) {
+    console.log('❌ API Error:', response.error)
+    return { errors: { api: response.error } }
+  }
 
   return { success: true }
 }
@@ -412,6 +431,8 @@ export async function companyCompleteProfileAction(
     console.log('❌ API Error:', response.error)
     return { errors: { api: response.error } }
   }
+
+  revalidateTag('user-profile')
 
   console.log('ABOUT TO RETURN SUCCESS TRUE!')
   // redirect('/dashboard')

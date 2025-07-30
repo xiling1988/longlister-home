@@ -405,7 +405,7 @@ export async function editPaymentDetailsAction(
   console.log('✅ Sending PATCH request with FormData:', requestData)
 
   // ✅ Send FormData instead of JSON
-  const response = await patch('users/me', requestData)
+  const response = await patch('users/me/payment-method', requestData)
   if (response.error) {
     console.log('❌ API Error:', response.error)
     return { errors: { api: response.error } }
@@ -451,3 +451,5 @@ async function removeAllOtherPaymentMethods(
     }
   }
 }
+
+

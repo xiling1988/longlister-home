@@ -125,6 +125,7 @@ export default function CompanyPaymentDetails({
       'stripePaymentMethodId',
       setupIntent.payment_method as string,
     )
+    formData.append('stripeCustomerId', stripeData.stripeCustomerId || '')
 
     // ✅ Wrap formAction in startTransition
     startTransition(() => {

@@ -69,6 +69,8 @@ export async function patch(path: string, formData: FormData) {
     current[keys[0]] = value
   })
 
+  console.log('LOGGING PATCH TRANSFORMED FORMDATA', JSON.stringify(data))
+
   const res = await fetch(`${AUTH_API_URL}/${path}`, {
     method: 'PATCH',
     credentials: 'include',
