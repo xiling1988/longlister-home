@@ -11,6 +11,8 @@ const protectedRoutes = [
   '/profile/complete-profile',
   '/vacancies',
   '/vacancies/.*',
+  '/invoices',
+  '/invoices/.*',
   '/candidates',
 ]
 const publicRoutes = [
@@ -142,8 +144,8 @@ export const config = {
     '/dashboard/:path*',
     '/explore',
     '/profile/:path*',
-    // '/profile/complete-profile',
     '/vacancies/:path*',
+    '/invoices/:path*',
     '/candidates',
     '/login',
     '/register',
